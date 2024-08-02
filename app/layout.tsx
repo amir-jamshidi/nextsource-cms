@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import Header from "./_components/Templates/Header/Header";
+import Sidebar from "./_components/Templates/Sidebar/Sidebar";
+import { Toaster } from 'react-hot-toast'
+import ThemeProvider from "./_context/ThemeContext";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,8 +16,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html dir="rtl" lang="en">
+      <body>
+        <ThemeProvider>
+          <div className="grid h-screen grid-cols-10 grid-rows-[64px,1fr]">
+            <Toaster />
+            <Sidebar />
+            <Header />
+            <div className="overflow-auto bg-primary-0 dark:bg-gray-900" style={{ gridColumn: '3/-1' }}>
+              <div className="container h-full pt-8 px-8">
+                {children}
+              </div>
+            </div>
+          </div>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

@@ -2,32 +2,74 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+
+@font-face {
+    font-family: 'ir';
+    src: url('../public/fonts/is-regular.woff2');
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+@font-face {
+    font-family: 'ir-medium';
+    src: url('../public/fonts/is-medium.woff2');
+}
+
+@font-face {
+    font-family: 'ir-light';
+    src: url('../public/fonts/is-light.woff2');
+}
+
+@font-face {
+    font-family: 'ir-bold';
+    src: url('../public/fonts/ir-bold.woff2');
+}
+
+@font-face {
+    font-family: 'mo';
+    src: url('../public/fonts/mo-medium.woff');
+}
+
+@font-face {
+    font-family: 'mo-light';
+    src: url('../public/fonts/mo-light.woff');
+}
+
+@font-face {
+    font-family: 'mo-bold';
+    src: url('../public/fonts/mo-bold.woff');
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    font-family: 'ir';
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+/* width */
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 2px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #666;
+}
+
+
+.order-list {
+    display: grid;
+    grid-template-columns: 65px repeat(8, minmax(0, 1fr)) 65px
+}
+
+.ticket-list {
+    display: grid;
+    grid-template-columns: 65px repeat(9, minmax(0, 1fr))
 }
