@@ -22,7 +22,9 @@ export const getAlerts = async ({ page, type }: IGetAlerts) => {
         .lean();
 
     const alertsAll = await alertModel.find({});
-    const alertsCount = alertsAll.length;
+    const alertInfo = await alertModel.find(options);
+
+    const alertsCount = alertInfo.length;
     const alertsSuccessCount = alertsAll.filter(alert => alert.type === 'SUCCESS').length;
     const alertWarningCount = alertsAll.filter(alert => alert.type === 'WARNING').length;
     const alertErrorCount = alertsAll.filter(alert => alert.type === 'ERROR').length;

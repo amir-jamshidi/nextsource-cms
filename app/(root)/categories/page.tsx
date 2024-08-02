@@ -11,10 +11,10 @@ interface ICategoiresProps {
 
 const Categories = async ({ searchParams: { page = 1, sort = 'asc' } }: ICategoiresProps) => {
 
-  const { categories } = await getCategories({ page, sort });
+  const { categories, categoriesDetails } = await getCategories({ page, sort });
 
   return (
-    <CategoriesContainer categories={categories} />
+    <CategoriesContainer categories={categories} categoriesDetails={categoriesDetails} />
   )
 }
 

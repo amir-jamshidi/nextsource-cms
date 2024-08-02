@@ -34,9 +34,9 @@ const Filter = ({ option, resetOption, defaultValue }: IFilterProps) => {
     }
 
     return (
-        <div className="h-14 bg-white rounded-xl flex items-center px-4 gap-x-2 shadow-sm">
+        <div className="h-14 bg-white dark:bg-primary-900 rounded-xl flex items-center px-4 gap-x-2 shadow-sm">
             {option.options.map(item => (
-                <button onClick={() => handleClick(item.value)} key={item.value} className={`${currentDay == item.value ? 'bg-blue-400 text-primary-0' : 'bg-primary-0 text-primary-700'} px-4 rounded-xl py-1.5 hover:bg-blue-500 transition-all hover:text-primary-0 cursor-pointer`}>{item.title}</button>
+                <button onClick={() => handleClick(item.value)} key={item.value} className={`${currentDay == item.value ? 'bg-blue-400 text-primary-0 ' : 'bg-primary-0 dark:bg-primary-800 text-primary-700 dark:text-primary-50'} px-4 rounded-xl py-1.5 hover:bg-blue-500 transition-all hover:text-primary-0 cursor-pointer`}>{item.title}</button>
             ))}
         </div>
     )

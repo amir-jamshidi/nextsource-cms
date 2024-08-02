@@ -34,15 +34,19 @@ const Pagination = ({ sourceCount, showInPage }: PaginationProps) => {
     }
 
     return (
-        <div className='h-14 bg-primary-0 flex justify-between items-center px-4'>
-            <p className='text-xs font-semibold tracking-tighter text-primary-700'>نمایش {((+currentPage - 1) * showInPage) + 1} تا {(+currentPage * showInPage) > sourceCount ? sourceCount : +currentPage * showInPage} از {sourceCount} نتیجه</p>
+        <div className='h-14 bg-primary-0 dark:bg-primary-800 flex justify-between items-center px-4'>
+            {sourceCount > 0 ? (
+                <p className='text-xs font-semibold tracking-tighter text-primary-700 dark:font-normal dark:text-primary-200'>نمایش {((+currentPage - 1) * showInPage) + 1} تا {(+currentPage * showInPage) > sourceCount ? sourceCount : +currentPage * showInPage} از {sourceCount} نتیجه</p>
+            ) : (
+                <p className='text-xs font-semibold tracking-tighter text-primary-700 dark:font-normal dark:text-primary-200'>بدون نتیجه </p>
+            )}
             <div className='flex gap-x-1'>
                 {(sourceCount > showInPage) && (<>
-                    <button disabled={isLastPage} onClick={handleNext} className='bg-primary-50 disabled:cursor-not-allowed rounded-full p-1 w-9 h-9 flex justify-center items-center hover:bg-green-300 transition-all cursor-pointer'>
-                        <HiOutlineChevronRight className='text-primary-700' size={20} />
+                    <button disabled={isLastPage} onClick={handleNext} className='bg-primary-50 dark:bg-primary-900 dark:hover:bg-primary-950 disabled:cursor-not-allowed rounded-full p-1 w-9 h-9 flex justify-center items-center hover:bg-green-300 transition-all cursor-pointer'>
+                        <HiOutlineChevronRight className='text-primary-700 dark:text-primary-100' size={20} />
                     </button>
-                    <button disabled={isFirstPage} onClick={handlePrev} className='bg-primary-50 disabled:cursor-not-allowed rounded-full p-1 w-9 h-9 flex justify-center items-center hover:bg-green-300 transition-all cursor-pointer'>
-                        <HiOutlineChevronLeft className='text-primary-700' size={20} />
+                    <button disabled={isFirstPage} onClick={handlePrev} className='bg-primary-50 dark:bg-primary-900 dark:hover:bg-primary-950 disabled:cursor-not-allowed rounded-full p-1 w-9 h-9 flex justify-center items-center hover:bg-green-300 transition-all cursor-pointer'>
+                        <HiOutlineChevronLeft className='text-primary-700 dark:text-primary-100' size={20} />
                     </button>
                 </>)}
 

@@ -1,7 +1,9 @@
 import { ICategory } from '@/app/_types/category';
 import { IProduct } from '@/app/_types/product';
 import { IUser } from '@/app/_types/user';
+import Link from 'next/link';
 import { HiOutlineCheckCircle, HiOutlineEye, HiOutlinePencil, HiOutlinePencilSquare, HiOutlineXCircle } from 'react-icons/hi2';
+import CategoryDeleteButton from './CategoryDeleteButton';
 
 interface CategoryItemProps {
     category: ICategory,
@@ -36,12 +38,7 @@ const CategoryItem = ({ category, index }: CategoryItemProps) => {
                 </span>
             </div>
             <div className='col-span-1 h-full w-full flex items-center gap-x-1 justify-center'>
-                <span className='p-1 bg-blue-200 rounded-full cursor-pointer'>
-                    <HiOutlineEye size={20} className='text-blue-500' />
-                </span>
-                <span className='p-1 bg-green-200 rounded-full cursor-pointer'>
-                    <HiOutlinePencilSquare size={20} className='text-green-500' />
-                </span>
+                    <CategoryDeleteButton categoryID={String(category._id)} />
             </div>
         </div>
     )

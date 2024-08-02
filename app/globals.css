@@ -54,13 +54,12 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 2px;
+    background: #444;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #666;
+    background: #333;
 }
 
 
@@ -72,4 +71,8 @@ body {
 .ticket-list {
     display: grid;
     grid-template-columns: 65px repeat(9, minmax(0, 1fr))
+}
+
+* {
+    transition: all ease 0.2s;
 }
