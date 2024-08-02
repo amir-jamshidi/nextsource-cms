@@ -10,10 +10,10 @@ const UserTitleTable = () => {
                 <p className='font-ir-medium font-semibold text-sm text-primary-800 tracking-tight'>نام</p>
             </div>
             <div className='h-full flex items-center col-span-2'>
-                <p className='font-ir-medium font-semibold text-sm text-primary-800 tracking-tight'>شماره تلفن</p>
+                <p className='font-ir-medium font-semibold text-sm text-primary-800 tracking-tight'>ایمیل</p>
             </div>
             <div className='h-full flex items-center col-span-1'>
-                <p className='font-ir-medium font-semibold text-sm text-primary-800 tracking-tight'>ایمیل</p>
+                <p className='font-ir-medium font-semibold text-sm text-primary-800 tracking-tight'>شماره تلفن</p>
             </div>
             <div className='h-full flex items-center col-span-1 '>
                 <p className='font-ir-medium font-semibold text-sm text-primary-800 tracking-tight'>موجودی ولت</p>

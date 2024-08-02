@@ -19,7 +19,7 @@ const UserItem = ({ user, index }: UserItemProps) => {
                 <p className='font-ir-medium text-sm text-primary-800 tracking-tight'>{user.fullname}</p>
             </div>
             <div className='col-span-2 h-full w-full flex justify-center flex-col'>
-                <p className='font-ir-medium text-sm text-primary-800 tracking-tight'>{user.email}</p>
+                <p className='font-ir-medium text-sm text-primary-800 tracking-tight'>{user.email || 'ندارد'}</p>
             </div>
             <div className='col-span-1 h-full w-full flex items-center'>
                 <p className='font-ir-medium text-sm text-primary-800 tracking-tight'>{user.phone}</p>

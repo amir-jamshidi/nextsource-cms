@@ -65,7 +65,7 @@ const TicketButtonShow = ({ ticket }: TicketButtonShow) => {
                             color='#ddd6fe'
                             title={'کاربر'}
                             text={user.phone}
-                            link='/'
+                            link={`/users/${user._id}`}
                         />
                         <OrderModalBox
                             icon={<HiOutlineClock size={40} className='text-rose-500' />}
@@ -78,7 +78,7 @@ const TicketButtonShow = ({ ticket }: TicketButtonShow) => {
                             color='#bbf7d0'
                             title={'شناسه سفارش'}
                             text={order ? String(order.code) : 'ندارد'}
-                            link={order ? '/' : undefined}
+                            link={order ? `/orders` : undefined}
                         />
                     </div>
                     <div className='p-4'>

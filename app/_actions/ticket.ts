@@ -51,11 +51,12 @@ export const getTickets = async ({ status, page, day }: getTicketsProps) => {
         .lean();
 
     const ticketsInfo: ITicket[] = await ticketModel.find(options)
+    const ticketsAll = await ticketModel.find({});
 
-    const ticketsCountAll = await ticketModel.find({}).countDocuments();
+    const ticketsCountAll = ticketsAll.length
     const ticketsCount = ticketsInfo.length;
-    const ticketsAnswerCount = tickets.filter(ticket => ticket.isAnswer === true).length;
-    const ticketsNoAnswerCount = tickets.filter(ticket => ticket.isAnswer === false).length;
+    const ticketsAnswerCount = ticketsAll.filter(ticket => ticket.isAnswer === true).length;
+    const ticketsNoAnswerCount = ticketsAll.filter(ticket => ticket.isAnswer === false).length;
 
 
     const ticketsDetails = {
