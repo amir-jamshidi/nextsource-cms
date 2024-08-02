@@ -48,7 +48,7 @@ const OrderShowButton = ({ order }: IOrderShowButtonProps) => {
                         <OrderModalBox
                             color="#fecdd3"
                             icon={<HiOutlineUser size={40} className="text-rose-500" />}
-                            link="/"
+                            link={`/users/${user._id}`}
                             title="کاربر"
                             text={user.phone}
                         />
@@ -62,7 +62,7 @@ const OrderShowButton = ({ order }: IOrderShowButtonProps) => {
                         <OrderModalBox
                             color="#bbf7d0"
                             icon={<HiOutlineShoppingBag size={40} className="text-green-500" />}
-                            link="/"
+                            link={`/products/${product._id}`}
                             title="محصول"
                             text={product.title}
                         />
@@ -104,7 +104,7 @@ const OrderShowButton = ({ order }: IOrderShowButtonProps) => {
                         <OrderModalBox
                             color="#d9f99d"
                             icon={<HiOutlineShoppingCart size={40} className="text-lime-500" />}
-                            link="/"
+                            link={`/users/${seller._id}`}
                             title="فروشنده"
                             text={seller.phone}
                         />
