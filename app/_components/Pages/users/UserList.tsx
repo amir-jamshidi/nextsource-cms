@@ -13,7 +13,7 @@ interface ITicketsList {
 
 const UsersList = ({ users, usersCount }: ITicketsList) => {
     return (
-        <div className='rounded-xl dark:bg-primary-900 bg-white dark:divide-primary-800 flex flex-col border divide-y divide-primary-0 border-primary-50 dark:border-primary-800 overflow-hidden'>
+        <div className='overflow-y-auto rounded-xl dark:bg-primary-900 bg-white dark:divide-primary-800 flex flex-col border divide-y divide-primary-0 border-primary-50 dark:border-primary-800 overflow-hidden'>
             <UserTitleTable />
             {users.length > 0 ? (<>
                 {users.map((user, i) => (

@@ -1,6 +1,6 @@
 'use client'
 import { useTheme } from "@/app/_context/ThemeContext"
-import { HiOutlineBell, HiOutlineSun } from "react-icons/hi2"
+import { HiMoon, HiOutlineBell, HiOutlineMoon, HiOutlineSun } from "react-icons/hi2"
 
 const ButtonToggleTheme = () => {
 
@@ -9,8 +9,9 @@ const ButtonToggleTheme = () => {
 
   return (
     <>
-      <span onClick={toggleTheme} className='bg-primary-0 rounded-full p-1 border border-primary-50'>
-        <HiOutlineSun className='text-primary-700' size={25} />
+      <span onClick={toggleTheme} className='bg-primary-0 rounded-full p-1 border border-primary-50 cursor-pointer dark:bg-primary-800 dark:border-gray-800'>
+        <HiOutlineSun className='hidden dark:inline-block text-primary-200' size={25} />
+        <HiOutlineMoon className='inline-block dark:hidden text-primary-600' size={25} />
       </span>
     </>
   )

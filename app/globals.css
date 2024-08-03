@@ -54,12 +54,12 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #444;
+    background: #2C3D4F;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #333;
+    background: #2C3D4F;
 }
 
 
@@ -74,5 +74,5 @@ body {
 }
 
 * {
-    transition: all ease 0.2s;
+    transition: color ease 0.2s;
 }
