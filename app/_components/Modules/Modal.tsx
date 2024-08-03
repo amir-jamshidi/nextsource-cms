@@ -43,7 +43,7 @@ const Window = ({ children }: { children: React.ReactNode }) => {
     const { isShowModal, setIsShowModal } = context
     if (!isShowModal) return null
     return createPortal(
-        <div onClick={(e) => { e.stopPropagation() }} className='bg-primary-100/40 backdrop-blur-sm absolute right-0 left-0 top-0 bottom-0 z-10'>
+        <div onClick={(e) => { e.stopPropagation() }} className='bg-primary-100/40 dark:bg-primary-900/40 backdrop-blur-sm absolute right-0 left-0 top-0 bottom-0 z-10 '>
             <div className='container h-full'>
                 <div className='flex justify-center items-center h-full'>
                     {children}

@@ -13,7 +13,7 @@ interface ITicketsList {
 
 const TicketList = ({ tickets, ticketsCount }: ITicketsList) => {
     return (
-        <div className='rounded-xl bg-white flex flex-col border divide-y divide-primary-0 border-primary-50 overflow-hidden'>
+        <div className='rounded-xl bg-white dark:bg-primary-900 flex flex-col border divide-y dark:divide-primary-800 dark:border-primary-800 divide-primary-0 border-primary-50 overflow-hidden'>
             <TicketTitleTable />
             {tickets.length > 0 ? (<>
                 {tickets.map((order, i) => (

@@ -8,6 +8,7 @@ import autoTable from 'jspdf-autotable'
 import { HiOutlineBanknotes, HiOutlineBellAlert, HiOutlineClock, HiOutlineCurrencyDollar, HiOutlineEye, HiOutlineGift, HiOutlineHashtag, HiOutlineReceiptPercent, HiOutlineShoppingBag, HiOutlineShoppingCart, HiOutlineSquares2X2, HiOutlineUser, HiOutlineWallet } from "react-icons/hi2"
 import OrderModalBox from "./OrderModalBox"
 import Modal from "../../Modules/Modal"
+import ModalFooter from "../../Modules/ModalFooter"
 
 interface IOrderShowButtonProps {
     order: IOrder
@@ -40,9 +41,9 @@ const OrderShowButton = ({ order }: IOrderShowButtonProps) => {
             </Modal.Open>
 
             <Modal.Window>
-                <div className='overflow-hidden w-2/3 rounded-xl bg-white shadow'>
-                    <div className="w-full h-14 bg-primary-50 flex justify-center items-center">
-                        <p className="font-mo text-primary-800">نمایش جزئیات سفارش</p>
+                <div className='overflow-hidden w-2/3 rounded-xl bg-white dark:bg-primary-900 dark:shadow-none shadow dark:border border-primary-800'>
+                    <div className="w-full h-14 dark:bg-primary-800 bg-primary-50 flex justify-center items-center">
+                        <p className="font-mo text-primary-800 dark:text-primary-50">نمایش جزئیات سفارش</p>
                     </div>
                     <div className="grid grid-cols-3 w-full gap-2.5 p-4" >
                         <OrderModalBox
@@ -130,12 +131,9 @@ const OrderShowButton = ({ order }: IOrderShowButtonProps) => {
                             text={order.price.toLocaleString() + ' تومان'}
                         />
                     </div>
-                    <div className="h-14 bg-primary-50 w-full flex justify-end items-center px-4">
+                    <ModalFooter>
                         <button onClick={handleDownloadPDF} className="font-mo text-green-500 px-4 py-1 rounded-full text-sm">دریافت PDF</button>
-                        <Modal.Close>
-                            <button className="font-mo text-red-500 px-4 py-1 rounded-full text-sm">بستن</button>
-                        </Modal.Close>
-                    </div>
+                    </ModalFooter>
                 </div>
             </Modal.Window>
         </Modal>

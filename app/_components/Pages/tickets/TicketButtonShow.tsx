@@ -43,21 +43,21 @@ const TicketButtonShow = ({ ticket }: TicketButtonShow) => {
     return (
         <Modal>
             <Modal.Open>
-                <span className='p-1 bg-blue-200 rounded-full cursor-pointer'>
+                <span className='p-1 bg-blue-200 dark:bg-blue-300 rounded-full cursor-pointer'>
                     <HiOutlineEye size={20} className='text-blue-500' />
                 </span>
             </Modal.Open>
             <Modal.Open>
-                <span className='p-1 bg-green-200 rounded-full'>
+                <span className='p-1 bg-green-200 dark:bg-green-300 rounded-full'>
                     <HiArrowUturnRight size={20} className='text-green-500 cursor-pointer' />
                 </span>
             </Modal.Open>
 
 
             <Modal.Window>
-                <div className='overflow-hidden w-2/3 rounded-xl bg-white shadow'>
-                    <div className="w-full h-14 bg-primary-50 flex justify-center items-center">
-                        <p className="font-mo text-primary-800">نمایش جزئیات تیکت</p>
+                <div className='overflow-hidden w-2/3 rounded-xl bg-white dark:bg-primary-900 shadow dark:shadow-none dark:border border-primary-800'>
+                    <div className="w-full h-14 bg-primary-50 dark:bg-primary-800 flex justify-center items-center">
+                        <p className="font-mo text-primary-800 dark:text-primary-100">نمایش جزئیات تیکت</p>
                     </div>
                     <div className='grid grid-cols-3 px-4 mt-4 gap-2.5'>
                         <OrderModalBox
@@ -89,8 +89,8 @@ const TicketButtonShow = ({ ticket }: TicketButtonShow) => {
 
                                     <Image fill src={`${user.profile}`} alt='UserImage' />
                                 </div>
-                                <div className='bg-blue-200 flex-1 rounded-tl-xl rounded-bl-xl rounded-br-xl rounded-tr-sm py-3 px-2'>
-                                    <p className='tracking-tight font-ir text-sm'>{ticket.body}</p>
+                                <div className='bg-blue-200 dark:bg-blue-300 flex-1 rounded-tl-xl rounded-bl-xl rounded-br-xl rounded-tr-sm py-3 px-2'>
+                                    <p className='tracking-tight font-ir text-sm text-primary-800'>{ticket.body}</p>
                                 </div>
                             </div>
                         </div>
@@ -99,8 +99,8 @@ const TicketButtonShow = ({ ticket }: TicketButtonShow) => {
                             <div className='mt-2.5'>
                                 <MiniTitleSection title='پاسخ شما' />
                                 <div className='flex items-center mt-2.5'>
-                                    <div className='bg-green-200 flex-1 rounded-tl-sm rounded-bl-xl rounded-br-xl rounded-tr-xl py-3 px-2'>
-                                        <p className='tracking-tight font-ir text-sm'>{ticket.answerContent}</p>
+                                    <div className='bg-green-200 dark:bg-green-300 flex-1 rounded-tl-sm rounded-bl-xl rounded-br-xl rounded-tr-xl py-3 px-2'>
+                                        <p className='tracking-tight font-ir text-sm text-primary-800'>{ticket.answerContent}</p>
                                     </div>
                                     <div className='w-14 h-14 relative self-start'>
                                         <Image fill src={'https://i.postimg.cc/Y9VKvST9/icons8-male-user-100.png'} alt='UserImage' />
@@ -110,7 +110,7 @@ const TicketButtonShow = ({ ticket }: TicketButtonShow) => {
                         )}
 
                         <div className='mt-4'>
-                            <textarea placeholder={ticket.isAnswer ? 'پاسخ جایگزین ...' : 'متن پاسخ ...'} className='w-full bg-primary-0 border border-primary-50 outline-none rounded-xl min-h-20 max-h-28 p-2 text-sm text-primary-800 font-ir tracking-tight' value={answer} onChange={(e) => setAnswer(e.target.value)}></textarea>
+                            <textarea placeholder={ticket.isAnswer ? 'پاسخ جایگزین ...' : 'متن پاسخ ...'} className='w-full dark:bg-primary-800 dark:border-primary-700 dark:text-primary-100 bg-primary-0 border border-primary-50 outline-none rounded-xl min-h-20 max-h-28 p-2 text-sm text-primary-800 font-ir tracking-tight' value={answer} onChange={(e) => setAnswer(e.target.value)}></textarea>
                         </div>
                     </div>
                     <ModalFooter>

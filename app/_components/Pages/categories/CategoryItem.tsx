@@ -17,23 +17,23 @@ const CategoryItem = ({ category, index }: CategoryItemProps) => {
     return (
         <div className='ticket-list h-16 gap-2 px-4'>
             <div className='col-span-1 h-full w-full flex items-center'>
-                <p className='font-ir-bold text-sm text-primary-800 pr-3'>{index}</p>
+                <p className='font-ir-bold text-sm text-primary-800 dark:text-primary-100 pr-3'>{index}</p>
             </div>
             <div className='col-span-2 h-full w-full flex flex-col justify-center '>
-                <p className='font-ir-medium text-sm text-primary-800 tracking-tight'>{category.title}</p>
+                <p className='font-ir-medium text-sm text-primary-800 dark:text-primary-100 tracking-tight'>{category.title}</p>
             </div>
             <div className='col-span-2 h-full w-full flex items-center'>
-                <p className='font-ir-medium text-sm text-primary-800 tracking-tight'>{category.titleEn}</p>
+                <p className='font-ir-medium text-sm text-primary-800 dark:text-primary-100 tracking-tight'>{category.titleEn}</p>
             </div>
             <div className='col-span-2 h-full w-full flex justify-center flex-col'>
-                <p className='font-ir-medium text-sm text-primary-800 tracking-tight'>{category.href}/</p>
+                <p className='font-ir-medium text-sm text-primary-800 dark:text-primary-100 tracking-tight'>{category.href}/</p>
             </div>
             <div className='col-span-1 h-full w-full flex justify-center flex-col'>
-                <p className='font-ir-medium text-sm text-primary-800 tracking-tight'>{new Date(category.createdAt || 0).toLocaleDateString('fa-IR')}</p>
-                <p className='font-ir-medium text-primary-600 text-xs tracking-tight'>{new Date(category.createdAt || 0).toLocaleTimeString('fa-IR')}</p>
+                <p className='font-ir-medium text-sm text-primary-800 dark:text-primary-100 tracking-tight'>{new Date(category.createdAt || 0).toLocaleDateString('fa-IR')}</p>
+                <p className='font-ir-medium text-primary-600 dark:text-primary-300 text-xs tracking-tight'>{new Date(category.createdAt || 0).toLocaleTimeString('fa-IR')}</p>
             </div>
             <div className='col-span-1 h-full w-full flex items-center justify-center'>
-                <span className='p-1 bg-green-200 rounded-full'>
+                <span className='p-1 bg-green-200 dark:bg-green-300 rounded-full'>
                     <HiOutlineCheckCircle size={20} className='text-green-500' />
                 </span>
             </div>
