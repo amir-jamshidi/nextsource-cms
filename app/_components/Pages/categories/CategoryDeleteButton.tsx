@@ -4,6 +4,7 @@ import { useTransition } from 'react'
 import { HiOutlineTrash } from 'react-icons/hi2'
 import toast from 'react-hot-toast'
 import { deleteCategory } from '@/app/_actions/category'
+import TableButton from '../../Modules/TableButton'
 
 interface CategoryDeleteButtonProps {
     categoryID: string
@@ -13,8 +14,8 @@ const CategoryDeleteButton = ({ categoryID }: CategoryDeleteButtonProps) => {
     return (
         <Modal>
             <Modal.Open>
-                <span className='p-1 bg-rose-200 dark:bg-rose-300 rounded-full cursor-pointer  transition-all hover:bg-red-300'>
-                    <HiOutlineTrash size={20} className='text-rose-500' />
+                <span>
+                    <TableButton icon={<HiOutlineTrash size={20} />} type='red' />
                 </span>
             </Modal.Open>
             <Modal.Window>

@@ -13,6 +13,7 @@ import MiniTitleSection from '../../Modules/MiniTitleSection'
 import DetailsBoxesContainer from '../../Modules/DetailsBoxesContainer'
 import OrderModalBox from '../orders/OrderModalBox'
 import { IOrder } from '@/app/_types/order'
+import TableButton from '../../Modules/TableButton'
 
 interface TicketButtonShow {
     ticket: ITicket
@@ -43,13 +44,13 @@ const TicketButtonShow = ({ ticket }: TicketButtonShow) => {
     return (
         <Modal>
             <Modal.Open>
-                <span className='p-1 bg-blue-200 dark:bg-blue-300 rounded-full cursor-pointer'>
-                    <HiOutlineEye size={20} className='text-blue-500' />
+                <span>
+                    <TableButton icon={<HiOutlineEye size={18} />} type='blue' />
                 </span>
             </Modal.Open>
             <Modal.Open>
-                <span className='p-1 bg-green-200 dark:bg-green-300 rounded-full'>
-                    <HiArrowUturnRight size={20} className='text-green-500 cursor-pointer' />
+                <span >
+                    <TableButton icon={<HiArrowUturnRight size={18} />} type='green' />
                 </span>
             </Modal.Open>
 

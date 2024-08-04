@@ -4,6 +4,7 @@ import { IUser } from '@/app/_types/user';
 import Link from 'next/link';
 import { HiOutlineCheckCircle, HiOutlineEye, HiOutlinePencil, HiOutlinePencilSquare, HiOutlineXCircle } from 'react-icons/hi2';
 import CategoryDeleteButton from './CategoryDeleteButton';
+import Switch from '../../Modules/Switch';
 
 interface CategoryItemProps {
     category: ICategory,
@@ -33,12 +34,10 @@ const CategoryItem = ({ category, index }: CategoryItemProps) => {
                 <p className='font-ir-medium text-primary-600 dark:text-primary-300 text-xs tracking-tight'>{new Date(category.createdAt || 0).toLocaleTimeString('fa-IR')}</p>
             </div>
             <div className='col-span-1 h-full w-full flex items-center justify-center'>
-                <span className='p-1 bg-green-200 dark:bg-green-300 rounded-full'>
-                    <HiOutlineCheckCircle size={20} className='text-green-500' />
-                </span>
+                <Switch isActive={true} />
             </div>
             <div className='col-span-1 h-full w-full flex items-center gap-x-1 justify-center'>
-                    <CategoryDeleteButton categoryID={String(category._id)} />
+                <CategoryDeleteButton categoryID={String(category._id)} />
             </div>
         </div>
     )

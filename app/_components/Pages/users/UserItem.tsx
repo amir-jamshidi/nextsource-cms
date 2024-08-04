@@ -2,6 +2,7 @@ import { IUser } from '@/app/_types/user';
 import Link from 'next/link';
 import { HiOutlineEye } from 'react-icons/hi2';
 import Badge from '../../Modules/Badge';
+import TableButton from '../../Modules/TableButton';
 
 
 interface UserItemProps {
@@ -34,16 +35,12 @@ const UserItem = ({ user, index }: UserItemProps) => {
             </div>
 
             <div className='col-span-1 h-full w-full flex items-center justify-center'>
-                {user.role === 'ADMIN' && <Badge text='مدیر' type='red' icon={false}/>}
-                {user.role !== 'ADMIN' && <Badge text='کاربر' type='green' icon={false}/>}
+                {user.role === 'ADMIN' && <Badge text='مدیر' type='red' icon={false} />}
+                {user.role !== 'ADMIN' && <Badge text='کاربر' type='green' icon={false} />}
             </div>
 
             <div className='col-span-1 h-full w-full flex items-center gap-x-1 justify-center'>
-                <span className='p-1 bg-blue-200 dark:bg-blue-300 rounded-full cursor-pointer'>
-                    <Link href={`/users/${user._id}`}>
-                        <HiOutlineEye size={20} className='text-blue-500' />
-                    </Link>
-                </span>
+                <TableButton link={`/users/${user._id}`} type='blue' icon={<HiOutlineEye size={18} />} />
             </div>
         </div>
     )

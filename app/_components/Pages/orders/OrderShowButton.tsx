@@ -10,6 +10,7 @@ import OrderModalBox from "./OrderModalBox"
 import Modal from "../../Modules/Modal"
 import ModalFooter from "../../Modules/ModalFooter"
 import ToltipContainer from "../../Modules/ToltipContainer"
+import TableButton from "../../Modules/TableButton"
 
 interface IOrderShowButtonProps {
     order: IOrder
@@ -37,9 +38,9 @@ const OrderShowButton = ({ order }: IOrderShowButtonProps) => {
         <Modal>
             <ToltipContainer toltip="مشاهده جزئیات">
                 <Modal.Open>
-                        <span className='p-1 bg-blue-200 dark:bg-blue-300 rounded-full cursor-pointer block'>
-                            <HiOutlineEye size={20} className='text-blue-500' />
-                        </span>
+                    <span>
+                        <TableButton icon={<HiOutlineEye size={18} />} type="blue" />
+                    </span>
                 </Modal.Open>
             </ToltipContainer>
 

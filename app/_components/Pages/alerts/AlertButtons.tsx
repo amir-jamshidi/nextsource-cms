@@ -4,6 +4,7 @@ import { IAlert } from '@/app/_types/alert'
 import React from 'react'
 import toast from 'react-hot-toast'
 import { HiOutlinePlay, HiOutlinePower, HiOutlineTrash } from 'react-icons/hi2'
+import TableButton from '../../Modules/TableButton'
 
 const AlertButtons = ({ alert }: { alert: IAlert }) => {
 
@@ -24,17 +25,17 @@ const AlertButtons = ({ alert }: { alert: IAlert }) => {
   return (
     <>
       {alert.isShow && (
-        <span onClick={handleDeAvtiveAlert} className='p-1 bg-amber-200 dark:bg-amber-300 rounded-full cursor-pointer'>
-          <HiOutlinePower size={20} className='text-amber-500' />
+        <span onClick={handleDeAvtiveAlert}>
+          <TableButton icon={<HiOutlinePower size={18} />} type='amber' />
         </span>
       )}
       {!alert.isShow && (
-        <span onClick={handleActiceAlert} className='p-1 bg-green-200 dark:bg-green-300 rounded-full cursor-pointer'>
-          <HiOutlinePlay size={20} className='text-green-500' />
+        <span onClick={handleActiceAlert}>
+          <TableButton icon={<HiOutlinePlay size={18} />} type='green' />
         </span>
       )}
-      <span onClick={handleDeleteAlert} className='p-1 bg-rose-200 dark:bg-rose-300 rounded-full cursor-pointer'>
-        <HiOutlineTrash size={20} className='text-rose-500' />
+      <span onClick={handleDeAvtiveAlert}>
+        <TableButton icon={<HiOutlineTrash size={18} />} type='red' />
       </span>
     </>
   )

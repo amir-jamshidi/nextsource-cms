@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { HiOutlineCheckCircle, HiOutlineEye, HiOutlinePencil, HiOutlinePencilSquare, HiOutlineXCircle } from 'react-icons/hi2';
 import Badge from '../../Modules/Badge';
 import Switch from '../../Modules/Switch';
+import TableButton from '../../Modules/TableButton';
 
 interface ProductItemProps {
     product: IProduct,
@@ -49,11 +50,7 @@ const ProductItem = ({ product, index }: ProductItemProps) => {
             </div>
 
             <div className='col-span-1 h-full w-full flex items-center gap-x-1 justify-center'>
-                <span className='p-1 bg-blue-200 dark:bg-blue-300 rounded-full cursor-pointer hover:bg-blue-300 transition-all'>
-                    <Link href={`/products/${product._id}`}>
-                        <HiOutlineEye size={20} className='text-blue-500' />
-                    </Link>
-                </span>
+                <TableButton icon={<HiOutlineEye size={18} />} type='blue' link={`/products/${product._id}`} />
             </div>
         </div>
     )

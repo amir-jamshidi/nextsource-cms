@@ -14,7 +14,7 @@ interface IProductList {
 
 const ProductList = ({ products, productsCount }: IProductList) => {
     return (
-        <div className='rounded-xl bg-white dark:bg-primary-900 dark:divide-primary-800 dark:border-primary-800 flex flex-col border divide-y divide-primary-0 border-primary-50 overflow-hidden'>
+        <div className='rounded-xl bg-white dark:bg-primary-900 dark:divide-primary-800/50 dark:border-primary-800/50 flex flex-col border divide-y divide-primary-0 border-primary-50 overflow-hidden'>
             <ProductTitleTable />
             {products.length > 0 ? (<>
                 {products.map((product, i) => (

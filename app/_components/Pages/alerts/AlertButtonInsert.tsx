@@ -42,7 +42,7 @@ const AlertButtonInsert = () => {
 
     return (
         <Modal>
-            <div className="h-14 bg-white dark:bg-primary-900 rounded-xl flex items-center px-4 gap-x-2 shadow-sm">
+            <div className="h-14 bg-white dark:bg-primary-900 rounded-xl flex items-center px-4 gap-x-2 shadow-sm border border-transparent dark:border-primary-800/50">
                 <Modal.Open>
                     <button className={`bg-blue-400 text-primary-0 px-4 rounded-xl py-1.5 hover:bg-blue-500 transition-all hover:text-primary-0 cursor-pointer`}>اضافه کردن پیام</button>
                 </Modal.Open>

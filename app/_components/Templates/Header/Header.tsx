@@ -7,7 +7,7 @@ import ButtonToggleTheme from '../../Modules/ButtonToggleTheme'
 const Header = () => {
 
     return (
-        <header className="h-16 bg-white dark:bg-primary-900 shadow-sm z-[1]" style={{ gridColumn: '3/-1' }}>
+        <header className="h-16 bg-white dark:bg-primary-900 shadow-sm z-[1] border border-transparent dark:border-b-primary-800/50" style={{ gridColumn: '3/-1' }}>
             <div className='container h-full'>
                 <div className='flex h-full items-center gap-x-1 px-4 justify-between'>
                     <div className='flex gap-x-2.5 items-center'>

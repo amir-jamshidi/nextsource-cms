@@ -4,6 +4,7 @@ import { HiOutlineTrash } from 'react-icons/hi2'
 import Modal, { ModalContext, useModalContext } from '@/app/_components/Modules/Modal'
 import { deleteTicket } from '@/app/_actions/ticket'
 import toast from 'react-hot-toast'
+import TableButton from '../../Modules/TableButton'
 
 interface TicketButtonDeleteProps {
     ticketID: string
@@ -13,8 +14,8 @@ const TicketButtonDelete = ({ ticketID }: TicketButtonDeleteProps) => {
     return (
         <Modal>
             <Modal.Open>
-                <span className='p-1 bg-rose-200 dark:bg-rose-300 rounded-full cursor-pointer'>
-                    <HiOutlineTrash size={20} className='text-rose-500' />
+                <span>
+                    <TableButton icon={<HiOutlineTrash size={18} />} type='red' />
                 </span>
             </Modal.Open>
             <Modal.Window>
