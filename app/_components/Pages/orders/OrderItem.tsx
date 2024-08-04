@@ -2,8 +2,9 @@ import { IOrder } from '@/app/_types/order'
 import { IProduct } from '@/app/_types/product'
 import { IUser } from '@/app/_types/user'
 import React from 'react'
-import { HiOutlineEye } from 'react-icons/hi2'
+import { HiOutlineCheck, HiOutlineEye } from 'react-icons/hi2'
 import OrderShowButton from '../orders/OrderShowButton'
+import Badge from '../../Modules/Badge'
 
 
 
@@ -47,8 +48,18 @@ const OrderItem = ({ order, index }: { order: IOrder, index: number }) => {
                 <p className='font-ir-medium text-sm text-primary-800 dark:text-primary-100 tracking-tight'>{user.phone}</p>
             </div>
             <div className='col-span-1 h-full w-full flex items-center justify-center'>
-                {order.action === 'ONLINE' && <span className='text-xs bg-rose-200 dark:bg-rose-300 rounded-xl px-2 py-1 font-ir-bold text-primary-800 dark:text-primary-700 tracking-tight'>پرداخت نقدی</span>}
-                {order.action === 'WALLET' && <span className='text-xs bg-violet-200  dark:bg-violet-300 rounded-xl px-2 py-1 font-ir-bold text-primary-800 dark:text-primary-700 tracking-tight'>پرداخت ولت</span>}
+                {order.action === 'ONLINE' &&
+                    <Badge
+                        text='پرداخت نقدی'
+                        type='blue'
+                    />
+                }
+                {order.action === 'WALLET' &&
+                    <Badge
+                        text='پرداخت ولت'
+                        type='green'
+                    />
+                }
             </div>
             <div className='col-span-1 h-full w-full flex items-center gap-x-0.5 justify-center'>
                 <OrderShowButton order={JSON.parse(JSON.stringify(order))} />

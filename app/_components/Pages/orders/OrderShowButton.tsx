@@ -9,6 +9,7 @@ import { HiOutlineBanknotes, HiOutlineBellAlert, HiOutlineClock, HiOutlineCurren
 import OrderModalBox from "./OrderModalBox"
 import Modal from "../../Modules/Modal"
 import ModalFooter from "../../Modules/ModalFooter"
+import ToltipContainer from "../../Modules/ToltipContainer"
 
 interface IOrderShowButtonProps {
     order: IOrder
@@ -34,11 +35,14 @@ const OrderShowButton = ({ order }: IOrderShowButtonProps) => {
 
     return (
         <Modal>
-            <Modal.Open>
-                <span className='p-1 bg-blue-200 rounded-full cursor-pointer'>
-                    <HiOutlineEye size={20} className='text-blue-500' />
-                </span>
-            </Modal.Open>
+            <ToltipContainer toltip="مشاهده جزئیات">
+                <Modal.Open>
+                        <span className='p-1 bg-blue-200 dark:bg-blue-300 rounded-full cursor-pointer block'>
+                            <HiOutlineEye size={20} className='text-blue-500' />
+                        </span>
+                </Modal.Open>
+            </ToltipContainer>
+
 
             <Modal.Window>
                 <div className='overflow-hidden w-2/3 rounded-xl bg-white dark:bg-primary-900 dark:shadow-none shadow dark:border border-primary-800'>

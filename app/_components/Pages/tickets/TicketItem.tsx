@@ -6,6 +6,7 @@ import React from 'react'
 import { HiArrowUturnRight, HiOutlineCheckCircle, HiOutlineEye, HiOutlineTrash, HiOutlineXCircle } from 'react-icons/hi2';
 import TicketButtonShow from './TicketButtonShow';
 import TicketButtonDelete from './TicketButtonDelete';
+import Badge from '../../Modules/Badge';
 
 interface TicketItemProps {
     ticket: ITicket,
@@ -42,7 +43,7 @@ const TicketItem = ({ ticket, index }: TicketItemProps) => {
             </div>
 
             <div className='col-span-1 h-full w-full flex items-center justify-center'>
-                {!ticket.isAnswer && <span className='text-xs bg-rose-200 dark:bg-rose-300 rounded-xl px-2 py-1 font-ir-bold text-primary-800 dark:text-primary-700 tracking-tight'>بدون پاسخ</span>}
+                {!ticket.isAnswer && <Badge text='بدون پاسخ' type='rose'/>}
                 {ticket.isAnswer && <span className='text-xs bg-green-200 dark:bg-green-300 rounded-xl px-2 py-1 font-ir-bold text-primary-800 dark:text-primary-700 tracking-tight'>با پاسخ</span>}
             </div>
 

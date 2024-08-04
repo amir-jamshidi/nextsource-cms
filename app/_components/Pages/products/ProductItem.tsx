@@ -54,7 +54,7 @@ const ProductItem = ({ product, index }: ProductItemProps) => {
             <div className='col-span-1 h-full w-full flex items-center justify-center'>
                 {product.isFree &&
                     <>
-                        <span className='p-1 bg-green-200 dark:bg-gray-300 rounded-full'>
+                        <span className='p-1 bg-green-200 dark:bg-green-300 rounded-full'>
                             <HiOutlineCheckCircle size={20} className='text-green-500' />
                         </span>
                     </>

@@ -1,5 +1,6 @@
 'use server'
 
+import { revalidatePath } from "next/cache"
 import connectToDB from "../_configs/database"
 import { SHOW_IN_PAGE } from "../_constants/gobalVariables"
 import categoryModel from "../_models/category.module"
@@ -42,5 +43,6 @@ export const getCategories = async ({ page, sort = 'asc' }: IGetCategoriesProps)
 export const deleteCategory = async ({ categoryID }: { categoryID: string }) => {
     await connectToDB();
     await categoryModel.findOneAndDelete({ _id: categoryID }).lean();
+    revalidatePath('/categories')
     return messageCreator(true, 'دسته بندی حذف شد')
 }

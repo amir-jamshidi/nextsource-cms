@@ -24,16 +24,16 @@ const AlertButtons = ({ alert }: { alert: IAlert }) => {
   return (
     <>
       {alert.isShow && (
-        <span onClick={handleDeAvtiveAlert} className='p-1 bg-amber-200 rounded-full cursor-pointer'>
+        <span onClick={handleDeAvtiveAlert} className='p-1 bg-amber-200 dark:bg-amber-300 rounded-full cursor-pointer'>
           <HiOutlinePower size={20} className='text-amber-500' />
         </span>
       )}
       {!alert.isShow && (
-        <span onClick={handleActiceAlert} className='p-1 bg-green-200 rounded-full cursor-pointer'>
+        <span onClick={handleActiceAlert} className='p-1 bg-green-200 dark:bg-green-300 rounded-full cursor-pointer'>
           <HiOutlinePlay size={20} className='text-green-500' />
         </span>
       )}
-      <span onClick={handleDeleteAlert} className='p-1 bg-rose-200 rounded-full cursor-pointer'>
+      <span onClick={handleDeleteAlert} className='p-1 bg-rose-200 dark:bg-rose-300 rounded-full cursor-pointer'>
         <HiOutlineTrash size={20} className='text-rose-500' />
       </span>
     </>

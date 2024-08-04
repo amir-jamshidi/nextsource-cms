@@ -13,7 +13,7 @@ interface AlertListProps {
 
 const AlertList = ({ alerts, alertsCount }: AlertListProps) => {
     return (
-        <div className='rounded-xl bg-white flex flex-col border divide-y divide-primary-0 border-primary-50 overflow-hidden'>
+        <div className='rounded-xl bg-white dark:bg-primary-900 dark:shadow-none dark:divide-primary-800 dark:border-primary-800 flex flex-col border divide-y divide-primary-0 border-primary-50 overflow-hidden'>
             <AlertTitleTable />
             {alerts.length > 0 ? (<>
                 {alerts.map((alert, i) => (
