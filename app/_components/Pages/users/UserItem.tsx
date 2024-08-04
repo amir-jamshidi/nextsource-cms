@@ -1,6 +1,7 @@
 import { IUser } from '@/app/_types/user';
 import Link from 'next/link';
 import { HiOutlineEye } from 'react-icons/hi2';
+import Badge from '../../Modules/Badge';
 
 
 interface UserItemProps {
@@ -33,8 +34,8 @@ const UserItem = ({ user, index }: UserItemProps) => {
             </div>
 
             <div className='col-span-1 h-full w-full flex items-center justify-center'>
-                {user.role === 'ADMIN' && <span className='text-xs bg-rose-200 dark:bg-rose-300 rounded-xl px-2 py-1 font-ir-bold text-primary-800 dark:text-primary-700 tracking-tight'>مدیر</span>}
-                {user.role !== 'ADMIN' && <span className='text-xs bg-green-200 dark:bg-green-300 rounded-xl px-2 py-1 font-ir-bold text-primary-800 dark:text-primary-700 tracking-tight'>کاربر</span>}
+                {user.role === 'ADMIN' && <Badge text='مدیر' type='red' icon={false}/>}
+                {user.role !== 'ADMIN' && <Badge text='کاربر' type='green' icon={false}/>}
             </div>
 
             <div className='col-span-1 h-full w-full flex items-center gap-x-1 justify-center'>

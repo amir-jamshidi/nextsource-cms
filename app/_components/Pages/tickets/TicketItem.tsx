@@ -7,6 +7,7 @@ import { HiArrowUturnRight, HiOutlineCheckCircle, HiOutlineEye, HiOutlineTrash, 
 import TicketButtonShow from './TicketButtonShow';
 import TicketButtonDelete from './TicketButtonDelete';
 import Badge from '../../Modules/Badge';
+import Switch from '../../Modules/Switch';
 
 interface TicketItemProps {
     ticket: ITicket,
@@ -39,25 +40,16 @@ const TicketItem = ({ ticket, index }: TicketItemProps) => {
                 <p className='font-ir-medium text-primary-600 dark:text-primary-300 text-xs tracking-tight'>{new Date(ticket.createdAt || 0).toLocaleTimeString('fa-IR')}</p>
             </div>
             <div className='col-span-1 h-full w-full flex items-center justify-center'>
-                <span className='text-xs bg-green-200 dark:bg-green-300 rounded-xl px-2 py-1 font-ir-bold text-primary-800 dark:text-primary-700 tracking-tight'>{section.title}</span>
+                <Badge text={section.title} type='blue' icon={false} />
             </div>
 
             <div className='col-span-1 h-full w-full flex items-center justify-center'>
-                {!ticket.isAnswer && <Badge text='بدون پاسخ' type='rose'/>}
-                {ticket.isAnswer && <span className='text-xs bg-green-200 dark:bg-green-300 rounded-xl px-2 py-1 font-ir-bold text-primary-800 dark:text-primary-700 tracking-tight'>با پاسخ</span>}
+                {!ticket.isAnswer && <Badge text='بدون پاسخ' type='red' icon={false} />}
+                {ticket.isAnswer && <Badge text='با پاسخ' type='green' icon={false} />}
             </div>
 
             <div className='col-span-1 h-full w-full flex items-center justify-center'>
-                {order &&
-                    <span className='p-1 bg-green-200 dark:bg-green-300 rounded-full'>
-                        <HiOutlineCheckCircle size={20} className='text-green-500' />
-                    </span>
-                }
-                {!order && (
-                    <span className='p-1 bg-rose-200 dark:bg-rose-300 rounded-full'>
-                        <HiOutlineXCircle size={20} className='text-rose-500' />
-                    </span>
-                )}
+                <Switch isActive={Boolean(order)} />
             </div>
 
             <div className='col-span-1 h-full w-full flex items-center gap-x-1 justify-center'>
