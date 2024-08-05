@@ -61,15 +61,15 @@ export const getSaleReport = async () => {
 
     connectToDB()
 
-    const days = Array.from({ length: 10 }, (_, i) => {
-        const d = subDays(new Date(), 10 - i);
+    const days = Array.from({ length: 14 }, (_, i) => {
+        const d = subDays(new Date(), 14 - i);
         return `${String(d.getFullYear())}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
     });
 
     const orders = await orderModel.aggregate([{
         $match: {
             createdAt: {
-                $gte: subDays(new Date(), 10)
+                $gte: subDays(new Date(), 14)
             }
         }
     }, {

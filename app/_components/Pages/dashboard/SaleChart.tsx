@@ -52,9 +52,10 @@ export default function SaleChart({ saleChartDetails }) {
         };
 
     return (
-        <div className="bg-white dark:bg-primary-900 rounded-2xl pl-4 pr-4 border border-transparent shadow-sm dark:border-primary-800/50">
-            <div>
-                <p className="font-mo">نمودار خرید کاربر در یک هفته گذشته</p>
+        <div className="bg-white dark:bg-primary-900 rounded-2xl pl-4 pr-4 pb-3 border border-transparent shadow-sm dark:border-primary-800/50">
+            <div className="py-6 flex items-center gap-x-1.5">
+                <span className="flex w-4 h-4 bg-blue-600 rounded-full"></span>
+                <p className="font-mo text-primary-100 text-lg">نمودار فروش طی 7 روز گذشته</p>
             </div>
             <ChartContainer dir='ltr' config={chartConfig} className="max-h-64 w-full rounded-2xl">
                 <AreaChart data={saleChartDetails}>
@@ -62,9 +63,10 @@ export default function SaleChart({ saleChartDetails }) {
                         dataKey={"day"}
                         tick={{ fill: colors.text }}
                         tickLine={{ stroke: colors.text }}
-                        tickMargin={8}
+                        tickMargin={14}
                     />
                     <YAxis
+                        tickMargin={4}
                         orientation="right"
                         unit={"T"}
                         tick={{ fill: colors.text }}
