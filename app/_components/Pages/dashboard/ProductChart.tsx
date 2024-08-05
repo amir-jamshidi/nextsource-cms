@@ -71,7 +71,7 @@ export default function ProductSale() {
                     dir="ltr"
                     config={chartConfig}
                     className="mx-auto aspect-square max-h-64 w-full"
-                >
+                > 
                     <PieChart>
                         <ChartTooltip
                             cursor={false}
