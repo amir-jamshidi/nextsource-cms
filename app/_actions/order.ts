@@ -6,6 +6,7 @@ import orderModel from "../_models/order.module";
 import productModel from "../_models/product.module";
 import userModel from "../_models/user.module";
 import { IOrder } from "../_types/order";
+import { subDays, format } from 'date-fns'
 
 interface IGetOrdersProps {
     day: number | string,
@@ -54,4 +55,65 @@ export const getOrders = async ({ day = 1, page = 1 }: IGetOrdersProps) => {
     }
 
     return { orders, ordersDetails }
+}
+
+export const getSaleReport = async () => {
+
+    connectToDB()
+
+    const days = Array.from({ length: 10 }, (_, i) => {
+        const d = subDays(new Date(), 10 - i);
+        return `${String(d.getFullYear())}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+    });
+
+    const orders = await orderModel.aggregate([{
+        $match: {
+            createdAt: {
+                $gte: subDays(new Date(), 10)
+            }
+        }
+    }, {
+        $group: {
+            _id: {
+                $dateToString: {
+                    format: "%Y-%m-%d",
+                    date: '$createdAt'
+                }
+            },
+            cash: {
+                $sum: {
+                    $cond: {
+                        if: {
+                            $eq: ['$action', 'ONLINE']
+                        },
+                        then: '$totalPrice',
+                        else: 0
+                    }
+                }
+            },
+            wallet: {
+                $sum: {
+                    $cond: {
+                        if: {
+                            $eq: ['$action', 'WALLET']
+                        },
+                        then: '$totalPrice',
+                        else: 0
+                    }
+                }
+            }
+        }
+    }]);
+
+    const result = orders.map((order, i) => ({ day: order._id, cash: order.cash, wallet: order.wallet }))
+
+    const res = days.map(day => {
+        return result.find(order => {
+            if (day === order.day) {
+                return true
+            }
+        }) || { day, cash: 0, wallet: 0 }
+    });
+
+    return res.map(item => ({ ...item, day: new Date(item.day).toLocaleDateString('fa-IR', { month:'2-digit',day:'2-digit'}) }));
 }

@@ -13,7 +13,7 @@ interface IGetAlerts {
 }
 
 export const getAlerts = async ({ page, type }: IGetAlerts) => {
-
+    await connectToDB();
     const options: { type?: string } = {}
     if (type !== 'all') options['type'] = type.toUpperCase()
 
