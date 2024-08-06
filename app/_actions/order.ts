@@ -60,12 +60,10 @@ export const getOrders = async ({ day = 1, page = 1 }: IGetOrdersProps) => {
 export const getSaleReport = async () => {
 
     connectToDB()
-
     const days = Array.from({ length: 14 }, (_, i) => {
         const d = subDays(new Date(), 14 - i);
         return `${String(d.getFullYear())}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
     });
-
     const orders = await orderModel.aggregate([{
         $match: {
             createdAt: {
@@ -104,9 +102,7 @@ export const getSaleReport = async () => {
             }
         }
     }]);
-
     const result = orders.map((order, i) => ({ day: order._id, cash: order.cash, wallet: order.wallet }))
-
     const res = days.map(day => {
         return result.find(order => {
             if (day === order.day) {
@@ -115,5 +111,8 @@ export const getSaleReport = async () => {
         }) || { day, cash: 0, wallet: 0 }
     });
 
-    return res.map(item => ({ ...item, day: new Date(item.day).toLocaleDateString('fa-IR', { month:'2-digit',day:'2-digit'}) }));
+    const recentOrders = await orderModel.find({}).populate({ path: 'productID', model: productModel }).limit(5).sort({ _id: -1 }).lean();
+    const saleChartDetails = res.map(item => ({ ...item, day: new Date(item.day).toLocaleDateString('fa-IR', { month: '2-digit', day: '2-digit' }) }));
+
+    return { recentOrders, saleChartDetails }
 }

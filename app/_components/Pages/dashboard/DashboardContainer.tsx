@@ -4,13 +4,13 @@ import DashboardFilter from './DashboardFilter'
 import DashboardDetailsBoxes from './DashboardDetailsBoxes'
 import DashboardSections from './DashboardSections'
 
-const DashboardContainer = ({ saleChartDetails }) => {
+const DashboardContainer = ({ saleChartDetails, recentOrders }) => {
     return (
         <div className='flex flex-col gap-y-10 pb-14'>
             <DashboardFilter />
             <DashboardDetailsBoxes />
             <SaleChart saleChartDetails={saleChartDetails} />
-            <DashboardSections />
+            <DashboardSections recentOrders={recentOrders} />
         </div>
     )
 }

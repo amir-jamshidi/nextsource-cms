@@ -4,9 +4,9 @@ import DashboardContainer from "../_components/Pages/dashboard/DashboardContaine
 
 export default async function HomePage() {
 
-  const saleChartDetails = await getSaleReport()
+  const {recentOrders , saleChartDetails} = await getSaleReport()
 
   return (
-    <DashboardContainer saleChartDetails={saleChartDetails} />
+    <DashboardContainer recentOrders={recentOrders} saleChartDetails={saleChartDetails} />
   );
 }
