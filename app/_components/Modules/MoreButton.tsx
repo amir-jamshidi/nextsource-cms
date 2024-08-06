@@ -15,7 +15,7 @@ const MoreButton = () => {
             <PopoverTrigger>
                 <span className="bg-primary-900 border border-primary-800 rounded-full flex items-center justify-center w-8 h-8 ">
                     <HiOutlineEllipsisVertical size={20} className="text-primary-50" />
-                </span>    
+                </span>     
             </PopoverTrigger>
             <PopoverContent align="end" className="dark:bg-primary-900 w-44 rounded-xl py-2 px-2 dark:border-primary-800/70">
                 <div className="flex flex-col divide-primary-800/50 divide-y ">
