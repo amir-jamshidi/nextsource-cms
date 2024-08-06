@@ -5,36 +5,9 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover"
-import { Item } from "@radix-ui/react-select"
 import Link from "next/link"
 import { HiOutlineEllipsisVertical } from "react-icons/hi2"
 
-const productsChartMenu = [
-    {
-        id: 1,
-        title: 'سفارش های امروز',
-        href: '/orders?day=1',
-        color: 'bg-blue-500'
-    },
-    {
-        id: 1,
-        title: 'سفارش های 7 امروز',
-        href: '/orders?day=7',
-        color: 'bg-rose-500'
-    },
-    {
-        id: 1,
-        title: 'سفارش های 30 امروز',
-        href: '/orders?day=30',
-        color: 'bg-violet-500'
-    },
-    {
-        id: 4,
-        title: 'همه سفارش ها',
-        href: '/orders?day=all',
-        color: 'bg-amber-500'
-    }
-]
 
 const MoreButton = () => {
     return (
@@ -42,7 +15,7 @@ const MoreButton = () => {
             <PopoverTrigger>
                 <span className="bg-primary-900 border border-primary-800 rounded-full flex items-center justify-center w-8 h-8 ">
                     <HiOutlineEllipsisVertical size={20} className="text-primary-50" />
-                </span>
+                </span> 
             </PopoverTrigger>
             <PopoverContent align="end" className="dark:bg-primary-900 w-44 rounded-xl py-2 px-2 dark:border-primary-800/70">
                 <div className="flex flex-col divide-primary-800/50 divide-y ">
