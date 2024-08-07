@@ -143,7 +143,7 @@ export default function CategoryChart({ categoryDetails }: CategoryChartProps) {
                             />
                     </PieChart>
                 </ChartContainer>
-            </CardContent>
+            </CardContent> 
         </div>
 
     )
