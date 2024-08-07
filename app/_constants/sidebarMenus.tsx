@@ -51,10 +51,10 @@ export const sidebarMenus: ISidebarMenus[] = [
         title: 'پیام همگانی',
         icon: <CiBullhorn  size={25} className="text-primary-700 dark:text-primary-0" />
     },
-    {
-        id: 6,
-        href: '/settings',
-        title: 'تنظیمات',
-        icon: <CiSettings size={25} className="text-primary-700 dark:text-primary-0" />
-    },
+    // {
+    //     id: 6,
+    //     href: '/settings',
+    //     title: 'تنظیمات',
+    //     icon: <CiSettings size={25} className="text-primary-700 dark:text-primary-0" />
+    // },
 ]

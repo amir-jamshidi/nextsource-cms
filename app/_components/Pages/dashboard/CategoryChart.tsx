@@ -1,32 +1,21 @@
 "use client"
 
 import * as React from "react"
-import { TrendingUp } from "lucide-react"
 import { Label, Legend, Pie, PieChart } from "recharts"
 
+import { categoryMenuChart } from "@/app/_constants"
 import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
+    CardContent
 } from "@/components/ui/card"
 import {
     ChartConfig,
     ChartContainer,
-    ChartLegend,
-    ChartLegendContent,
     ChartTooltip,
-    ChartTooltipContent,
+    ChartTooltipContent
 } from "@/components/ui/chart"
-const chartData = [
-    { category: "Android", count: 3, fill: "var(--color-chrome)" },
-    { category: "FrontEnd", count: 2, fill: "var(--color-safari)" },
-    { category: "BackEnd", count: 1, fill: "var(--color-firefox)" },
-    { category: "Al", count: 4, fill: "var(--color-edge)" },
-    { category: "Python", count: 6, fill: "var(--color-other)" },
-]
+import MoreButton from "../../Modules/MoreButton"
+
+
 
 const chartConfig = {
     visitors: {
@@ -54,33 +43,51 @@ const chartConfig = {
     },
 } satisfies ChartConfig
 
-export default function ProductSale() {
+const colors = ['var(--item1)', 'var(--item2)', 'var(--item3)', 'var(--item4)', 'var(--item5)', 'var(--item6)', 'var(--item7)', 'var(--item8)']
+
+
+
+interface CategoryChartProps {
+    categoryDetails: {
+        title: string,
+        productCount: number
+    }[]
+}
+
+export default function CategoryChart({ categoryDetails }: CategoryChartProps) {
+
     const totalVisitors = React.useMemo(() => {
-        return chartData.reduce((acc, curr) => acc + curr.count, 0)
+        return categoryDetails.reduce((acc, curr) => acc + curr.productCount, 0)
     }, [])
+
+
+    const data = categoryDetails.map((item, i) => ({ ...item, fill: colors[i] }))
 
     return (
 
-        <div className='px-4 py-2 flex flex-col rounded-2xl dark:bg-primary-900 border  dark:border-primary-800/50'>
-            <div className="pt-2 pb-4 mb-2 flex items-center gap-x-1.5 border-b border-b-primary-800/60">
-                <span className="flex w-4 h-4 bg-blue-600 rounded-full"></span>
-                <p className="font-mo text-primary-100 text-lg">نمودار محصولات به تفکیک دسته بندی</p>
+        <div className='px-4 py-2 flex flex-col rounded-2xl dark:bg-primary-900 bg-white border border-primary-100/50  dark:border-primary-800/50'>
+            <div className="pt-2 pb-4 mb-2 flex items-center justify-between gap-x-1.5 border-b border-b-primary-50 dark:border-b-primary-800/60">
+                <div className='flex items-center gap-x-1.5'>
+                    <span className="flex w-4 h-4 dark:bg-blue-600 bg-blue-400 rounded-full"></span>
+                    <p className="font-mo dark:text-primary-100 text-primary-800 text-lg">سفارش های اخیر</p>
+                </div>
+                <MoreButton items={categoryMenuChart} />
             </div>
             <CardContent className="flex-1 pb-0">
                 <ChartContainer
                     dir="ltr"
                     config={chartConfig}
                     className="mx-auto aspect-square max-h-64 w-full"
-                > 
+                >
                     <PieChart>
                         <ChartTooltip
                             cursor={false}
-                            content={<ChartTooltipContent hideLabel />}
+                            content={<ChartTooltipContent className="dark:bg-primary-800 dark:border-primary-800" hideLabel />}
                         />
                         <Pie
-                            data={chartData}
-                            dataKey="count"
-                            nameKey="category"
+                            data={data}
+                            dataKey="productCount"
+                            nameKey="title"
                             innerRadius={85}
                             outerRadius={110}
                             paddingAngle={3}
@@ -114,7 +121,7 @@ export default function ProductSale() {
                                                     y={(viewBox.cy || 0) + 24}
                                                     className="dark:fill-primary-100 fill-primary-800"
                                                 >
-                                                    دسته بندی
+                                                    سورس
                                                 </tspan>
                                             </text>
                                         )
@@ -124,14 +131,14 @@ export default function ProductSale() {
 
                         </Pie>
                         <Legend
-                            style={{borderRadius:'8px'}}
+                            style={{ borderRadius: '8px' }}
                             direction={'ltr'}
                             verticalAlign="middle"
                             align="right"
                             layout="vertical"
                             iconSize={20}
+                            // @ts-ignore comment
                             width={"25%"}
-                            
                         />
                     </PieChart>
                 </ChartContainer>

@@ -2,6 +2,7 @@
 
 import connectToDB from "../_configs/database"
 import { SHOW_IN_PAGE } from "../_constants/gobalVariables";
+import categoryModel from "../_models/category.module";
 import orderModel from "../_models/order.module";
 import productModel from "../_models/product.module";
 import userModel from "../_models/user.module";
@@ -11,6 +12,10 @@ import { subDays, format } from 'date-fns'
 interface IGetOrdersProps {
     day: number | string,
     page: number
+}
+
+interface IGetSaleReport {
+    day: string | number
 }
 
 export const getOrders = async ({ day = 1, page = 1 }: IGetOrdersProps) => {
@@ -57,17 +62,19 @@ export const getOrders = async ({ day = 1, page = 1 }: IGetOrdersProps) => {
     return { orders, ordersDetails }
 }
 
-export const getSaleReport = async () => {
+export const getSaleReport = async ({ day = 7 }: IGetSaleReport) => {
 
     connectToDB()
-    const days = Array.from({ length: 14 }, (_, i) => {
-        const d = subDays(new Date(), 14 - i);
+    const dayNum = isNaN(Number(day)) ? 7 : Number(day);
+    //OrderChart
+    const days = Array.from({ length: dayNum }, (_, i) => {
+        const d = subDays(new Date(), dayNum - i);
         return `${String(d.getFullYear())}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
     });
     const orders = await orderModel.aggregate([{
         $match: {
             createdAt: {
-                $gte: subDays(new Date(), 14)
+                $gte: subDays(new Date(), dayNum)
             }
         }
     }, {
@@ -103,16 +110,70 @@ export const getSaleReport = async () => {
         }
     }]);
     const result = orders.map((order, i) => ({ day: order._id, cash: order.cash, wallet: order.wallet }))
-    const res = days.map(day => {
+    const saleChartDetails: { day: string, wallet: number, cash: number }[] = days.map(day => {
         return result.find(order => {
             if (day === order.day) {
                 return true
             }
         }) || { day, cash: 0, wallet: 0 }
-    });
+    }).map(item => ({ ...item, day: new Date(item.day).toLocaleDateString('fa-IR', { month: '2-digit', day: '2-digit' }) }));
 
-    const recentOrders = await orderModel.find({}).populate({ path: 'productID', model: productModel }).limit(5).sort({ _id: -1 }).lean();
-    const saleChartDetails = res.map(item => ({ ...item, day: new Date(item.day).toLocaleDateString('fa-IR', { month: '2-digit', day: '2-digit' }) }));
+    //Categories Cahrt
+    const categoriesChartDetails: { title: string, productCount: number }[] = await categoryModel.aggregate([
+        {
+            $lookup:
+                { from: "products", localField: "_id", foreignField: "categoryID", as: "products" }
+        },
+        {
+            $addFields:
+            {
+                productCount:
+                    { $size: "$products" }
+            }
+        },
+        {
+            $project:
+                { _id: 0, title: 1, productCount: 1 }
+        }]);
 
-    return { recentOrders, saleChartDetails }
+    //Recent Orders
+    const recentOrders: IOrder[] = await orderModel.find({}).populate({ path: 'productID', model: productModel }).limit(5).sort({ _id: -1 }).lean();
+
+    //Details
+
+    let startDate
+
+    if (isNaN(Number(day))) {
+        const time = Number(7) * 60 * 60 * 24 * 1000
+        startDate = new Date(Date.now() - time);
+    } else {
+        const time = Number(day) * 60 * 60 * 24 * 1000
+        startDate = new Date(Date.now() - time);
+
+    }
+
+    startDate.setHours(23, 59, 59);
+
+
+    const orderInfo = await orderModel.find({ createdAt: { $gt: startDate } }).lean();
+
+    const productsCount = await productModel.find({}).countDocuments();
+    const usersCount = await userModel.find({}).countDocuments();
+    const totalSale = orderInfo.reduce((total, cur) => total + cur.totalPrice, 0);
+    const totalBuy = orderInfo.length
+
+    const dashboardDetails: {
+        productsCount: number,
+        usersCount: number,
+        totalSale: number,
+        totalBuy: number
+    } = {
+        productsCount,
+        usersCount,
+        totalSale,
+        totalBuy
+    }
+
+
+    return { recentOrders, saleChartDetails, dashboardDetails, categoriesChartDetails }
 }

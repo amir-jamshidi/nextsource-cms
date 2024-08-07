@@ -2,7 +2,7 @@ import SidebarMenus from './SidebarMenus'
 
 const Sidebar = () => {
     return (
-        <aside className='bg-white dark:bg-primary-900 px-6 shadow z-[2] overflow-y-auto border border-transparent dark:border-l-primary-800/50' style={{ gridColumn: '1 / 3', gridRow: '1 / 3' }}>
+        <aside className='bg-white dark:bg-primary-900 px-6 border-l-pirmary-100/50 z-[2] overflow-y-auto border dark:border-l-primary-800/50' style={{ gridColumn: '1 / 3', gridRow: '1 / 3' }}>
             <div className='flex flex-col justify-around h-full'>
                 <div className='flex items-center justify-center gap-x-0.5'>
                     <p className='font-mo-bold text-2xl text-primary-800 dark: dark:text-primary-0'>نکستـــ</p>

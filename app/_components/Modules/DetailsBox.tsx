@@ -10,7 +10,7 @@ interface DetailsBoxProps {
 const DetailsBox = ({ title, color, value, icon }: DetailsBoxProps) => {
 
     return (
-        <div className='h-24 bg-white dark:bg-primary-900 rounded-xl shadow-sm flex items-center px-2 gap-x-3 border border-transparent dark:border-primary-800/50'>
+        <div className='h-24 bg-white dark:bg-primary-900 rounded-xl border-primary-100/50 flex items-center px-2 gap-x-3 border dark:border-primary-800/50'>
             <div className={`${color} rounded-full p-3`}>
                 {icon}
             </div>
