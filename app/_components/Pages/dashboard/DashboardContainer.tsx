@@ -1,5 +1,5 @@
 import React from 'react'
-import SaleChart from './SaleChart'
+import SaleChart from './DashboardSaleChart'
 import DashboardFilter from './DashboardFilter'
 import DashboardDetailsBoxes from './DashboardDetailsBoxes'
 import DashboardSections from './DashboardSections'

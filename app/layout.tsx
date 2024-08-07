@@ -17,14 +17,17 @@ export default function RootLayout({
 }>) {
   return (
     <html dir="rtl" lang="en">
-      <body>
+      <body className="bg-gray-50 dark:bg-gray-900">
         <ThemeProvider>
-          <div className="grid h-screen grid-cols-10 grid-rows-[64px,1fr]">
-            <Toaster />
-            <Sidebar />
+          <Toaster />
+          <div className="grid h-screen grid-cols-[300px,1fr] grid-rows-[64px,1fr]">
+            {/* <div style={{ gridColumn: '2/3' , backgroundColor:'red' }}>HEADER</div>
+            <div style={{ gridRow:'1/3', backgroundColor:'blue' }}>SIDEBAR</div>
+            <div style={{  backgroundColor:'yellow' }}>CONTENT</div> */}
             <Header />
-            <div className="overflow-auto bg-primary-0 dark:bg-gray-900" style={{ gridColumn: '3/-1' }}>
-              <div className="container h-full pt-8 px-8">
+            <Sidebar />
+            <div className="overflow-auto bg-gray-50 dark:bg-gray-900 col-span-2 lg:col-span-1" style={{}}>
+              <div className="container h-full pt-8 px-4 md:px-8">
                 {children}
               </div>
             </div>

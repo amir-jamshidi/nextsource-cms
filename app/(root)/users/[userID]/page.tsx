@@ -38,7 +38,7 @@ const chartConfig = {
 
 export default function Component() {
   return (
-    <div className="bg-primary-900 rounded-2xl py-10 px-8">
+    <div className="bg-primary-900  py-10 px-8">
       <div>
         <p>نمودار خرید کاربر در یک هفته گذشته</p>
       </div>

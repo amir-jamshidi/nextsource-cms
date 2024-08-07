@@ -3,7 +3,7 @@ import Modal from './Modal'
 
 const ModalFooter = ({ children }: { children: React.ReactNode }) => {
     return (
-        <div className="h-14 bg-primary-50 dark:bg-primary-800 w-full flex justify-end items-center px-4">
+        <div className="h-14 border-t border-t-primary-50/50 dark:border-t-primary-700/50 bg-gray-50 dark:bg-primary-800 w-full flex justify-end items-center px-4">
             {children}
             <Modal.Close>
                 <button className="font-mo text-red-500 px-4 py-1 rounded-full text-sm hover:text-red-600 transition-all">بستن</button>

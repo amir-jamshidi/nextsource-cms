@@ -7,7 +7,7 @@ import { IProduct } from '@/app/_types/product'
 
 const RecentOrdersSection = ({ recentOrders }: { recentOrders: IOrder[] }) => {
     return (
-        <div className='px-4 py-2 flex flex-col rounded-2xl bg-white dark:bg-primary-900 border border-primary-100/50 dark:border-primary-800/50'>
+        <div className='px-4 py-2 flex flex-col rounded-xl bg-white dark:bg-primary-900 border border-primary-100/50 dark:border-primary-800/50 h-[340px]'>
             <div className="pt-2 pb-4 mb-2 flex items-center justify-between gap-x-1.5 border-b border-b-primary-50 dark:border-b-primary-800/60">
                 <div className='flex items-center gap-x-1.5'>
                     <span className="flex w-4 h-4 dark:bg-blue-600 bg-blue-400 rounded-full"></span>

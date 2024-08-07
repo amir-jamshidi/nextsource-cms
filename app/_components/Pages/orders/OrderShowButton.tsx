@@ -11,6 +11,7 @@ import Modal from "../../Modules/Modal"
 import ModalFooter from "../../Modules/ModalFooter"
 import ToltipContainer from "../../Modules/ToltipContainer"
 import TableButton from "../../Modules/TableButton"
+import ModalHeader from "../../Modules/ModalHeader"
 
 interface IOrderShowButtonProps {
     order: IOrder
@@ -47,9 +48,7 @@ const OrderShowButton = ({ order }: IOrderShowButtonProps) => {
 
             <Modal.Window>
                 <div className='overflow-hidden w-2/3 rounded-xl bg-white dark:bg-primary-900 dark:shadow-none shadow dark:border border-primary-800'>
-                    <div className="w-full h-14 dark:bg-primary-800 bg-primary-50 flex justify-center items-center">
-                        <p className="font-mo text-primary-800 dark:text-primary-50">نمایش جزئیات سفارش</p>
-                    </div>
+                    <ModalHeader title={'نمایش جزئیات سفارش'} />
                     <div className="grid grid-cols-3 w-full gap-2.5 p-4" >
                         <OrderModalBox
                             color="#fecdd3"

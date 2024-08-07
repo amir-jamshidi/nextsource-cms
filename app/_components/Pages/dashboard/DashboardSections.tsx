@@ -1,6 +1,6 @@
 import React from 'react'
-import CategoryChart from './CategoryChart'
-import RecentOrdersSection from './RecentOrdersSection'
+import CategoryChart from './DashboardCategoryChart'
+import RecentOrdersSection from './DashboardRecentOrders'
 import { DashboardContainerProps } from './DashboardContainer'
 
 

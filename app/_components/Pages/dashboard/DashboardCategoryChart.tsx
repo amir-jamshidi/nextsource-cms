@@ -65,7 +65,7 @@ export default function CategoryChart({ categoryDetails }: CategoryChartProps) {
 
     return (
 
-        <div className='px-4 py-2 flex flex-col rounded-2xl dark:bg-primary-900 bg-white border border-primary-100/50  dark:border-primary-800/50'>
+        <div className='px-4 py-2 flex flex-col rounded-xl dark:bg-primary-900 bg-white border border-primary-100/50  dark:border-primary-800/50 h-[340px]'>
             <div className="pt-2 pb-4 mb-2 flex items-center justify-between gap-x-1.5 border-b border-b-primary-50 dark:border-b-primary-800/60">
                 <div className='flex items-center gap-x-1.5'>
                     <span className="flex w-4 h-4 dark:bg-blue-600 bg-blue-400 rounded-full"></span>
@@ -77,7 +77,7 @@ export default function CategoryChart({ categoryDetails }: CategoryChartProps) {
                 <ChartContainer
                     dir="ltr"
                     config={chartConfig}
-                    className="mx-auto aspect-square max-h-64 w-full"
+                    className="mx-auto aspect-square max-h-44 lg:max-h-64 w-full"
                 >
                     <PieChart>
                         <ChartTooltip
@@ -91,8 +91,8 @@ export default function CategoryChart({ categoryDetails }: CategoryChartProps) {
                             innerRadius={85}
                             outerRadius={110}
                             paddingAngle={3}
-                            cx={"40%"}
-                            cy={"50%"}
+                            // cx={"40%"}
+                            // cy={"50%"}
                         >
 
                             <Label
@@ -130,6 +130,7 @@ export default function CategoryChart({ categoryDetails }: CategoryChartProps) {
                             />
 
                         </Pie>
+                    
                         <Legend
                             style={{ borderRadius: '8px' }}
                             direction={'ltr'}
@@ -139,7 +140,7 @@ export default function CategoryChart({ categoryDetails }: CategoryChartProps) {
                             iconSize={20}
                             // @ts-ignore comment
                             width={"25%"}
-                        />
+                            />
                     </PieChart>
                 </ChartContainer>
             </CardContent>

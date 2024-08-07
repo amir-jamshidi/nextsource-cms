@@ -50,7 +50,7 @@ export default function SaleChart({ saleChartDetails }: SaleChartProps) {
         };
 
     return (
-        <div className="bg-white dark:bg-primary-900 rounded-2xl pl-4 pr-4 pb-3 border border-primary-100/50 dark:border-primary-800/50">
+        <div className="bg-white dark:bg-primary-900 rounded-xl pl-4 pr-4 pb-3 border border-primary-100/50 dark:border-primary-800/50">
             <div className="py-6 flex items-center justify-between">
                 <div className="flex items-center gap-x-1.5">
                     <span className="flex w-4 h-4 bg-blue-400 dark:bg-blue-600 rounded-full"></span>
@@ -58,7 +58,7 @@ export default function SaleChart({ saleChartDetails }: SaleChartProps) {
                 </div>
                 <MoreButton items={saleMenuChart} />
             </div>
-            <ChartContainer dir='ltr' config={chartConfig} className="max-h-64 w-full rounded-2xl">
+            <ChartContainer dir='ltr' config={chartConfig} className="max-h-64 w-full rounded-xl">
                 <AreaChart data={saleChartDetails}>
                     <XAxis
                         dataKey={"day"}

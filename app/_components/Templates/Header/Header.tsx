@@ -1,5 +1,5 @@
 import React from 'react'
-import { HiOutlineBell, HiOutlinePower, HiOutlineSun } from 'react-icons/hi2'
+import { HiOutlineBell, HiOutlinePower } from 'react-icons/hi2'
 import Profile from '@/public/images/18718850.jpg'
 import Image from 'next/image'
 import ButtonToggleTheme from '../../Modules/ButtonToggleTheme'
@@ -7,9 +7,9 @@ import ButtonToggleTheme from '../../Modules/ButtonToggleTheme'
 const Header = () => {
 
     return (
-        <header className="h-16 bg-white dark:bg-primary-900  z-[1] border-b border-b-primary-100/50 dark:border-b-primary-800/50" style={{ gridColumn: '3/-1' }}>
+        <header className="h-16 bg-white dark:bg-primary-900  z-[1] border-b border-b-primary-100/50 dark:border-b-primary-800/50 col-span-2 lg:col-span-1" style={{}}>
             <div className='container h-full'>
-                <div className='flex h-full items-center gap-x-1 px-4 justify-between'>
+                <div className='flex h-full items-center gap-x-1 px-0 justify-between'>
                     <div className='flex gap-x-2.5 items-center'>
                         <div className='rounded-full overflow-hidden border border-primary-50'>
                             <Image quality={100} width={44} height={44} src={Profile} alt='' />

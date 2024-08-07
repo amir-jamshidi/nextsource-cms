@@ -32,6 +32,12 @@ export const categoryMenuChart = [
         href: '/categories',
         color: 'bg-blue-500'
     },
+    {
+        id: 2,
+        title: 'مشاهده محصولات',
+        href: '/products',
+        color: 'bg-violet-500'
+    },
 ]
 
 export const saleMenuChart = [
