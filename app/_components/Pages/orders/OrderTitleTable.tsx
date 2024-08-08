@@ -1,33 +1,20 @@
+import { TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import React from 'react'
 
 const OrderTitleTable = () => {
     return (
-        <div className='order-list gap-2 h-16 bg-primary-0 dark:bg-primary-900 px-4'>
-            <div className='h-full flex items-center col-span-1'>
-                <p className='font-ir-medium font-semibold text-sm text-primary-800 dark:text-primary-100 dark:font-normal tracking-tight'>ردیف</p>
-            </div>
-            <div className='h-full flex items-center col-span-2'>
-                <p className='font-ir-medium font-semibold text-sm text-primary-800 dark:text-primary-100 dark:font-normal tracking-tight'>نام محصول</p>
-            </div>
-            <div className='h-full flex items-center col-span-2'>
-                <p className='font-ir-medium font-semibold text-sm text-primary-800 dark:text-primary-100 dark:font-normal tracking-tight'>شناسه سفارش</p>
-            </div>
-            <div className='h-full flex items-center col-span-1'>
-                <p className='font-ir-medium font-semibold text-sm text-primary-800 dark:text-primary-100 dark:font-normal tracking-tight'>تاریخ</p>
-            </div>
-            <div className='h-full flex items-center col-span-1'>
-                <p className='font-ir-medium font-semibold text-sm text-primary-800 dark:text-primary-100 dark:font-normal tracking-tight'>پرداختی</p>
-            </div>
-            <div className='h-full flex items-center col-span-1'>
-                <p className='font-ir-medium font-semibold text-sm text-primary-800 dark:text-primary-100 dark:font-normal tracking-tight'>کاربر</p>
-            </div>
-            <div className='h-full flex items-center col-span-1 justify-center'>
-                <p className='font-ir-medium font-semibold text-sm text-primary-800 dark:text-primary-100 dark:font-normal tracking-tight'>روش پرداخت</p>
-            </div>
-            <div className='h-full flex items-center col-span-1 justify-center'>
-                <p className='font-ir-medium font-semibold text-sm text-primary-800 dark:text-primary-100 dark:font-normal tracking-tight'>بیشتر</p>
-            </div>
-        </div>
+        <TableHeader>
+            <TableRow className='border-b-primary-50 dark:border-b-primary-800'>
+                <TableHead className='text-center'><p className='py-4'>ردیف</p></TableHead>
+                <TableHead className='text-right min-w-44'>نام محصول</TableHead>
+                <TableHead className='text-right'>شناسه سفارش</TableHead>
+                <TableHead className='text-right'>تاریخ</TableHead>
+                <TableHead className='text-right min-w-28'>پرداختی</TableHead>
+                <TableHead className='text-right'>کاربر</TableHead>
+                <TableHead className='text-center min-w-28'>روش پرداخت</TableHead>
+                <TableHead className='text-center min-w-20'>بیشتر</TableHead>
+            </TableRow>
+        </TableHeader>
     )
 }
 

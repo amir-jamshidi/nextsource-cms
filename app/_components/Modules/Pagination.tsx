@@ -5,6 +5,18 @@ import { useRouter } from 'next/navigation'
 import React from 'react'
 import { HiOutlineChevronLeft, HiOutlineChevronRight, HiOutlinePaperAirplane } from 'react-icons/hi2'
 
+import {
+    Table,
+    TableBody,
+    TableCaption,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "@/components/ui/table"
+
+
+
 interface PaginationProps {
     sourceCount: number,
     showInPage: number
@@ -34,7 +46,8 @@ const Pagination = ({ sourceCount, showInPage }: PaginationProps) => {
     }
 
     return (
-        <div className='h-14 bg-primary-0 dark:bg-primary-900 flex justify-between items-center px-4'>
+
+        <div className='h-14 bg-white dark:bg-primary-900 flex justify-between items-center px-4'>
             {sourceCount > 0 ? (
                 <p className='text-xs font-semibold tracking-tighter text-primary-700 dark:font-normal dark:text-primary-200'>نمایش {((+currentPage - 1) * showInPage) + 1} تا {(+currentPage * showInPage) > sourceCount ? sourceCount : +currentPage * showInPage} از {sourceCount} نتیجه</p>
             ) : (
@@ -52,6 +65,7 @@ const Pagination = ({ sourceCount, showInPage }: PaginationProps) => {
 
             </div>
         </div>
+
     )
 }
 

@@ -56,11 +56,11 @@ const TicketButtonShow = ({ ticket }: TicketButtonShow) => {
 
 
             <Modal.Window>
-                <div className='overflow-hidden w-2/3 rounded-xl bg-white dark:bg-primary-900 shadow dark:shadow-none dark:border border-primary-800'>
+                <div className='flex-11 my-14 overflow-auto w-full lg:w-3/4 rounded-xl bg-white dark:bg-primary-900 shadow dark:shadow-none dark:border border-primary-800'>
                     <div className="w-full h-14 bg-primary-50 dark:bg-primary-800 flex justify-center items-center">
                         <p className="font-mo text-primary-800 dark:text-primary-100">نمایش جزئیات تیکت</p>
                     </div>
-                    <div className='grid grid-cols-3 px-4 mt-4 gap-2.5'>
+                    <div className='grid grid-cols-1 lg:grid-cols-3 px-4 mt-4 gap-2.5'>
                         <OrderModalBox
                             icon={<HiOutlineUser size={40} className='text-violet-500' />}
                             color='#ddd6fe'

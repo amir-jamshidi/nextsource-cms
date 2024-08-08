@@ -91,8 +91,8 @@ export default function CategoryChart({ categoryDetails }: CategoryChartProps) {
                             innerRadius={85}
                             outerRadius={110}
                             paddingAngle={3}
-                            // cx={"40%"}
-                            // cy={"50%"}
+                        // cx={"40%"}
+                        // cy={"50%"}
                         >
 
                             <Label
@@ -130,7 +130,7 @@ export default function CategoryChart({ categoryDetails }: CategoryChartProps) {
                             />
 
                         </Pie>
-                    
+
                         <Legend
                             style={{ borderRadius: '8px' }}
                             direction={'ltr'}
@@ -140,10 +140,10 @@ export default function CategoryChart({ categoryDetails }: CategoryChartProps) {
                             iconSize={20}
                             // @ts-ignore comment
                             width={"25%"}
-                            />
+                        />
                     </PieChart>
-                </ChartContainer>  
-            </CardContent> 
+                </ChartContainer>
+            </CardContent>
         </div>
 
     )

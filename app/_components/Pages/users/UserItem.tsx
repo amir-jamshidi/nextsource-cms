@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { HiOutlineEye } from 'react-icons/hi2';
 import Badge from '../../Modules/Badge';
 import TableButton from '../../Modules/TableButton';
+import { TableCell, TableRow } from '@/components/ui/table';
 
 
 interface UserItemProps {
@@ -13,36 +14,64 @@ interface UserItemProps {
 const UserItem = ({ user, index }: UserItemProps) => {
 
     return (
-        <div className='ticket-list h-16 gap-2 px-4'>
-            <div className='col-span-1 h-full w-full flex items-center'>
-                <p className='font-ir-bold text-sm text-primary-800 dark:text-primary-100 pr-3'>{index}</p>
-            </div>
-            <div className='col-span-2 h-full w-full flex flex-col justify-center '>
-                <p className='font-ir-medium text-sm text-primary-800 dark:text-primary-100 tracking-tight'>{user.fullname}</p>
-            </div>
-            <div className='col-span-2 h-full w-full flex justify-center flex-col'>
-                <p className='font-ir-medium text-sm text-primary-800 dark:text-primary-100 tracking-tight'>{user.email || 'ندارد'}</p>
-            </div>
-            <div className='col-span-1 h-full w-full flex items-center'>
-                <p className='font-ir-medium text-sm text-primary-800 dark:text-primary-100 tracking-tight'>{user.phone}</p>
-            </div>
-            <div className='col-span-1 h-full w-full flex justify-center flex-col'>
-                <p className='font-ir-medium text-sm text-green-500 tracking-tight'>{user.money.toLocaleString() + ' تومان'}</p>
-            </div>
-            <div className='col-span-1 h-full w-full flex justify-center flex-col'>
-                <p className='font-ir-medium text-sm text-primary-800 dark:text-primary-100 tracking-tight'>{new Date(user.createdAt || 0).toLocaleDateString('fa-IR')}</p>
-                <p className='font-ir-medium text-primary-600 dark:text-primary-300 text-xs tracking-tight'>{new Date(user.createdAt || 0).toLocaleTimeString('fa-IR')}</p>
-            </div>
-
-            <div className='col-span-1 h-full w-full flex items-center justify-center'>
-                {user.role === 'ADMIN' && <Badge text='مدیر' type='red' icon={false} />}
-                {user.role !== 'ADMIN' && <Badge text='کاربر' type='green' icon={false} />}
-            </div>
-
-            <div className='col-span-1 h-full w-full flex items-center gap-x-1 justify-center'>
-                <TableButton link={`/users/${user._id}`} type='blue' icon={<HiOutlineEye size={18} />} />
-            </div>
-        </div>
+        <>
+            <TableRow className='dark:border-b-primary-800 border-b-primary-50'>
+                <TableCell className="text-center">
+                    <p className='py-2 text-primary-700 dark:text-primary-100'>
+                        {index}
+                    </p>
+                </TableCell>
+                <TableCell>
+                    <div className='flex flex-col text-primary-700 dark:text-primary-100'>
+                        <p>{user.fullname}</p>
+                    </div>
+                </TableCell>
+                <TableCell>
+                    {user.email ? (
+                        <p className='text-primary-700 dark:text-primary-100'>
+                            {user.email}
+                        </p>
+                    ) : (
+                        <div className='flex'>
+                            <Badge icon={false} text='ایمیل ندارد' type='red' />
+                        </div>
+                    )}
+                </TableCell>
+                <TableCell className="text-right">
+                    <p className='text-primary-700 dark:text-primary-100'>
+                        {user.phone}
+                    </p>
+                </TableCell>
+                <TableCell className="text-right">
+                    {user.money > 0 ? (
+                        <p className='text-green-500 dark:text-green-600'>
+                            {user.money.toLocaleString() + ' تومان'}
+                        </p>
+                    ) : (
+                        <div className='flex text-red-500 dark:text-red-600'>
+                            <Badge text='بدون موجودی' type='red' icon={false} />
+                        </div>
+                    )}
+                </TableCell>
+                <TableCell className="text-right">
+                    <div className='flex flex-col'>
+                        <p className='dark:text-primary-100 text-primary-700'>{new Date(user.createdAt || 0).toLocaleDateString('fa-IR')}</p>
+                        <p className='dark:text-primary-200 text-primary-600'>{new Date(user.createdAt || 0).toLocaleTimeString('fa-IR')}</p>
+                    </div>
+                </TableCell>
+                <TableCell className="text-center">
+                    <div className='flex justify-center items-center'>
+                        {user.role === 'ADMIN' && <Badge text='مدیر' type='red' icon={false} />}
+                        {user.role !== 'ADMIN' && <Badge text='کاربر' type='green' icon={false} />}
+                    </div>
+                </TableCell>
+                <TableCell className="text-center ">
+                    <div className='flex justify-center gap-x-1'>
+                        <TableButton link={`/users/${user._id}`} type='blue' icon={<HiOutlineEye size={18} />} />
+                    </div>
+                </TableCell>
+            </TableRow>
+        </>
     )
 }
 

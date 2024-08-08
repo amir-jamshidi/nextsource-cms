@@ -4,39 +4,56 @@ import { HiOutlineCheckCircle, HiOutlinePlay, HiOutlinePower, HiOutlineTrash, Hi
 import AlertButtons from './AlertButtons'
 import Badge from '../../Modules/Badge'
 import Switch from '../../Modules/Switch'
+import { TableCell, TableRow } from '@/components/ui/table'
 
 const AlertItem = ({ alert, index }: { alert: IAlert, index: number }) => {
     return (
-        <div className='ticket-list h-16 gap-2 px-4'>
-            <div className='col-span-1 h-full w-full flex items-center'>
-                <p className='font-ir-bold text-sm text-primary-800 dark:text-primary-100 pr-3'>{index}</p>
-            </div>
-            <div className='col-span-1 h-full w-full flex flex-col justify-center '>
-                <p className='font-ir-bold text-sm text-primary-800 dark:text-primary-100 tracking-tight'>{alert.title}</p>
-            </div>
-            <div className='col-span-4 h-full w-full flex items-center'>
-                <p className='font-ir-medium text-sm text-primary-800 dark:text-primary-100 tracking-tight'>{alert.body}</p>
-            </div>
-            <div className='col-span-1 h-full w-full flex justify-center flex-col'>
-                {alert.href && (
-                    <p className='font-ir-medium text-sm text-primary-800 dark:text-primary-100 tracking-tight'>{alert.href}</p>
-                )}
-                {!alert.href && (
-                    <p className='font-ir-medium text-sm text-primary-800 dark:text-primary-100 tracking-tight'>ندارد</p>
-                )}
-            </div>
-            <div className='col-span-1 h-full w-full flex justify-center items-center'>
-                {alert.type === 'SUCCESS' && <Badge text='موفق' type='green' icon={false} />}
-                {alert.type === 'WARNING' && <Badge text='هشدار' type='amber' icon={false} />}
-                {alert.type === 'ERROR' && <Badge text='خطا' type='red' icon={false} />}
-            </div>
-            <div className='col-span-1 h-full w-full flex items-center justify-center'>
-                <Switch isActive={alert.isShow} />
-            </div>
-            <div className='col-span-1 h-full w-full flex items-center gap-x-1 justify-center'>
-                <AlertButtons alert={JSON.parse(JSON.stringify(alert))} />
-            </div>
-        </div>
+
+        <>
+            <TableRow className='dark:border-b-primary-800 border-b-primary-50'>
+                <TableCell className="text-center">
+                    <p className='py-2 text-primary-700 dark:text-primary-100'>
+                        {index}
+                    </p>
+                </TableCell>
+                <TableCell>
+                    <div className='flex flex-col text-primary-700 dark:text-primary-100'>
+                        <p>{alert.title}</p>
+                    </div>
+                </TableCell>
+                <TableCell>
+                    <div className='flex flex-col text-primary-700 dark:text-primary-100'>
+                        <p>{alert.body}</p>
+                    </div>
+                </TableCell>
+                <TableCell className="text-right">
+
+                    {alert.href ? (
+                        <p className='text-primary-700 dark:text-primary-100'>
+                            {alert.href}/
+                        </p>
+
+                    ) : (
+                        <div className='flex'>
+                            <Badge icon={false} text='بدون لینک ' type='red' />
+                        </div>
+                    )}
+                </TableCell>
+                <TableCell className="text-right">
+                    <div className='flex justify-center'>
+                        <Switch isActive={alert.isShow} />
+                    </div>
+                </TableCell>
+
+                <TableCell className="text-center">
+                    <div className='flex justify-center gap-x-1'>
+                        <AlertButtons alert={JSON.parse(JSON.stringify(alert))} />
+                    </div>
+                </TableCell>
+            </TableRow>
+
+        </>
+
     )
 }
 

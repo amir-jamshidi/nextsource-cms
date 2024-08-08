@@ -1,34 +1,24 @@
+import { TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import React from 'react'
 
 const TicketTitleTable = () => {
     return (
-        <div className='ticket-list gap-2 h-16 bg-primary-0 dark:bg-primary-900 px-4'>
-            <div className='h-full flex items-center col-span-1'>
-                <p className='font-ir-medium font-semibold text-sm text-primary-800 dark:text-primary-100 dark:font-normal tracking-tight'>ردیف</p>
-            </div>
-            <div className='h-full flex items-center col-span-2'>
-                <p className='font-ir-medium font-semibold text-sm text-primary-800 dark:text-primary-100 dark:font-normal tracking-tight'>کاربر</p>
-            </div>
-            <div className='h-full flex items-center col-span-2'>
-                <p className='font-ir-medium font-semibold text-sm text-primary-800 dark:text-primary-100 dark:font-normal tracking-tight'>شناسه تیکت</p>
-            </div>
-            <div className='h-full flex items-center col-span-1'>
-                <p className='font-ir-medium font-semibold text-sm text-primary-800 dark:text-primary-100 dark:font-normal tracking-tight'>تاریخ</p>
-            </div>
-            <div className='h-full flex items-center col-span-1 justify-center'>
-                <p className='font-ir-medium font-semibold text-sm text-primary-800 dark:text-primary-100 dark:font-normal tracking-tight'>بخش</p>
-            </div>
-            <div className='h-full flex items-center col-span-1 justify-center'>
-                <p className='font-ir-medium font-semibold text-sm text-primary-800 dark:text-primary-100 dark:font-normal tracking-tight'>وضعیت</p>
-            </div>
 
-            <div className='h-full flex items-center col-span-1 justify-center'>
-                <p className='font-ir-medium font-semibold text-sm text-primary-800 dark:text-primary-100 dark:font-normal tracking-tight'>پیگیری سفارش</p>
-            </div>
-            <div className='h-full flex items-center col-span-1 justify-center'>
-                <p className='font-ir-medium font-semibold text-sm text-primary-800 dark:text-primary-100 dark:font-normal tracking-tight'>بیشتر</p>
-            </div>
-        </div>
+        <>
+            <TableHeader>
+                <TableRow className='border-b-primary-50 dark:border-b-primary-800'>
+                    <TableHead className='text-center'><p className='py-4'>ردیف</p></TableHead>
+                    <TableHead className='text-right min-w-44'>کاربر</TableHead>
+                    <TableHead className='text-right'>شناسه تیکت</TableHead>
+                    <TableHead className='text-right'>تاریخ</TableHead>
+                    <TableHead className='text-center min-w-28'>بخش</TableHead>
+                    <TableHead className='text-center min-w-24'>وضعیت</TableHead>
+                    <TableHead className='text-center min-w-28'>پیگیری سفارش</TableHead>
+                    <TableHead className='text-center min-w-20'>بیشتر</TableHead>
+                </TableRow>
+            </TableHeader>
+        </>
+
     )
 }
 

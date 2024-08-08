@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import { HiOutlineCheckCircle, HiOutlineXCircle } from 'react-icons/hi2'
 

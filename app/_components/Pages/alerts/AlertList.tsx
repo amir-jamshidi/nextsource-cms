@@ -5,6 +5,7 @@ import NoItemTable from '../../Modules/NoItemTable'
 import Pagination from '../../Modules/Pagination'
 import { SHOW_IN_PAGE } from '@/app/_constants/gobalVariables'
 import AlertItem from './AlertItem'
+import { Table } from '@/components/ui/table'
 
 interface AlertListProps {
     alerts: IAlert[],
@@ -14,13 +15,15 @@ interface AlertListProps {
 const AlertList = ({ alerts, alertsCount }: AlertListProps) => {
     return (
         <div className='rounded-xl bg-white dark:bg-primary-900 dark:shadow-none dark:divide-primary-800 dark:border-primary-800 flex flex-col border divide-y divide-primary-0 border-primary-50 overflow-hidden'>
-            <AlertTitleTable />
             {alerts.length > 0 ? (<>
-                {alerts.map((alert, i) => (
-                    <AlertItem key={String(alert._id)} alert={alert} index={i + 1} />
-                ))}
+                <Table>
+                    <AlertTitleTable />
+                    {alerts.map((alert, i) => (
+                        <AlertItem key={String(alert._id)} alert={alert} index={i + 1} />
+                    ))}
+                </Table>
+                < Pagination sourceCount={alertsCount} showInPage={SHOW_IN_PAGE} />
             </>) : (<NoItemTable text='پیامی' />)}
-            < Pagination sourceCount={alertsCount} showInPage={SHOW_IN_PAGE} />
         </div>
     )
 }

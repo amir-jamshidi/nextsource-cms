@@ -6,6 +6,7 @@ import { SHOW_IN_PAGE } from '@/app/_constants/gobalVariables'
 import { IProduct } from '@/app/_types/product'
 import ProductTitleTable from './ProductTitleTable'
 import ProductItem from './ProductItem'
+import { Table } from '@/components/ui/table'
 
 interface IProductList {
     products: IProduct[]
@@ -15,13 +16,15 @@ interface IProductList {
 const ProductList = ({ products, productsCount }: IProductList) => {
     return (
         <div className='rounded-xl bg-white dark:bg-primary-900 dark:divide-primary-800/50 dark:border-primary-800/50 flex flex-col border divide-y divide-primary-0 border-primary-50 overflow-hidden'>
-            <ProductTitleTable />
             {products.length > 0 ? (<>
-                {products.map((product, i) => (
-                    <ProductItem key={String(product._id)} product={product} index={i + 1} />
-                ))}
+                <Table>
+                    <ProductTitleTable />
+                    {products.map((product, i) => (
+                        <ProductItem key={String(product._id)} product={product} index={i + 1} />
+                    ))}
+                </Table>
+                < Pagination sourceCount={productsCount} showInPage={SHOW_IN_PAGE} />
             </>) : (<NoItemTable text='محصولی' />)}
-            < Pagination sourceCount={productsCount} showInPage={SHOW_IN_PAGE} />
         </div>
     )
 }

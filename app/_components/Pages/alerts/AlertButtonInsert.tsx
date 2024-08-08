@@ -48,7 +48,7 @@ const AlertButtonInsert = () => {
                 </Modal.Open>
             </div>
             <Modal.Window>
-                <div className='overflow-hidden w-2/3 rounded-xl bg-white dark:bg-primary-900 shadow dark:shadow-none dark:border border-primary-800'>
+                <div className='flex-11 my-14 overflow-auto w-full lg:w-3/4 rounded-xl bg-white dark:bg-primary-900 shadow dark:shadow-none dark:border border-primary-800'>
                     <div className="w-full h-14 bg-primary-50 dark:bg-primary-800 flex justify-center items-center">
                         <p className="font-mo text-primary-800 dark:text-primary-100">اضافه کردن پیام</p>
                     </div>

@@ -4,6 +4,17 @@ import Header from "./_components/Templates/Header/Header";
 import Sidebar from "./_components/Templates/Sidebar/Sidebar";
 import { Toaster } from 'react-hot-toast'
 import ThemeProvider from "./_context/ThemeContext";
+import type { Viewport } from 'next'
+
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  // Also supported by less commonly used
+  // interactiveWidget: 'resizes-visual',
+}
 
 export const metadata: Metadata = {
   title: "Create Next App",

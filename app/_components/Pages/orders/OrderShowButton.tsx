@@ -47,9 +47,9 @@ const OrderShowButton = ({ order }: IOrderShowButtonProps) => {
 
 
             <Modal.Window>
-                <div className='overflow-hidden w-2/3 rounded-xl bg-white dark:bg-primary-900 dark:shadow-none shadow dark:border border-primary-800'>
+                <div className='flex-11 my-14 overflow-auto w-full lg:w-3/4 rounded-xl bg-white dark:bg-primary-900 shadow dark:shadow-none dark:border border-primary-800'>
                     <ModalHeader title={'نمایش جزئیات سفارش'} />
-                    <div className="grid grid-cols-3 w-full gap-2.5 p-4" >
+                    <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 w-full gap-2.5 p-4" >
                         <OrderModalBox
                             color="#fecdd3"
                             icon={<HiOutlineUser size={40} className="text-rose-500" />}
