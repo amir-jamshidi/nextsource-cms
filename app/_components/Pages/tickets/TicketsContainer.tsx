@@ -3,6 +3,7 @@ import React from 'react'
 import TicketFilter from './TicketFilter'
 import TicketDetailsBoxes from './TicketDetailsBoxes'
 import TicketList from './TicketList'
+import PageContainer from '../../Modules/PageContainer'
 
 interface TicketsContainerProps {
     tickets: ITicket[],
@@ -16,11 +17,11 @@ interface TicketsContainerProps {
 
 const TicketsContainer = ({ tickets, ticketsDetails }: TicketsContainerProps) => {
     return (
-        <div className='flex flex-col gap-y-10 pb-14'>
+        <PageContainer>
             <TicketFilter />
             <TicketDetailsBoxes ticketsDetails={ticketsDetails} />
             <TicketList ticketsCount={ticketsDetails.ticketsCount} tickets={JSON.parse(JSON.stringify(tickets))} />
-        </div>
+        </PageContainer>
     )
 }
 

@@ -4,6 +4,7 @@ import DashboardFilter from './DashboardFilter'
 import DashboardDetailsBoxes from './DashboardDetailsBoxes'
 import DashboardSections from './DashboardSections'
 import { IOrder } from '@/app/_types/order'
+import PageContainer from '../../Modules/PageContainer'
 
 export interface DashboardContainerProps {
     dashboard: {
@@ -28,12 +29,12 @@ export interface DashboardContainerProps {
 
 const DashboardContainer = ({ dashboard }: DashboardContainerProps) => {
     return (
-        <div className='flex flex-col gap-y-10 pb-14'>
+        <PageContainer>
             <DashboardFilter />
             <DashboardDetailsBoxes dashboardDetails={dashboard.dashboardDetails} />
             <SaleChart saleChartDetails={dashboard.saleChartDetails} />
             <DashboardSections dashboard={dashboard} />
-        </div>
+        </PageContainer>
     )
 }
 

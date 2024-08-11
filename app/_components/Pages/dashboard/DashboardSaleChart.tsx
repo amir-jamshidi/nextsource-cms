@@ -50,15 +50,15 @@ export default function SaleChart({ saleChartDetails }: SaleChartProps) {
         };
 
     return (
-        <div className="bg-white dark:bg-primary-900 rounded-xl pl-4 pr-4 pb-3 border border-primary-100/50 dark:border-primary-800/50">
-            <div className="py-6 flex items-center justify-between">
+        <div className="bg-white dark:bg-primary-900 rounded-xl pl-4  md:px-4  pb-3 border border-primary-100/50 dark:border-primary-800/50">
+            <div className="py-6 pr-4 md:pr-0 flex items-center justify-between">
                 <div className="flex items-center gap-x-1.5">
                     <span className="flex w-4 h-4 bg-blue-400 dark:bg-blue-600 rounded-full"></span>
                     <p className="font-mo dark:text-primary-100 text-lg text-primary-800">نمودار فروش طی {day} روز گذشته</p>
                 </div>
                 <MoreButton items={saleMenuChart} />
             </div>
-            <ChartContainer dir='ltr' config={chartConfig} className="max-h-64 w-full rounded-xl">
+            <ChartContainer dir='ltr' config={chartConfig} className="h-64 w-full rounded-xl">
                 <AreaChart data={saleChartDetails}>
                     <XAxis
                         dataKey={"day"}
@@ -72,7 +72,7 @@ export default function SaleChart({ saleChartDetails }: SaleChartProps) {
                         unit={"T"}
                         tick={{ fill: colors.text }}
                         tickLine={{ stroke: colors.text }}
-                        tickFormatter={(val) => Number(val).toLocaleString()}
+                        tickFormatter={(val) => Number(val).toLocaleString().slice(0,-3)}
                     />
                     <CartesianGrid stroke={colors.stroke} strokeDasharray={"4"} />
                     <ChartTooltip content={<ChartTooltipContent className="dark:text-primary-50 text-primary-700   dark:bg-primary-800 font-ir w-52 dark:border-primary-800" contentStyle={{ backgroundColor: 'blue', padding: '12px' }} />} />

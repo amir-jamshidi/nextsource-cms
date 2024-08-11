@@ -14,6 +14,7 @@ import DetailsBoxesContainer from '../../Modules/DetailsBoxesContainer'
 import OrderModalBox from '../orders/OrderModalBox'
 import { IOrder } from '@/app/_types/order'
 import TableButton from '../../Modules/TableButton'
+import ModalHeader from '../../Modules/ModalHeader'
 
 interface TicketButtonShow {
     ticket: ITicket
@@ -57,9 +58,7 @@ const TicketButtonShow = ({ ticket }: TicketButtonShow) => {
 
             <Modal.Window>
                 <div className='flex-11 my-14 overflow-auto w-full lg:w-3/4 rounded-xl bg-white dark:bg-primary-900 shadow dark:shadow-none dark:border border-primary-800'>
-                    <div className="w-full h-14 bg-primary-50 dark:bg-primary-800 flex justify-center items-center">
-                        <p className="font-mo text-primary-800 dark:text-primary-100">نمایش جزئیات تیکت</p>
-                    </div>
+                 <ModalHeader title='نمایش جزئیات تیکت'/>
                     <div className='grid grid-cols-1 lg:grid-cols-3 px-4 mt-4 gap-2.5'>
                         <OrderModalBox
                             icon={<HiOutlineUser size={40} className='text-violet-500' />}
@@ -111,7 +110,7 @@ const TicketButtonShow = ({ ticket }: TicketButtonShow) => {
                         )}
 
                         <div className='mt-4'>
-                            <textarea placeholder={ticket.isAnswer ? 'پاسخ جایگزین ...' : 'متن پاسخ ...'} className='w-full dark:bg-primary-800 dark:border-primary-700 dark:text-primary-100 bg-primary-0 border border-primary-50 outline-none rounded-xl min-h-20 max-h-28 p-2 text-sm text-primary-800 font-ir tracking-tight' value={answer} onChange={(e) => setAnswer(e.target.value)}></textarea>
+                            <textarea placeholder={ticket.isAnswer ? 'پاسخ جایگزین ...' : 'متن پاسخ ...'} className='w-full dark:bg-primary-800 dark:border-primary-700 dark:text-primary-100 bg-gray-50 border border-primary-50 outline-none rounded-xl min-h-20 max-h-28 p-2 text-sm text-primary-800 font-ir tracking-tight' value={answer} onChange={(e) => setAnswer(e.target.value)}></textarea>
                         </div>
                     </div>
                     <ModalFooter>

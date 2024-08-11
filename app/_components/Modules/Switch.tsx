@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import { HiOutlineCheckCircle, HiOutlineXCircle } from 'react-icons/hi2'
+import { HiOutlineCheckCircle, HiOutlineExclamationTriangle, HiOutlineXCircle, HiOutlineXMark } from 'react-icons/hi2'
 
 const Switch = ({ isActive }: { isActive: boolean }) => {
     return (
@@ -15,7 +15,7 @@ const Switch = ({ isActive }: { isActive: boolean }) => {
             {
                 !isActive && (
                     <span className='p-1 bg-red-300 dark:bg-red-900 rounded-full'>
-                        <HiOutlineXCircle size={20} className='dark:text-red-200 text-red-600' />
+                        <HiOutlineExclamationTriangle   size={20} className='dark:text-red-200 text-red-600' />
                     </span>
                 )
             }

@@ -2,6 +2,8 @@ import { IOrder } from '@/app/_types/order'
 import OrderFilter from './OrderFilter'
 import OrderList from './OrderList'
 import OrdersDetailsBoxes from './OrdersDetailsBoxes'
+import DashboardContainer from '../dashboard/DashboardContainer'
+import PageContainer from '../../Modules/PageContainer'
 
 interface IOrderContainerProps {
     orders: IOrder[],
@@ -15,11 +17,11 @@ interface IOrderContainerProps {
 
 const OrdersContainer = async ({ orders, ordersDetails }: IOrderContainerProps) => {
     return (
-        <div className='flex flex-col gap-y-10 pb-14'>
-            <OrderFilter  />
+        <PageContainer>
+            <OrderFilter />
             <OrdersDetailsBoxes ordersDetails={ordersDetails} />
             <OrderList ordersCount={ordersDetails.ordersCount} orders={orders} />
-        </div>
+        </PageContainer>
     )
 }
 

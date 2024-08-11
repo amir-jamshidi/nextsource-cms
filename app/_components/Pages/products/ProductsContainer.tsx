@@ -2,6 +2,7 @@ import { IProduct } from "@/app/_types/product"
 import ProductFilter from "./ProductFilter"
 import ProductDetailsBoxes from "./ProductDetailsBoxes"
 import ProductList from "./ProductList"
+import PageContainer from "../../Modules/PageContainer"
 
 
 interface ProductsContainerProps {
@@ -16,11 +17,11 @@ interface ProductsContainerProps {
 
 const ProductsContainer = ({ products, productsDetails }: ProductsContainerProps) => {
     return (
-        <div className='flex flex-col gap-y-10 pb-14'>
+        <PageContainer>
             <ProductFilter />
             <ProductDetailsBoxes productsDetails={productsDetails} />
             <ProductList products={products} productsCount={productsDetails.productsCount} />
-        </div>
+        </PageContainer>
     )
 }
 

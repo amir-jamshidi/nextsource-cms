@@ -23,17 +23,19 @@ const RecentOrdersSection = ({ recentOrders }: { recentOrders: IOrder[] }) => {
                             <div className='line-clamp-1 flex items-center col-span-2'>
                                 <p className="text-sm dark:text-primary-100 line-clamp-1 text-primary-700">{product.title}</p>
                             </div>
-                            <div className='line-clamp-1'>
+                            <div className='line-clamp-1 col-span-2 md:col-span-1'>
                                 {order.totalPrice > 0 ? (
                                     <p className='text-sm font-ir text-green-500'>{Number(order.totalPrice).toLocaleString()} تومان</p>
                                 ) : (
-                                    <p className='text-sm font-ir text-red-600'>رایگـــان</p>
+                                    <div className='flex'>
+                                        <Badge icon={false} text='رایگــان' type='red' />
+                                    </div>
                                 )}
                             </div>
                             <div className='flex items-center justify-center'>
                                 <Badge icon={false} text={new Date(order.createdAt || 0).toLocaleDateString('fa-IR')} type='violet' />
                             </div>
-                            <div className="flex items-center justify-center">
+                            <div className="md:flex items-center justify-center hidden">
                                 {order.action === 'ONLINE' ? (
                                     <Badge icon={false} text='نقدی' type='blue' />
                                 ) : (

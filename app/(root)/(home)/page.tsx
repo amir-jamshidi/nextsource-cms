@@ -1,6 +1,6 @@
-import { getSaleReport } from "../_actions/order";
-import DashboardContainer from "../_components/Pages/dashboard/DashboardContainer";
-import { IOrder } from "../_types/order";
+import { getSaleReport } from "@/app/_actions/order";
+import DashboardContainer from "@/app/_components/Pages/dashboard/DashboardContainer";
+import { IOrder } from "@/app/_types/order";
 
 interface HomePageProps {
   searchParams: { day: number | string }

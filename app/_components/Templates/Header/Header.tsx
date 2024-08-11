@@ -3,14 +3,18 @@ import { HiOutlineBell, HiOutlinePower } from 'react-icons/hi2'
 import Profile from '@/public/images/18718850.jpg'
 import Image from 'next/image'
 import ButtonToggleTheme from '../../Modules/ButtonToggleTheme'
+import MobileNav from '../../Modules/MobileNav'
 
 const Header = () => {
 
     return (
-        <header className="h-16 bg-white dark:bg-primary-900  z-[1] border-b border-b-primary-100/50 dark:border-b-primary-800/50 col-span-2 lg:col-span-1" style={{}}>
+        <header className="h-16 bg-white dark:bg-primary-900  z-[1] border-b border-b-primary-100/50 dark:border-b-primary-800/50 col-span-2 lg:col-span-1">
             <div className='container h-full'>
                 <div className='flex h-full items-center gap-x-1 px-0 justify-between'>
-                    <div className='flex gap-x-2.5 items-center'>
+                    <div className='flex lg:hidden items-center'>
+                        <MobileNav />
+                    </div>
+                    <div className='lg:flex hidden gap-x-2.5 items-center'>
                         <div className='rounded-full overflow-hidden border border-primary-50'>
                             <Image quality={100} width={44} height={44} src={Profile} alt='' />
                         </div>

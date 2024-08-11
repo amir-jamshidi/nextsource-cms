@@ -41,9 +41,9 @@ const OrderItem = ({ order, index }: { order: IOrder, index: number }) => {
                     <p className='text-green-500 dark:text-green-600'>{order.totalPrice.toLocaleString()} تومـان</p>
 
                 ) : (
-                    <p className='dark:text-red-600 text-red-500'>
-                        رایگـان
-                    </p>
+                    <div className='flex'>
+                        <Badge icon={false} text='رایگــان' type='red' />
+                    </div>
                 )}
 
             </TableCell>

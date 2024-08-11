@@ -3,6 +3,7 @@ import React from 'react'
 import AlertFilter from './AlertFilter'
 import AlertDetailsBoxes from './AlertDetailsBoxes'
 import AlertList from './AlertList'
+import PageContainer from '../../Modules/PageContainer'
 
 
 interface AlertsContainerProps {
@@ -18,11 +19,11 @@ interface AlertsContainerProps {
 
 const AlertsContainer = ({ alerts, alertsDetails }: AlertsContainerProps) => {
   return (
-    <div className='flex flex-col gap-y-10 pb-14'>
+    <PageContainer>
       <AlertFilter />
       <AlertDetailsBoxes alertsDetails={alertsDetails} />
       <AlertList alerts={alerts} alertsCount={alertsDetails.alertsCount} />
-    </div>
+    </PageContainer>
   )
 }
 

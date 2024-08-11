@@ -8,6 +8,7 @@ const AlertTitleTable = () => {
                 <TableHead className='text-right min-w-28'>عنوان</TableHead>
                 <TableHead className='text-right min-w-96'>متن پیام</TableHead>
                 <TableHead className='text-right min-w-36'>لینک</TableHead>
+                <TableHead className='text-center min-w-28'>نوع پیام</TableHead>
                 <TableHead className='text-center min-w-28'>فعال</TableHead>
                 <TableHead className='text-center min-w-20'>بیشتر</TableHead>
             </TableRow>

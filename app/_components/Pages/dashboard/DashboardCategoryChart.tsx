@@ -1,7 +1,6 @@
 "use client"
 
-import * as React from "react"
-import { Label, Legend, Pie, PieChart } from "recharts"
+import { Label, Pie, PieChart } from "recharts"
 
 import { categoryMenuChart } from "@/app/_constants"
 import {
@@ -10,6 +9,8 @@ import {
 import {
     ChartConfig,
     ChartContainer,
+    ChartLegend,
+    ChartLegendContent,
     ChartTooltip,
     ChartTooltipContent
 } from "@/components/ui/chart"
@@ -56,11 +57,7 @@ interface CategoryChartProps {
 
 export default function CategoryChart({ categoryDetails }: CategoryChartProps) {
 
-    const totalVisitors = React.useMemo(() => {
-        return categoryDetails.reduce((acc, curr) => acc + curr.productCount, 0)
-    }, [])
-
-
+    const totalVisitors = categoryDetails.reduce((acc, curr) => acc + curr.productCount, 0)
     const data = categoryDetails.map((item, i) => ({ ...item, fill: colors[i] }))
 
     return (
@@ -77,7 +74,7 @@ export default function CategoryChart({ categoryDetails }: CategoryChartProps) {
                 <ChartContainer
                     dir="ltr"
                     config={chartConfig}
-                    className="mx-auto aspect-square max-h-44 lg:max-h-64 w-full"
+                    className="mx-auto aspect-square max-h-64 lg:max-h-64 w-full"
                 >
                     <PieChart>
                         <ChartTooltip
@@ -91,8 +88,7 @@ export default function CategoryChart({ categoryDetails }: CategoryChartProps) {
                             innerRadius={85}
                             outerRadius={110}
                             paddingAngle={3}
-                        // cx={"40%"}
-                        // cy={"50%"}
+                            cy={"48%"}
                         >
 
                             <Label
@@ -130,21 +126,11 @@ export default function CategoryChart({ categoryDetails }: CategoryChartProps) {
                             />
 
                         </Pie>
+                        <ChartLegend content={<ChartLegendContent />} />
 
-                        <Legend
-                            style={{ borderRadius: '8px' }}
-                            direction={'ltr'}
-                            verticalAlign="middle"
-                            align="right"
-                            layout="vertical"
-                            iconSize={20}
-                            // @ts-ignore comment
-                            width={"25%"}
-                        />
                     </PieChart>
                 </ChartContainer>
             </CardContent>
         </div>
-
     )
 }

@@ -3,6 +3,7 @@ import React from 'react'
 import UserFilter from './UserFilter'
 import UserDetailsBoxes from './UserDetailsBoxes'
 import UsersList from './UserList'
+import PageContainer from '../../Modules/PageContainer'
 
 interface UserContainerProps {
   users: IUser[],
@@ -16,11 +17,11 @@ interface UserContainerProps {
 
 const UsersContainer = ({ users, usersDetails }: UserContainerProps) => {
   return (
-    <div className='flex flex-col gap-y-10 pb-14'>
+    <PageContainer>
       <UserFilter />
       <UserDetailsBoxes usersDetails={usersDetails} />
       <UsersList users={users} usersCount={usersDetails.usersCount} />
-    </div>
+    </PageContainer>
   )
 }
 

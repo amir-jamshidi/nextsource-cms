@@ -34,7 +34,7 @@ const AlertButtons = ({ alert }: { alert: IAlert }) => {
           <TableButton icon={<HiOutlinePlay size={18} />} type='green' />
         </span>
       )}
-      <span onClick={handleDeAvtiveAlert}>
+      <span onClick={handleDeleteAlert}>
         <TableButton icon={<HiOutlineTrash size={18} />} type='red' />
       </span>
     </>

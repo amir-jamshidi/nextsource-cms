@@ -41,6 +41,14 @@ const AlertItem = ({ alert, index }: { alert: IAlert, index: number }) => {
                 </TableCell>
                 <TableCell className="text-right">
                     <div className='flex justify-center'>
+                        {alert.type === 'SUCCESS' && <Badge icon={false} text='حالت موفق' type='green' />}
+                        {alert.type === 'WARNING' && <Badge icon={false} text='حالت هشدار' type='amber' />}
+                        {alert.type === 'ERROR' && <Badge icon={false} text='حالت خطا' type='red' />}
+                    </div>
+
+                </TableCell>
+                <TableCell className="text-right">
+                    <div className='flex justify-center'>
                         <Switch isActive={alert.isShow} />
                     </div>
                 </TableCell>

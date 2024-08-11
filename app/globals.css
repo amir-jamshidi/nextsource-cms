@@ -75,6 +75,25 @@ body {
     grid-template-columns: 65px repeat(9, minmax(0, 1fr))
 }
 
+@media screen and (min-width: 480px) {
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {}
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #333;
+
+    }
+}
+
+
+
 * {}
 
 @layer base {
@@ -101,3 +120,15 @@ body {
     }
 }
 
+
+.DialogContent {
+    /* max-width: 900px; */
+}
+
+.header {
+    grid-column: 2/3;
+}
+
+.sidebar {
+    grid-column: 1/2;
+}
