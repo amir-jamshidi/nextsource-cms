@@ -2,7 +2,9 @@ import React from 'react'
 
 const loading = () => {
     return (
-        <div>please Waite ... </div>
+        <div className='felx justify-center items-center'>
+            <div className='loader'></div>
+        </div>
     )
 }
 
