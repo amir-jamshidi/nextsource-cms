@@ -26,13 +26,13 @@ const LoginForm = ({ changeForm }: { changeForm: (phone: string) => void }) => {
 
     return (
         <form className='mt-4 mb-4' onSubmit={handleLogin}>
-            <div className='flex bg-gray-50 border dark:border-primary-700/50 border-primary-50 dark:bg-primary-800 items-center rounded-xl px-2.5 h-11'>
+            <div className='flex bg-gray-50 border dark:border-primary-700/50 border-primary-50 dark:bg-primary-800 items-center rounded-xl px-2.5 h-12'>
                 <span className='border-l border-l-primary-50 dark:border-l-primary-700/50 pl-1.5 ml-2'>
                     <HiOutlineUser size={25} className='dark:text-primary-200 text-primary-600' />
                 </span>
                 <input value={phone} onChange={(e) => setPhone(e.target.value)} className='w-full dark:bg-primary-800 h-full bg-gray-50 flex-1 text-sm border-none outline-none text-primary-700 dark:text-primary-100' autoComplete='off' type="text" placeholder='شماره تلفن همراه' />
             </div>
-            <input type='submit' disabled={isLoading} className='h-11 bg-blue-400 dark:bg-blue-600 w-full text-sm rounded-xl tracking-tight text-white mt-2 dark:disabled:bg-blue-500 disabled:bg-blue-300 transition-color cursor-pointer disabled:cursor-not-allowed' value={isLoading ? 'لطفا صبر کنید' : 'ارسال کد تایید'} />
+            <input type='submit' disabled={isLoading} className='h-12 bg-blue-400 dark:bg-blue-600 w-full text-sm rounded-xl tracking-tight text-white mt-2 dark:disabled:bg-blue-500 disabled:bg-blue-300 transition-color cursor-pointer disabled:cursor-not-allowed' value={isLoading ? 'لطفا صبر کنید' : 'ارسال کد تایید'} />
         </form>
     )
 }

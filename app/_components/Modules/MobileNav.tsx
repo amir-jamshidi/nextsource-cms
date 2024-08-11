@@ -20,7 +20,7 @@ export default function MobileNav() {
                     <HiOutlineBars3 size={35} className="text-primary-700 dark:text-primary-100" />
                 </span>
             </SheetTrigger>
-            <SheetContent className="dark:bg-primary-900 border-none text-primary-600 dark:text-primary-300">
+            <SheetContent className="dark:bg-primary-900 border-none text-primary-600 dark:text-primary-300 overflow-auto">
                 <div className="flex justify-center flex-col items-center py-12">
                     <div className="flex flex-col">
                         <p className="font-mo-light dark:text-primary-200 text-primary-600 text-sm">پنــل مــدیریت</p>
