@@ -11,6 +11,7 @@ const SingleProductForm = ({ product }: { product: IProduct }) => {
     return (
         <div>
             <input type="text" onBlur={(e) => handleUpdateProduct(e.target.value, 'title')} className='' defaultValue={product.title} />
+            <input type="text" onBlur={(e) => handleUpdateProduct(e.target.value, 'title')} className='' defaultValue={product.title} />
         </div>
     )
 }
