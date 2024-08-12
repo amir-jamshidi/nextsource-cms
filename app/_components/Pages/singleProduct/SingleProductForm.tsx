@@ -4,8 +4,8 @@ import React from 'react'
 
 const SingleProductForm = ({ product }: { product: IProduct }) => {
 
-    const handleUpdateProduct = (e, key) => {
-        console.log(e, key);
+    const handleUpdateProduct = (value: string, key: string) => {
+        console.log(value, key);
     }
 
     return (
