@@ -2,6 +2,7 @@
 
 import { SHOW_IN_PAGE } from "../_constants/gobalVariables"
 import categoryModel from "../_models/category.module"
+import orderModel from "../_models/order.module"
 import productModel from "../_models/product.module"
 import userModel from "../_models/user.module"
 import { IProduct } from "../_types/product"
@@ -42,4 +43,22 @@ export const getProducts = async ({ state, page }: IGetProducts) => {
 
     return { products, productsDetails }
 
+}
+
+export const getProductDetails = async ({ productID }: { productID: string }) => {
+
+    const product = await productModel.findOne({ _id: productID })
+        .populate({ path: 'categoryID', model: categoryModel })
+        .populate({ path: 'creatorID', model: userModel })
+        .lean();
+    const productOrder = await orderModel.find({ productID }).select('totalPrice').lean();
+
+    const productSaleCount = productOrder.length;
+    const productSalePrice = productOrder.reduce((total, cur) => total + cur.totalPrice, 0);
+
+    const productDetails = {
+        ...product, productSaleCount, productSalePrice
+    }
+
+    return { productDetails, product }
 }
