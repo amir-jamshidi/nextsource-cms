@@ -24,7 +24,7 @@ export default async function MobileNav() {
                 </span>
             </SheetTrigger>
             <SheetContent className="dark:bg-primary-900 border-none text-primary-600 dark:text-primary-300 overflow-auto">
-                <div className="flex justify-center flex-col items-center py-6 border-b border-b-primary-800/50">
+                <div className="flex justify-center flex-col items-center py-6 ">
                     <div className="flex flex-col">
                         <p className="font-mo-light dark:text-primary-200 text-primary-600 text-sm">پنــل مــدیریت</p>
                         <div className="flex">
@@ -33,10 +33,10 @@ export default async function MobileNav() {
                         </div>
                     </div>
                 </div>
-                <div className="flex border-b border-b-primary-800/50  items-center gap-x-1.5 mb-2">
+                <div className="flex border-y border-primary-50 dark:border-primary-800/50 mt-5 mb-6 items-center gap-x-1.5">
                     <Image width={72} height={72} alt="Profile IMG" src={admin.profile} />
                     <div className="flex flex-col items-start gap-y-0.5">
-                        <p className="font-sm tracking-tight text-gray-100 font-mo">{admin.fullname}</p>
+                        <p className="font-sm tracking-tight text-primary-700 dark:text-gray-100 font-mo">{admin.fullname}</p>
                         <p className='text-white text-xs font-mo bg-green-400 dark:bg-green-600 dark:text-primary-100 rounded px-2'>{admin.role === 'ADMIN' && 'مدیریت'}</p>
                     </div>
                 </div>

@@ -7,6 +7,65 @@
 @tailwind utilities;
 
 
+a {
+    direction: rtl;
+}
+
+@layer utilities {
+    .bg-red {
+        @apply bg-gradient-to-r dark:from-red-500 dark:to-red-600 from-red-400 to-red-500
+    }
+
+    .bg-blue {
+        @apply bg-gradient-to-r dark:from-blue-500 dark:to-blue-600 from-blue-400 to-blue-500
+    }
+
+    .bg-green {
+        @apply bg-gradient-to-r dark:from-green-500 dark:to-green-600 from-green-400 to-green-500
+    }
+
+    .modal-input {
+        @apply bg-gray-50 dark:bg-primary-900 dark:border-primary-800/50 dark:text-primary-100 h-12 rounded-xl border text-sm border-primary-50 outline-none text-primary-800 px-2.5
+    }
+
+    .shad-input-label {
+        @apply text-xs dark:text-primary-400 tracking-tight px-1.5 !important;
+    }
+
+    .shad-input {
+        @apply shadow-none bg-transparent text-primary-700 dark:text-primary-100 placeholder:text-primary-600  h-12 focus-visible:ring-0 focus-visible:ring-offset-0 !important;
+    }
+
+    .shad-input-icon {
+        @apply bg-primary-900 placeholder:text-primary-600 border-primary-500 h-12 focus-visible:ring-0 focus-visible:ring-offset-0 !important;
+    }
+
+    .shad-textArea {
+        @apply bg-primary-900 placeholder:text-primary-600 border-primary-500 focus-visible:ring-0 focus-visible:ring-offset-0 !important;
+    }
+
+    .shad-combobox-item {
+        @apply data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 !important;
+    }
+
+    .shad-combobox-trigger {
+        @apply h-12 !important;
+    }
+
+    .shad-select-trigger {
+        @apply dark:bg-primary-900 bg-gray-50 dark:text-primary-100 text-primary-700 placeholder:text-primary-600 dark:border-primary-800 h-12 focus:ring-0 focus:ring-offset-0 !important;
+    }
+
+    .shad-select-content {
+        @apply dark:bg-primary-900 bg-gray-50 border-primary-50 dark:border-primary-800 !important;
+    }
+
+    .shad-error {
+        @apply text-red-400 dark:text-red-400 tracking-tighter text-xs px-1.5 mt-1 !important;
+    }
+
+}
+
 @font-face {
     font-family: 'ir';
     src: url('../public/fonts/is-regular.woff2');

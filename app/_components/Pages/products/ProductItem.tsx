@@ -42,8 +42,8 @@ const ProductItem = ({ product, index }: ProductItemProps) => {
                 </TableCell>
                 <TableCell className="text-right">
                     <div className='flex flex-col '>
-                        <p className='text-primary-700 dark:text-primary-100'>{seller.email}</p>
-                        <p className='text-primary-600 dark:text-primary-200'>{seller.phone}</p>
+                        <p className='text-primary-700 dark:text-primary-100'>{seller?.email}</p>
+                        <p className='text-primary-600 dark:text-primary-200'>{seller?.phone}</p>
                     </div>
                 </TableCell>
                 <TableCell className="text-center">

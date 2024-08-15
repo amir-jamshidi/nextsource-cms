@@ -11,10 +11,10 @@ interface Props {
 
 const page = async ({ params: { productID } }: Props) => {
 
-  const { productDetails , product} = await getProductDetails({ productID })
+  const { productDetails, product, categories } = await getProductDetails({ productID })
 
   return (
-    <SingleProductContainer productDetails={productDetails} product={product} />
+    <SingleProductContainer productDetails={productDetails} product={product} categories={categories} />
   )
 }
 

@@ -1,11 +1,10 @@
-import { ITicket } from '@/app/_types/ticket'
-import React from 'react'
-import TicketItem from './TicketItem'
-import Pagination from '../../Modules/Pagination'
-import TicketTitleTable from './TicketTitleTable'
-import NoItemTable from '../../Modules/NoItemTable'
 import { SHOW_IN_PAGE } from '@/app/_constants/gobalVariables'
+import { ITicket } from '@/app/_types/ticket'
 import { Table, TableBody } from '@/components/ui/table'
+import NoItemTable from '../../Modules/NoItemTable'
+import Pagination from '../../Modules/Pagination'
+import TicketItem from './TicketItem'
+import TicketTitleTable from './TicketTitleTable'
 
 interface ITicketsList {
     tickets: ITicket[]
@@ -19,9 +18,8 @@ const TicketList = ({ tickets, ticketsCount }: ITicketsList) => {
                 <Table dir='rtl'>
                     <TicketTitleTable />
                     <TableBody>
-
-                        {tickets.map((order, i) => (
-                            <TicketItem index={i + 1} ticket={order} key={String(order._id)} />
+                        {tickets.map((ticket, i) => (
+                            <TicketItem index={i + 1} ticket={ticket} key={ticket.body} />
                         ))}
                     </TableBody>
                 </Table>

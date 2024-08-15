@@ -5,7 +5,7 @@ import { IProduct } from "@/app/_types/product"
 import { IUser } from "@/app/_types/user"
 import jsPDF from 'jspdf'
 import autoTable from 'jspdf-autotable'
-import { HiOutlineBanknotes, HiOutlineBellAlert, HiOutlineClock, HiOutlineCurrencyDollar, HiOutlineEye, HiOutlineGift, HiOutlineHashtag, HiOutlineReceiptPercent, HiOutlineShoppingBag, HiOutlineShoppingCart, HiOutlineSquares2X2, HiOutlineUser, HiOutlineWallet } from "react-icons/hi2"
+import { HiOutlineBanknotes, HiOutlineBellAlert, HiOutlineClock, HiOutlineCurrencyDollar, HiOutlineEye, HiOutlineGift, HiOutlineHashtag, HiOutlineInformationCircle, HiOutlineReceiptPercent, HiOutlineShoppingBag, HiOutlineShoppingCart, HiOutlineSquares2X2, HiOutlineTrash, HiOutlineUser, HiOutlineWallet } from "react-icons/hi2"
 import OrderModalBox from "./OrderModalBox"
 import Modal from "../../Modules/Modal"
 import ModalFooter from "../../Modules/ModalFooter"
@@ -48,10 +48,18 @@ const OrderShowButton = ({ order }: IOrderShowButtonProps) => {
 
 
             <Modal.Window>
-                <div className='my-14 overflow-auto w-full lg:w-3/4 rounded-xl bg-white dark:bg-primary-900 shadow dark:shadow-none dark:border border-primary-800'>
-                    <ScrollArea>
-                    <ModalHeader title={'نمایش جزئیات سفارش'} />
-                        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 w-full gap-2.5 p-4" >
+                <div className='my-14 h-[500px] md:h-auto overflow-auto w-full lg:w-3/4 rounded-xl bg-white dark:bg-primary-950 shadow dark:shadow-none dark:border border-primary-800/50'>
+                    <div className="px-2.5 py-3.5">
+                        <div className='flex items-center justify-center gap-y-2 flex-col'>
+                            <div className='dark:bg-green-800/40 bg-green-400/40 p-1.5 inline-block rounded-full'>
+                                <span className='p-2 flex bg-green-300 dark:bg-green-700 rounded-full'>
+                                    <HiOutlineInformationCircle size={30} className='text-green-600 dark:text-green-300' />
+                                </span>
+                            </div>
+                            <h2 className='text-lg font-mo dark:text-primary-50 text-primary-700'>جزئیات سفارش</h2>
+                        </div>
+
+                        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 w-full gap-1 md:gap-2.5 px-2 mt-4" >
                             <OrderModalBox
                                 color="#fecdd3"
                                 icon={<HiOutlineUser size={40} className="text-rose-500" />}
@@ -137,14 +145,21 @@ const OrderShowButton = ({ order }: IOrderShowButtonProps) => {
                                 text={order.price.toLocaleString() + ' تومان'}
                             />
                         </div>
-                    </ScrollArea>
-                    <ModalFooter>
-                        <button onClick={handleDownloadPDF} className="font-mo text-green-500 px-4 py-1 rounded-full text-sm">دریافت PDF</button>
-                    </ModalFooter>
+
+                        <div className="grid grid-cols-2 mt-6 gap-1.5">
+                            <button className="bg-green py-3 rounded-xl font-mo text-white text-sm">دریافت پی دی اف</button>
+                            <button className="bg-blue py-3 rounded-xl font-mo text-white text-sm">مشاهده کامل</button>
+                            <Modal.Close>
+                                <button className="col-span-2 bg-red rounded-xl font-mo py-3 text-white text-sm">
+                                    بستن
+                                </button>
+                            </Modal.Close>
+                        </div>
+                    </div>
                 </div>
 
             </Modal.Window>
-        </Modal>
+        </Modal >
     )
 }
 

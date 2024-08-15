@@ -9,7 +9,7 @@ interface OrderModalBoxProps {
 
 const OrderModalBox = ({ icon, color, title, text, link }: OrderModalBoxProps) => {
     return (
-        <div dir="rtl" className="flex items-center gap-x-2 bg-gray-50 border border-primary-50/50 dark:border-primary-700/50 dark:bg-primary-800 p-1.5 rounded-xl">
+        <div dir="rtl" className="flex items-center gap-x-2 bg-gray-50 border border-primary-50/50 dark:border-primary-800/50 dark:bg-primary-900 p-1.5 rounded-xl">
             <span style={{ backgroundColor: color }} className={`p-2 rounded-full inline-block`}>
                 {icon}
             </span>

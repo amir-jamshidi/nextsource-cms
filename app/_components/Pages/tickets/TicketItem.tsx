@@ -1,14 +1,12 @@
 import { IOrder } from '@/app/_types/order';
 import { ISection } from '@/app/_types/section';
-import { ITicket } from '@/app/_types/ticket'
+import { ITicket } from '@/app/_types/ticket';
 import { IUser } from '@/app/_types/user';
-import React from 'react'
-import { HiArrowUturnRight, HiOutlineCheckCircle, HiOutlineEye, HiOutlineTrash, HiOutlineXCircle } from 'react-icons/hi2';
-import TicketButtonShow from './TicketButtonShow';
-import TicketButtonDelete from './TicketButtonDelete';
+import { TableCell, TableRow } from '@/components/ui/table';
 import Badge from '../../Modules/Badge';
 import Switch from '../../Modules/Switch';
-import { TableCell, TableRow } from '@/components/ui/table';
+import TicketButtonDelete from './TicketButtonDelete';
+import TicketButtonShow from './TicketButtonShow';
 
 interface TicketItemProps {
     ticket: ITicket,
@@ -24,7 +22,7 @@ const TicketItem = ({ ticket, index }: TicketItemProps) => {
 
 
     return (
-        <TableRow className='dark:border-b-primary-800 border-b-primary-50'>
+        <TableRow key={String(ticket._id)} className='dark:border-b-primary-800 border-b-primary-50'>
             <TableCell className="text-center">
                 <p className='py-2 text-primary-700 dark:text-primary-100'>
                     {index}

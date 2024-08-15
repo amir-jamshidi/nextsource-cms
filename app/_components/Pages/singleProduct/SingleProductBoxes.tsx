@@ -3,7 +3,7 @@ import DetailsBoxesContainer from '../../Modules/DetailsBoxesContainer'
 import DetailsBox from '../../Modules/DetailsBox'
 import { HiOutlineBanknotes, HiOutlineCircleStack, HiOutlineReceiptPercent, HiOutlineShoppingBag, HiOutlineShoppingCart, HiOutlineSquares2X2, HiOutlineTrophy, HiOutlineUser } from 'react-icons/hi2'
 
-const SingleProductBoxes = ({ productDetails }) => {
+const SingleProductBoxes = ({ productDetails }: { productDetails: any }) => {
 
     const offStr = ((productDetails.isOff && productDetails.isFree) || productDetails.isFree) ? 'محصول رایگان می باشد' : productDetails.isOff ? `${productDetails.precentOff}% تخقیف` : 'بدون تخفیف'
 

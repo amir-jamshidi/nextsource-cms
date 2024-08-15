@@ -4,7 +4,7 @@ import { HiOutlineCube } from 'react-icons/hi2'
 const NoItemTable = ({ text }: { text: string }) => {
     return (
         <div className='flex justify-center items-center py-8'>
-            <div className="flex items-center justify-center gap-x-2 bg-gray-100 dark:bg-primary-800 px-8 rounded-xl py-2">
+            <div className="flex items-center justify-center gap-x-2  px-8 rounded-xl py-2">
                 <span className='p-2 rounded-full bg-red-200'>
                     <HiOutlineCube size={45} className='text-red-500' />
                 </span>

@@ -1,11 +1,13 @@
 'use server'
 
+import { revalidatePath } from "next/cache"
 import { SHOW_IN_PAGE } from "../_constants/gobalVariables"
 import categoryModel from "../_models/category.module"
 import orderModel from "../_models/order.module"
 import productModel from "../_models/product.module"
 import userModel from "../_models/user.module"
 import { IProduct } from "../_types/product"
+import { messageCreator } from "../_utils/messageCreator"
 
 interface IGetProducts {
     state: "free" | "nonfree" | "all" | "inplan",
@@ -52,6 +54,7 @@ export const getProductDetails = async ({ productID }: { productID: string }) =>
         .populate({ path: 'creatorID', model: userModel })
         .lean();
     const productOrder = await orderModel.find({ productID }).select('totalPrice').lean();
+    const categories = await categoryModel.find({}).select('title').lean();
 
     const productSaleCount = productOrder.length;
     const productSalePrice = productOrder.reduce((total, cur) => total + cur.totalPrice, 0);
@@ -60,5 +63,21 @@ export const getProductDetails = async ({ productID }: { productID: string }) =>
         ...product, productSaleCount, productSalePrice
     }
 
-    return { productDetails, product }
+    return { productDetails, product, categories }
+}
+
+export const updateProduct = async ({ productID, key, value }: { productID: string, key: string, value: string | number | boolean }) => {
+
+    if (key === 'precentOff') {
+        console.log(key, value)
+        let options: { isFree?: boolean, isOff?: boolean, precentOff?: number } = {}
+        if (Number(value) === 100) options = { isFree: true, isOff: true, precentOff: 100 };
+        if (Number(value) === 0) options = { isFree: false, isOff: false, precentOff: 0 };
+        if (Number(value) > 0 && Number(value) < 100) options = { isFree: false, isOff: true, precentOff: Number(value) };
+        await productModel.findOneAndUpdate({ _id: productID }, options).lean();
+    } else {
+        await productModel.findOneAndUpdate({ _id: productID }, { [key]: value }).lean();
+    }
+    revalidatePath(`/products/${productID}`)
+    return messageCreator(true, 'محصول ویرایش شد')
 }

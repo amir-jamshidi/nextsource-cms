@@ -1,11 +1,7 @@
 import { ICategory } from '@/app/_types/category';
-import { IProduct } from '@/app/_types/product';
-import { IUser } from '@/app/_types/user';
-import Link from 'next/link';
-import { HiOutlineCheckCircle, HiOutlineEye, HiOutlinePencil, HiOutlinePencilSquare, HiOutlineXCircle } from 'react-icons/hi2';
-import CategoryDeleteButton from './CategoryDeleteButton';
-import Switch from '../../Modules/Switch';
 import { TableCell, TableRow } from '@/components/ui/table';
+import Switch from '../../Modules/Switch';
+import CategoryDeleteButton from './CategoryDeleteButton';
 
 interface CategoryItemProps {
     category: ICategory,
@@ -13,8 +9,6 @@ interface CategoryItemProps {
 }
 
 const CategoryItem = ({ category, index }: CategoryItemProps) => {
-
-
 
     return (
         <>
