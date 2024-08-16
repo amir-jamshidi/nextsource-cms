@@ -61,7 +61,6 @@ const SingleUserForm = ({ user }: { user: IUser }) => {
     }
 
     return (
-
         <div className='p-4 bg-white border border-primary-50 dark:bg-primary-900 dark:border-primary-800/50 rounded-xl'>
             <div className='flex gap-x-1.5 items-center'>
                 <div className='w-5 h-5 bg-blue rounded-full' />
