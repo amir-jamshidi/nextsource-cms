@@ -124,7 +124,6 @@ const SingleUserForm = ({ user }: { user: IUser }) => {
                             <SelectItem value='USER'>کاربر</SelectItem>
                         </CustomFormField>
 
-
                         <div className='mt-4'>
                             <SubmitButton text='ثبت تغییرات' isLoading={isLoading} />
                         </div>
