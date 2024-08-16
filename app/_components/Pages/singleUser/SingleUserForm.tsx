@@ -132,7 +132,6 @@ const SingleUserForm = ({ user }: { user: IUser }) => {
 
             </Form>
         </div>
-
     )
 }
 
