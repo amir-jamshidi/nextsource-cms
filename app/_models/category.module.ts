@@ -13,7 +13,7 @@ const categorySchema = new Schema<ICategory>({
     },
     caption: {
         type: String,
-        required: true
+        default: ''
     },
     href: {
         type: String,

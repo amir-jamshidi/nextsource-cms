@@ -1,9 +1,10 @@
+'use clinet'
+
 import { IUser } from '@/app/_types/user';
-import Link from 'next/link';
+import { TableCell, TableRow } from '@/components/ui/table';
 import { HiOutlineEye } from 'react-icons/hi2';
 import Badge from '../../Modules/Badge';
 import TableButton from '../../Modules/TableButton';
-import { TableCell, TableRow } from '@/components/ui/table';
 
 
 interface UserItemProps {

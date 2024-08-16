@@ -66,7 +66,7 @@ export const getTickets = async ({ status, page, day }: getTicketsProps) => {
         ticketsNoAnswerCount
     }
 
-    return { tickets, ticketsDetails }
+    return { tickets: JSON.parse(JSON.stringify(tickets)), ticketsDetails }
 
 }
 

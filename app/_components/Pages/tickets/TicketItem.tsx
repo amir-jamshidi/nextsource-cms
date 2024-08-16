@@ -1,3 +1,5 @@
+'use client'
+
 import { IOrder } from '@/app/_types/order';
 import { ISection } from '@/app/_types/section';
 import { ITicket } from '@/app/_types/ticket';

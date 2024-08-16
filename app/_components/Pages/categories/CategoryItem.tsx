@@ -1,3 +1,5 @@
+'use client'
+
 import { ICategory } from '@/app/_types/category';
 import { TableCell, TableRow } from '@/components/ui/table';
 import Switch from '../../Modules/Switch';

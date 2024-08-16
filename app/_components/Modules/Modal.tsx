@@ -11,12 +11,12 @@ interface ModalContextProps {
 
 export const ModalContext = createContext<ModalContextProps | null>(null);
 
-const Modal = ({ children, open }: { children: React.ReactNode, open?: boolean }) => {
+const Modal = ({ children, open, setOpen }: { children: React.ReactNode, open?: boolean, setOpen?: (open: boolean) => void }) => {
     const [isShowModal, setIsShowModal] = useState(false);
 
     useEffect(() => {
-        if (isShowModal) document.body.style.overflow = 'hidden'
-        if (!isShowModal) document.body.style.overflow = 'auto'
+        // if (isShowModal) document.body.style.overflow = 'hidden'
+        // if (!isShowModal) document.body.style.overflow = 'auto'
     }, [isShowModal])
 
     useEffect(() => {
@@ -24,6 +24,10 @@ const Modal = ({ children, open }: { children: React.ReactNode, open?: boolean }
             setIsShowModal(open);
         }
     }, [open])
+
+    useEffect(() => {
+        setOpen?.(isShowModal);
+    }, [isShowModal])
 
     return (
         <ModalContext.Provider value={{ isShowModal, setIsShowModal }}>

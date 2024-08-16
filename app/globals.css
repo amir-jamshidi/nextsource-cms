@@ -33,7 +33,11 @@ a {
     }
 
     .shad-input {
-        @apply shadow-none bg-transparent text-primary-700 dark:text-primary-100 placeholder:text-primary-600  h-12 focus-visible:ring-0 focus-visible:ring-offset-0 !important;
+        @apply shadow-none bg-transparent text-primary-700 dark:text-primary-100 placeholder:text-primary-400 h-12 focus-visible:ring-0 focus-visible:ring-offset-0 !important;
+    }
+
+    .shad-type {
+        @apply shadow-none border-none transition-none bg-transparent text-primary-700 dark:text-primary-100 placeholder:text-primary-400 h-12 focus-visible:ring-0 focus-visible:ring-offset-0 !important;
     }
 
     .shad-input-icon {
@@ -53,7 +57,7 @@ a {
     }
 
     .shad-select-trigger {
-        @apply dark:bg-primary-900 bg-gray-50 dark:text-primary-100 text-primary-700 placeholder:text-primary-600 dark:border-primary-800 h-12 focus:ring-0 focus:ring-offset-0 !important;
+        @apply dark:bg-primary-900 border-none shadow-none bg-gray-50 dark:text-primary-100 text-primary-700 placeholder:text-primary-600 dark:border-primary-800 h-12 focus:ring-0 focus:ring-offset-0 !important;
     }
 
     .shad-select-content {
@@ -64,6 +68,21 @@ a {
         @apply text-red-400 dark:text-red-400 tracking-tighter text-xs px-1.5 mt-1 !important;
     }
 
+    .mobile-nav button {
+        @apply focus:ring-transparent !important
+    }
+
+    .text_800_100 {
+        @apply text-primary-800 dark:text-primary-100
+    }
+
+    .text_700_200 {
+        @apply text-primary-700 dark:text-primary-200
+    }
+
+    select {
+        @apply hidden
+    }
 }
 
 @font-face {

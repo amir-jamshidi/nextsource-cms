@@ -12,12 +12,12 @@ import 'react-phone-number-input/style.css'
 
 interface CustomProps {
     control: Control<any>
-    fieldType: 'input' | 'textarea' | 'phoneInput' | 'checkbox' | 'datePicket' | 'select' | 'skeleton'
+    fieldType: 'input' | 'textarea' | 'phoneInput' | 'checkbox' | 'datePicket' | 'select' | 'skeleton' | 'file'
     name: string
     label?: string
     placeholder?: string
     iconImg?: React.ReactNode
-    iconAlt: string
+    iconAlt?: string
     disabled?: boolean,
     dateFormat?: string,
     showTimeSelect?: boolean,
@@ -27,7 +27,7 @@ interface CustomProps {
 
 const RenderField = ({ field, props }: { field: any, props: CustomProps }) => {
 
-    const { fieldType, iconImg, iconAlt, placeholder } = props
+    const { fieldType, iconImg, placeholder } = props
 
     switch (fieldType) {
         case 'input':
@@ -40,6 +40,7 @@ const RenderField = ({ field, props }: { field: any, props: CustomProps }) => {
                     )}
                     <FormControl>
                         <Input
+                            disabled={props.disabled}
                             placeholder={placeholder}
                             {...field}
                             className='shad-input border-0'
@@ -47,10 +48,10 @@ const RenderField = ({ field, props }: { field: any, props: CustomProps }) => {
                     </FormControl>
                 </div>
             )
-
         case "phoneInput":
             return (
                 <PhoneInput
+                    disabled={props.disabled}
                     defaultCountry='IR'
                     placeholder={placeholder}
                     international
@@ -62,9 +63,10 @@ const RenderField = ({ field, props }: { field: any, props: CustomProps }) => {
             )
         case "select": {
             return (
-                <div className='!mt-0.5'>
+                <div className='flex items-center rounded-md border dark:border-primary-800 border-primary-50 bg-gray-50 dark:bg-primary-900 !mt-0.5'>
+
                     <FormControl>
-                        <Select dir='rtl' onValueChange={field.onChange} defaultValue={field.value}>
+                        <Select disabled={props.disabled} dir='rtl' onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
                                 <SelectTrigger className="shad-select-trigger">
                                     <SelectValue placeholder={props.placeholder} />
@@ -78,13 +80,27 @@ const RenderField = ({ field, props }: { field: any, props: CustomProps }) => {
                 </div>
             );
         }
+        case "file": {
+            return (
+                <div className='flex relative items-center rounded-md border dark:border-primary-800 border-primary-50 bg-gray-50 dark:bg-primary-900 !mt-0.5'>
+                    <span className={`${props.disabled ? 'dark:text-gray-400 text-gray-400' : 'text-primary-700 dark:text-primary-100'} z-[1] absolute bg-gray-50 dark:bg-primary-900 top-1 bottom-1 right-1 text-center flex justify-center items-center w-[97px] rounded-xl text-sm tracking-tight`}>انتخاب تصویر</span>
+                    <FormControl>
+                        <Input
+                            disabled={props.disabled}
+                            className='shad-type py-3.5 h-12 flex items-center justify-center dark:placeholder:text-red-600 dark:text-blue-500'
+                            {...field.fieldProps}
+                            placeholder={placeholder}
+                            type='file'
+                            accept='image/*'
+                            onChange={(event) =>
+                                field.onChange(event.target.files && event.target.files[0])
+                            }
+                        />
+                    </FormControl>
+                </div>
+            );
+        }
     }
-
-    return (
-        <Input
-            type='text'
-        />
-    )
 
 }
 

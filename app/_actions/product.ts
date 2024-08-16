@@ -43,7 +43,7 @@ export const getProducts = async ({ state, page }: IGetProducts) => {
         productInPlanCount
     }
 
-    return { products, productsDetails }
+    return { products: JSON.parse(JSON.stringify(products)), productsDetails }
 
 }
 
@@ -63,7 +63,7 @@ export const getProductDetails = async ({ productID }: { productID: string }) =>
         ...product, productSaleCount, productSalePrice
     }
 
-    return { productDetails, product, categories }
+    return { productDetails, product: JSON.parse(JSON.stringify(product)), categories: JSON.parse(JSON.stringify(categories)) }
 }
 
 export const updateProduct = async ({ productID, key, value }: { productID: string, key: string, value: string | number | boolean }) => {

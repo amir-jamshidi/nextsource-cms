@@ -13,6 +13,7 @@ import ToltipContainer from "../../Modules/ToltipContainer"
 import TableButton from "../../Modules/TableButton"
 import ModalHeader from "../../Modules/ModalHeader"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import CloseButton from "../../Modules/CloseButton"
 
 interface IOrderShowButtonProps {
     order: IOrder
@@ -146,14 +147,9 @@ const OrderShowButton = ({ order }: IOrderShowButtonProps) => {
                             />
                         </div>
 
-                        <div className="grid grid-cols-2 mt-6 gap-1.5">
-                            <button className="bg-green py-3 rounded-xl font-mo text-white text-sm">دریافت پی دی اف</button>
-                            <button className="bg-blue py-3 rounded-xl font-mo text-white text-sm">مشاهده کامل</button>
-                            <Modal.Close>
-                                <button className="col-span-2 bg-red rounded-xl font-mo py-3 text-white text-sm">
-                                    بستن
-                                </button>
-                            </Modal.Close>
+                        <div className="mt-6 flex gap-1.5">
+                            <button className="bg-blue py-3 w-32 rounded-xl font-mo text-white text-sm">مشاهده کامل</button>
+                            <CloseButton text="بستن" />
                         </div>
                     </div>
                 </div>

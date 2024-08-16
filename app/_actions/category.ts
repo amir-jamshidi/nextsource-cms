@@ -11,6 +11,12 @@ interface IGetCategoriesProps {
     sort: 'asc' | 'desc'
 }
 
+interface IInsertCategory {
+    title: string,
+    titleEn: string,
+    href: string
+}
+
 export const getCategories = async ({ page, sort = 'asc' }: IGetCategoriesProps) => {
 
     const categories = await categoryModel
@@ -37,7 +43,7 @@ export const getCategories = async ({ page, sort = 'asc' }: IGetCategoriesProps)
         categoriesNonActiveCount
     }
 
-    return { categories, categoriesDetails }
+    return { categories: JSON.parse(JSON.stringify(categories)), categoriesDetails }
 }
 
 export const deleteCategory = async ({ categoryID }: { categoryID: string }) => {
@@ -45,4 +51,12 @@ export const deleteCategory = async ({ categoryID }: { categoryID: string }) => 
     await categoryModel.findOneAndDelete({ _id: categoryID }).lean();
     revalidatePath('/categories')
     return messageCreator(true, 'دسته بندی حذف شد')
+}
+
+export const insertCategory = async ({ title, titleEn, href }: IInsertCategory) => {
+    const isHasBefore = await categoryModel.findOne({ href }).lean();
+    if (isHasBefore) return messageCreator(false, 'لینک دسته بندی تکراریه')
+    await categoryModel.create({ title, titleEn, href, caption: '' });
+    revalidatePath('/categories');
+    return messageCreator(true, 'دسته بندی اضافه شد');
 }

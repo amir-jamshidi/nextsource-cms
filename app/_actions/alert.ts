@@ -41,7 +41,7 @@ export const getAlerts = async ({ page, type }: IGetAlerts) => {
         alertErrorCount
     }
 
-    return { alerts, alertsDetails }
+    return { alerts: JSON.parse(JSON.stringify(alerts)), alertsDetails }
 }
 
 export const deleteAlert = async ({ alertID }: { alertID: string }) => {
@@ -50,14 +50,12 @@ export const deleteAlert = async ({ alertID }: { alertID: string }) => {
     revalidatePath('/alerts');
     return messageCreator(true, 'پیام مورد نظر حذف شد')
 }
-
 export const addAlert = async ({ title, body, href, type }: { title: string, body: string, href?: string, type: string }) => {
     await connectToDB();
     await alertModel.create({ title, body, href, type: type.toUpperCase() });
     revalidatePath('/alerts');
     return messageCreator(true, 'پیام جدید اضافه شد');
 }
-
 export const acitveAlert = async ({ alertID }: { alertID: string }) => {
     await connectToDB()
     await alertModel.findOneAndUpdate({ _id: alertID }, { isShow: true }).lean();

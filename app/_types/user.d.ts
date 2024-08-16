@@ -5,7 +5,7 @@ export interface IUser extends Document {
     profile: string,
     fullname: string,
     email: string,
-    role: string,
+    role: 'USER' | 'ADMIN',
     money: number
     bio: string,
     technologies: string[],

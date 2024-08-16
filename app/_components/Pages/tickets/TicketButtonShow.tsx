@@ -120,7 +120,7 @@ const TicketButtonShow = ({ ticket }: TicketButtonShow) => {
                                 <textarea placeholder={ticket.isAnswer ? 'پاسخ جایگزین ...' : 'متن پاسخ ...'} className='w-full dark:bg-primary-900 dark:border-primary-800 rounded-bl-none dark:text-primary-100 bg-gray-50 border border-primary-50 outline-none rounded-xl min-h-20 max-h-28 p-2 text-sm text-primary-800 font-ir tracking-tight' value={answer} onChange={(e) => setAnswer(e.target.value)}></textarea>
                             </div>
                         </div>
-                        <div className='py-3 flex gap-x-1.5'>
+                        <div className='mt-4 flex gap-x-1.5'>
                             <Modal.Close>
                                 <button className="w-32 bg-red py-3 rounded-xl font-mo text-white text-sm">نه بیخیال</button>
                             </Modal.Close>

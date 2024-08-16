@@ -1,10 +1,11 @@
+'use client'
+
 import { IOrder } from '@/app/_types/order'
 import { IProduct } from '@/app/_types/product'
 import { IUser } from '@/app/_types/user'
 import { TableCell, TableRow } from '@/components/ui/table'
 import Badge from '../../Modules/Badge'
 import OrderShowButton from '../orders/OrderShowButton'
-
 
 
 const OrderItem = ({ order, index }: { order: IOrder, index: number }) => {

@@ -59,7 +59,7 @@ export const getOrders = async ({ day = 1, page = 1 }: IGetOrdersProps) => {
         totalSalePrice
     }
 
-    return { orders, ordersDetails }
+    return { orders: JSON.parse(JSON.stringify(orders)), ordersDetails }
 }
 
 export const getSaleReport = async ({ day = 7 }: IGetSaleReport) => {

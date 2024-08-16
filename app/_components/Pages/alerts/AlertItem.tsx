@@ -1,10 +1,10 @@
+'use client'
+
 import { IAlert } from '@/app/_types/alert'
-import React from 'react'
-import { HiOutlineCheckCircle, HiOutlinePlay, HiOutlinePower, HiOutlineTrash, HiOutlineXCircle } from 'react-icons/hi2'
-import AlertButtons from './AlertButtons'
+import { TableCell, TableRow } from '@/components/ui/table'
 import Badge from '../../Modules/Badge'
 import Switch from '../../Modules/Switch'
-import { TableCell, TableRow } from '@/components/ui/table'
+import AlertButtons from './AlertButtons'
 
 const AlertItem = ({ alert, index }: { alert: IAlert, index: number }) => {
     return (

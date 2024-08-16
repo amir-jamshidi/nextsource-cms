@@ -15,10 +15,10 @@ const Header = () => {
                     <HeaderAdminProfile />
                     <div className='flex h-full items-center gap-x-1'>
                         <span className='bg-primary-0 rounded-full p-1 border border-primary-50 dark:bg-primary-800 dark:border-primary-800'>
-                            <HiOutlinePower className='text-primary-600 dark:text-primary-200' size={25} />
+                            <HiOutlinePower className='text-primary-500 dark:text-primary-200' size={25} />
                         </span>
                         <span className='bg-primary-0 rounded-full p-1 border border-primary-50 dark:bg-primary-800 dark:border-primary-800'>
-                            <HiOutlineBell className='text-primary-600 dark:text-primary-200' size={25} />
+                            <HiOutlineBell className='text-primary-500 dark:text-primary-200' size={25} />
                         </span>
                         <ButtonToggleTheme />
                     </div>
