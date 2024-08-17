@@ -147,6 +147,7 @@ body {
 */
 
 
+
 .order-list {
     display: grid;
     grid-template-columns: 65px repeat(8, minmax(100px, 1fr)) 65px
