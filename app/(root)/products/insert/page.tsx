@@ -1,8 +1,9 @@
+import InsertProductContainer from '@/app/_components/Pages/products/InsertProductContainer'
 import React from 'react'
 
 const page = () => {
   return (
-    <div>new page for inset product</div>
+    <InsertProductContainer />
   )
 }
 

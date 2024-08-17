@@ -27,3 +27,25 @@ export const userSchema = z.object({
     profile: z.custom<File[]>(),
     bio: z.string().optional()
 })
+
+export const productSchema = z.object({
+    title: z.string().min(4, 'عنوان حداقل باید 4 کاراکتر باشه ').default(''),
+    description: z.string().min(64, 'توضیحات حداقل باید 64 کاراکتر باشه').default(''),
+    href: z.string().min(2, ''),
+    price: z.string().regex(/^\d+$/, 'قیمت را به درستی وارد کن'),
+    preView: z.string(),
+    cashBack: z.string().regex(/^\d+$/, 'قیمت را به درستی وارد کن'),
+    size: z.string().regex(/^\d+$/, 'قیمت را به درستی وارد کن'),
+
+    photo: z.instanceof(File).optional().refine((file) => file, 'تصویر محصول را آپلود کنید'),
+    link: z.instanceof(File).optional().refine((file) => file, 'فایل محصول را آپلود کنید'),
+
+    categoryID: z.string(),
+    sellerID: z.string(),
+
+    isPlan: z.boolean().default(false),
+    isOff: z.boolean().default(false),
+    isFree: z.boolean().default(false),
+
+    precentOff: z.string().regex(/^[\d]{1,2}$/)
+})

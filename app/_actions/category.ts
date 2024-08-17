@@ -60,3 +60,8 @@ export const insertCategory = async ({ title, titleEn, href }: IInsertCategory) 
     revalidatePath('/categories');
     return messageCreator(true, 'دسته بندی اضافه شد');
 }
+
+export const getAllCategories = async () => {
+    const categories = await categoryModel.find({}).select('title');
+    return JSON.parse(JSON.stringify(categories))
+}

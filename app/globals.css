@@ -69,7 +69,7 @@ a {
     }
 
     .mobile-nav button {
-        @apply focus:ring-transparent !important
+        @apply dark:focus:ring-transparent focus:ring-transparent !important
     }
 
     .text_800_100 {
@@ -78,6 +78,10 @@ a {
 
     .text_700_200 {
         @apply text-primary-700 dark:text-primary-200
+    }
+
+    .checkbox-label {
+        @apply cursor-pointer text-sm font-medium text-primary-700 peer-disabled:cursor-not-allowed peer-disabled:opacity-70 md:leading-none;
     }
 
     select {

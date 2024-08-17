@@ -81,3 +81,8 @@ export const updateProduct = async ({ productID, key, value }: { productID: stri
     revalidatePath(`/products/${productID}`)
     return messageCreator(true, 'محصول ویرایش شد')
 }
+
+export const insertProduct = async ({ values, formData }: { values: {}, formData: File }) => {
+    await productModel.create({ ...values, photo: 'a', links: ['a', 'b'], categoryID: '662be21aeef7b6b960b5c480', creatorID: '664106d27e0a319150420826', sellerID: '664106d27e0a319150420826' });
+    return messageCreator(true, 'محصول اضافه شد')
+}

@@ -1,5 +1,6 @@
 'use client'
 
+import { Checkbox } from '@/components/ui/checkbox'
 import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { SelectContent, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -99,6 +100,34 @@ const RenderField = ({ field, props }: { field: any, props: CustomProps }) => {
                     </FormControl>
                 </div>
             );
+        }
+        case "textarea": {
+            return (
+                <FormControl>
+                    {/* <Textarea
+                        placeholder={props.placeholder}
+                        {...field}
+                        className="shad-textArea"
+                        disabled={props.disabled}
+                    /> */}
+                </FormControl>
+            )
+        }
+        case "checkbox": {
+            return (
+                <FormControl>
+                    <div className="flex items-center gap-4 h-12 dark:bg-primary-900 rounded-md border border-primary-50 bg-gray-50 dark:border-primary-800 mt-4 px-3">
+                        <Checkbox
+                            id={props.name}
+                            checked={field.value}
+                            onCheckedChange={field.onChange}
+                        />
+                        <label htmlFor={props.name} className="checkbox-label w-full">
+                            {props.label}
+                        </label>
+                    </div>
+                </FormControl>
+            )
         }
     }
 
