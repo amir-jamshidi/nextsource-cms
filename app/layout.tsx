@@ -6,6 +6,7 @@ import { Toaster } from 'react-hot-toast'
 import ThemeProvider from "./_context/ThemeContext";
 import type { Viewport } from 'next'
 import { ScrollArea } from "@/components/ui/scroll-area";
+import Provider from "./Provider";
 
 
 export const viewport: Viewport = {
@@ -30,12 +31,12 @@ export default function RootLayout({
   return (
     <html dir="rtl" lang="en">
       <body className="bg-gray-50 dark:bg-gray-900">
-        <ThemeProvider>
-          <Toaster containerStyle={{ fontFamily: 'mo' }} />
-
-          {children}
-
-        </ThemeProvider>
+        <Provider>
+          <ThemeProvider>
+            <Toaster containerStyle={{ fontFamily: 'mo' }} />
+            {children}
+          </ThemeProvider>
+        </Provider>
 
       </body>
     </html>

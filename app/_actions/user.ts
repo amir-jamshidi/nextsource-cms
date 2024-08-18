@@ -95,7 +95,7 @@ export const updateUser = async (form: FormData) => {
         const { error: storageError } = await supabase
             .storage
             .from('profiles')
-            .upload(imageName, form.get('profile'));
+            .upload(imageName, form.get('profile')!);
         await userModel.findOneAndUpdate({ _id: form.get('userID') }, { fullname: form.get('fullname'), phone: form.get('phone'), email: form.get('email'), bio: form.get('bio'), role: form.get('role'), profile: profileURL })
     }
 
@@ -105,3 +105,7 @@ export const updateUser = async (form: FormData) => {
 
 }
 
+export const getSellers = async () => {
+    const users = await userModel.find({ role: 'ADMIN' }).select('email').lean();
+    return JSON.parse(JSON.stringify(users));
+}

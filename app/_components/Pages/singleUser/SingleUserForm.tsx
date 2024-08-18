@@ -111,6 +111,7 @@ const SingleUserForm = ({ user }: { user: IUser }) => {
                             name='profile'
                             label='اپلود تصویر پروفایل'
                             disabled={isLoading}
+                            accept='image/*'
                         />
                         <CustomFormField
                             label='نقش کاربر'

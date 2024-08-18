@@ -8,6 +8,7 @@ import productModel from "../_models/product.module"
 import userModel from "../_models/user.module"
 import { IProduct } from "../_types/product"
 import { messageCreator } from "../_utils/messageCreator"
+import supabase, { supabaseUrl } from "../_services/supabase"
 
 interface IGetProducts {
     state: "free" | "nonfree" | "all" | "inplan",
@@ -82,7 +83,30 @@ export const updateProduct = async ({ productID, key, value }: { productID: stri
     return messageCreator(true, 'محصول ویرایش شد')
 }
 
-export const insertProduct = async ({ values, formData }: { values: {}, formData: File }) => {
-    await productModel.create({ ...values, photo: 'a', links: ['a', 'b'], categoryID: '662be21aeef7b6b960b5c480', creatorID: '664106d27e0a319150420826', sellerID: '664106d27e0a319150420826' });
+export const insertProduct = async ({ values, formData }: { values: {}, formData: FormData }) => {
+    console.log(formData.get('photo'))
+    console.log(formData.get('link'))
+
+    const photoStr = formData.get('photo')?.name!
+    const ext = photoStr.slice(photoStr.lastIndexOf('.'));
+    const photoName = `${Math.floor(Math.random() * 1000000)}-${Date.now()}${ext}`
+    const photoPath = `${supabaseUrl}/storage/v1/object/public/products/${photoName}`
+    const { error: storageError } = await supabase
+        .storage
+        .from('products')
+        .upload(photoName, formData.get('photo')!);
+
+
+    const fileStr = formData.get('link')?.name!
+    const fileExt = fileStr.slice(fileStr.lastIndexOf('.'));
+    const fileName = `${Math.floor(Math.random() * 1000000)}-${Date.now()}${fileExt}`
+    const filePath = `${supabaseUrl}/storage/v1/object/public/files/${fileName}`
+    const { error: fileStorageError } = await supabase
+        .storage
+        .from('files')
+        .upload(fileName, formData.get('link')!);
+
+
+    await productModel.create({ ...values, photo: photoPath, links: [`${filePath}`], sellerID: '664106d27e0a319150420826' });
     return messageCreator(true, 'محصول اضافه شد')
 }

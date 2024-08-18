@@ -31,17 +31,17 @@ export const userSchema = z.object({
 export const productSchema = z.object({
     title: z.string().min(4, 'عنوان حداقل باید 4 کاراکتر باشه ').default(''),
     description: z.string().min(64, 'توضیحات حداقل باید 64 کاراکتر باشه').default(''),
-    href: z.string().min(2, ''),
-    price: z.string().regex(/^\d+$/, 'قیمت را به درستی وارد کن'),
-    preView: z.string(),
-    cashBack: z.string().regex(/^\d+$/, 'قیمت را به درستی وارد کن'),
-    size: z.string().regex(/^\d+$/, 'قیمت را به درستی وارد کن'),
+    href: z.string().min(2, 'لینک حداقل باید 2 کاراکتر باشه').default(''),
+    price: z.string().regex(/^\d+$/, 'قیمت را به درستی وارد کن').default(''),
+    preView: z.string().optional(),
+    cashBack: z.string().regex(/^\d+$/, 'قیمت را به درستی وارد کن').default(''),
+    size: z.string().regex(/^\d+$/, 'قیمت را به درستی وارد کن').default(''),
 
-    photo: z.instanceof(File).optional().refine((file) => file, 'تصویر محصول را آپلود کنید'),
-    link: z.instanceof(File).optional().refine((file) => file, 'فایل محصول را آپلود کنید'),
+    photo: z.instanceof<any>(File).optional().refine((file) => file, 'تصویر محصول را آپلود کنید'),
+    link: z.instanceof<any>(File).optional().refine((file) => file, 'فایل محصول را آپلود کنید'),
 
-    categoryID: z.string(),
-    sellerID: z.string(),
+    categoryID: z.string().min(1, "دسته بندی را انتخاب کنید").default(''),
+    creatorID: z.string().min(1, 'فروشنده را انتخاب کنید').default(''),
 
     isPlan: z.boolean().default(false),
     isOff: z.boolean().default(false),

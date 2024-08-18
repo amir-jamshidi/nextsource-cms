@@ -2,7 +2,7 @@
 import { productSchema } from '@/app/_utils/Schemas'
 import { Form } from '@/components/ui/form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import CustomFormField from '../../Modules/CustomFormField'
 import SubmitButton from '../../Modules/SubmitButton'
@@ -10,14 +10,36 @@ import { SelectItem } from '@/components/ui/select'
 import { insertProduct } from '@/app/_actions/product'
 import toast from 'react-hot-toast'
 import { useCategories } from '@/app/_hooks/useCategories'
+import { useSellers } from '@/app/_hooks/useSellers'
+
+const defaultValues = {
+    title: '',
+    description: '',
+    href: '',
+    price: '',
+    preView: '',
+    size: '',
+    categoryID: '',
+    creatorID: '',
+    isPlan: false,
+    isFree: false,
+    isOff: false,
+    precentOff: '0',
+    cashBack: '',
+    photo: undefined,
+    link: undefined,
+}
 
 const InsertProductForm = () => {
 
+    const [isLoading, setIsLoading] = useState(false);
 
-    const { data } = useCategories()
+    const { data: categories = [] } = useCategories()
+    const { data: sellers = [] } = useSellers();
 
     const form = useForm({
         resolver: zodResolver(productSchema),
+        defaultValues
     })
     const { watch } = form
     const isOff = watch('isOff');
@@ -25,14 +47,21 @@ const InsertProductForm = () => {
 
     const handleForm = async (values) => {
         try {
+            setIsLoading(true)
+            const formData = new FormData();
+            formData.append('photo', values.photo)
+            formData.append('link', values.link);
             Reflect.deleteProperty(values, 'photo');
             Reflect.deleteProperty(values, 'link');
-            console.log(values);
-            const res = await insertProduct({ values, formData: '' })
+
+            const res = await insertProduct({ values, formData })
             if (res.state) toast.success(res.message)
+            form.reset(defaultValues);
         } catch (error) {
             console.log(error)
             toast.success('خطای ناشناخته ای رخ داد')
+        } finally {
+            setIsLoading(false);
         }
     }
 
@@ -45,124 +74,146 @@ const InsertProductForm = () => {
             </div>
             <Form {...form}>
                 <form action="" className='my-4' onSubmit={form.handleSubmit(handleForm)}>
-                    <CustomFormField
-                        control={form.control}
-                        fieldType='input'
-                        name='title'
-                        label='عنوان محصول'
-                        placeholder='مثلا سورس کد اموزشی'
-                    />
-                    <CustomFormField
-                        control={form.control}
-                        fieldType='input'
-                        name='description'
-                        label='توضیحات محصول'
-                        placeholder='امروزه نیاز زیادی به سورس ...'
-                    />
-                    <CustomFormField
-                        control={form.control}
-                        fieldType='input'
-                        name='href'
-                        label='لینک محصول'
-                        placeholder='مثلا nextsource'
-                    />
-                    <CustomFormField
-                        control={form.control}
-                        fieldType='input'
-                        name='price'
-                        label='قیمت محصول'
-                        placeholder='مثلا 1,400,000'
-                    />
-                    <CustomFormField
-                        control={form.control}
-                        fieldType='input'
-                        name='preView'
-                        label='لینک پیش نمایش محصول'
-                        placeholder='مثلا nextsouce.com'
-                    />
-                    <CustomFormField
-                        control={form.control}
-                        fieldType='input'
-                        name='cashBack'
-                        label='مقدار کش بک به کاربر'
-                        placeholder='مثلا 350,000'
-                    />
-                    <CustomFormField
-                        control={form.control}
-                        fieldType='input'
-                        name='size'
-                        label='حجم محصول به مگابایت'
-                        placeholder='مثلا 8'
-                    />
-                    <CustomFormField
-                        control={form.control}
-                        fieldType='file'
-                        name='photo'
-                        label='آپلود کاور محصول'
-                    />
-                    <CustomFormField
-                        control={form.control}
-                        fieldType='file'
-                        name='link'
-                        label='آپلود محصول'
-                    />
-
-                    <CustomFormField
-                        control={form.control}
-                        fieldType='select'
-                        name='categoryID'
-                        label='دسته بندی محصول'
-                        placeholder='دسته بندی مورد نظر'
-                    >
-                        {data.map(category => (
-                            <SelectItem key={category._id} value={category._id}>{category.title}</SelectItem>
-                        ))}
-                    </CustomFormField>
-
-                    <CustomFormField
-                        control={form.control}
-                        fieldType='select'
-                        name='sellerID'
-                        label='فروشنده'
-                        placeholder='فروشنده مورد نظر'
-                    >
-                        <SelectItem value='tezt'>امیر</SelectItem>
-                    </CustomFormField>
+                    <div className='grid grid-cols-1 lg:grid-cols-2 gap-2.5'>
 
 
-
-                    <CustomFormField
-                        control={form.control}
-                        fieldType='checkbox'
-                        name='isPlan'
-                        label='محصول در اشتراک ویژه باشد'
-                    />
-                    <CustomFormField
-                        control={form.control}
-                        fieldType='checkbox'
-                        name='isFree'
-                        label='محصول رایگان باشد'
-                    />
-                    <CustomFormField
-                        control={form.control}
-                        fieldType='checkbox'
-                        name='isOff'
-                        label='محصول تخفیف داشته باشد '
-                    />
-                    {isOff && (
                         <CustomFormField
                             control={form.control}
                             fieldType='input'
-                            name='precentOff'
-                            label='درصد تخفیف محصول'
-                            placeholder='مثلا 20%'
+                            name='title'
+                            label='عنوان محصول'
+                            placeholder='مثلا سورس کد اموزشی'
+                            disabled={isLoading}
                         />
-                    )}
+                        <CustomFormField
+                            control={form.control}
+                            fieldType='input'
+                            name='description'
+                            label='توضیحات محصول'
+                            placeholder='امروزه نیاز زیادی به سورس ...'
+                            disabled={isLoading}
+                        />
+                        <CustomFormField
+                            control={form.control}
+                            fieldType='input'
+                            name='href'
+                            label='لینک محصول'
+                            disabled={isLoading}
+                            placeholder='مثلا nextsource'
+                        />
+                        <CustomFormField
+                            control={form.control}
+                            fieldType='input'
+                            name='price'
+                            label='قیمت محصول'
+                            disabled={isLoading}
+                            placeholder='مثلا 1,400,000'
+                        />
+                        <CustomFormField
+                            control={form.control}
+                            fieldType='input'
+                            name='preView'
+                            label='لینک پیش نمایش محصول'
+                            disabled={isLoading}
+                            placeholder='مثلا nextsouce.com'
+                        />
+                        <CustomFormField
+                            control={form.control}
+                            fieldType='input'
+                            name='cashBack'
+                            label='مقدار کش بک به کاربر'
+                            disabled={isLoading}
+                            placeholder='مثلا 350,000'
+                        />
+                        <CustomFormField
+                            control={form.control}
+                            fieldType='input'
+                            name='size'
+                            label='حجم محصول به مگابایت'
+                            disabled={isLoading}
+                            placeholder='مثلا 8'
+                        />
+                        <CustomFormField
+                            control={form.control}
+                            fieldType='file'
+                            name='photo'
+                            label='آپلود کاور محصول'
+                            disabled={isLoading}
+                            accept='image/*'
+                        />
+                        <CustomFormField
+                            control={form.control}
+                            fieldType='file'
+                            name='link'
+                            label='آپلود محصول'
+                            disabled={isLoading}
+                            accept='.rar,.zip'
+                        />
+
+                        <CustomFormField
+                            control={form.control}
+                            fieldType='select'
+                            name='categoryID'
+                            label='دسته بندی محصول'
+                            disabled={isLoading}
+                            placeholder='دسته بندی مورد نظر'
+                        >
+                            {categories?.map(category => (
+                                <SelectItem key={category._id} value={category._id}>{category.title}</SelectItem>
+                            ))}
+                        </CustomFormField>
+
+                        <CustomFormField
+                            control={form.control}
+                            fieldType='select'
+                            name='creatorID'
+                            label='فروشنده'
+                            disabled={isLoading}
+                            placeholder='فروشنده مورد نظر'
+                        >
+                            {sellers?.map(seller => (
+                                <SelectItem key={seller._id} value={seller._id}>{seller.email}</SelectItem>
+                            ))}
+                        </CustomFormField>
 
 
+
+                        <CustomFormField
+                            control={form.control}
+                            fieldType='checkbox'
+                            name='isPlan'
+                            disabled={isLoading}
+                            label='محصول در اشتراک ویژه باشد'
+                        />
+                        <CustomFormField
+                            control={form.control}
+                            fieldType='checkbox'
+                            name='isFree'
+                            disabled={isLoading}
+                            label='محصول رایگان باشد'
+                        />
+                        <CustomFormField
+                            control={form.control}
+                            fieldType='checkbox'
+                            name='isOff'
+                            disabled={isLoading}
+                            label='محصول تخفیف داشته باشد '
+                        />
+                        {isOff && (
+                            <CustomFormField
+                                control={form.control}
+                                fieldType='input'
+                                name='precentOff'
+                                label='درصد تخفیف محصول'
+                                disabled={isLoading}
+                                placeholder='مثلا 20%'
+                            />
+                        )}
+
+                    </div>
 
                     <div className='mt-4'>
-                        <SubmitButton isLoading={false} text='اضافه کردن' />
+                        <SubmitButton isLoading={isLoading} text='اضافه کردن' />
                     </div>
                 </form>
             </Form>

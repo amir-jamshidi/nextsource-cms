@@ -29,7 +29,7 @@ a {
     }
 
     .shad-input-label {
-        @apply text-xs dark:text-primary-400 tracking-tight px-1.5 !important;
+        @apply text-xs text-primary-600 dark:text-primary-400 tracking-tight px-1.5 !important;
     }
 
     .shad-input {
@@ -81,7 +81,7 @@ a {
     }
 
     .checkbox-label {
-        @apply cursor-pointer text-sm font-medium text-primary-700 peer-disabled:cursor-not-allowed peer-disabled:opacity-70 md:leading-none;
+        @apply cursor-pointer text-primary-700 text-sm font-medium dark:text-primary-200 peer-disabled:cursor-not-allowed peer-disabled:opacity-70 md:leading-none;
     }
 
     select {

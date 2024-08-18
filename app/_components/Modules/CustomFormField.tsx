@@ -24,6 +24,7 @@ interface CustomProps {
     showTimeSelect?: boolean,
     children?: React.ReactNode,
     renderSkeleton?: (field: any) => React.ReactNode
+    accept?: 'image/*' | '.rar,.zip'
 }
 
 const RenderField = ({ field, props }: { field: any, props: CustomProps }) => {
@@ -31,7 +32,7 @@ const RenderField = ({ field, props }: { field: any, props: CustomProps }) => {
     const { fieldType, iconImg, placeholder } = props
 
     switch (fieldType) {
-        case 'input':
+        case 'input': {
             return (
                 <div className='flex items-center rounded-md border dark:border-primary-800 border-primary-50 bg-gray-50 dark:bg-primary-900 !mt-0.5'>
                     {iconImg && (
@@ -49,7 +50,8 @@ const RenderField = ({ field, props }: { field: any, props: CustomProps }) => {
                     </FormControl>
                 </div>
             )
-        case "phoneInput":
+        }
+        case "phoneInput": {
             return (
                 <PhoneInput
                     disabled={props.disabled}
@@ -62,6 +64,7 @@ const RenderField = ({ field, props }: { field: any, props: CustomProps }) => {
                     className='input-phone'
                 />
             )
+        }
         case "select": {
             return (
                 <div className='flex items-center rounded-md border dark:border-primary-800 border-primary-50 bg-gray-50 dark:bg-primary-900 !mt-0.5'>
@@ -84,7 +87,9 @@ const RenderField = ({ field, props }: { field: any, props: CustomProps }) => {
         case "file": {
             return (
                 <div className='flex relative items-center rounded-md border dark:border-primary-800 border-primary-50 bg-gray-50 dark:bg-primary-900 !mt-0.5'>
-                    <span className={`${props.disabled ? 'dark:text-gray-400 text-gray-400' : 'text-primary-700 dark:text-primary-100'} z-[1] absolute bg-gray-50 dark:bg-primary-900 top-1 bottom-1 right-1 text-center flex justify-center items-center w-[97px] rounded-xl text-sm tracking-tight`}>انتخاب تصویر</span>
+                    <span className={`${props.disabled ? 'dark:text-gray-400 text-gray-400' : 'text-primary-700 dark:text-primary-100'} z-[1] absolute bg-gray-50 dark:bg-primary-900 top-1 bottom-1 right-1 text-center flex justify-center items-center w-[97px] rounded-xl text-sm tracking-tight`}>
+                        {props.accept === 'image/*' ? 'انتخاب تصویر' : 'انتخاب فایل'}
+                    </span>
                     <FormControl>
                         <Input
                             disabled={props.disabled}
@@ -92,7 +97,7 @@ const RenderField = ({ field, props }: { field: any, props: CustomProps }) => {
                             {...field.fieldProps}
                             placeholder={placeholder}
                             type='file'
-                            accept='image/*'
+                            accept={props.accept}
                             onChange={(event) =>
                                 field.onChange(event.target.files && event.target.files[0])
                             }
@@ -119,6 +124,7 @@ const RenderField = ({ field, props }: { field: any, props: CustomProps }) => {
                     <div className="flex items-center gap-4 h-12 dark:bg-primary-900 rounded-md border border-primary-50 bg-gray-50 dark:border-primary-800 mt-4 px-3">
                         <Checkbox
                             id={props.name}
+                            disabled={props.disabled}
                             checked={field.value}
                             onCheckedChange={field.onChange}
                         />
