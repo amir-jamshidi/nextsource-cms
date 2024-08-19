@@ -11,8 +11,8 @@ const HeaderAdminProfile = async () => {
 
     return (
         <div className='lg:flex hidden gap-x-2.5 items-center'>
-            <div className='rounded-full overflow-hidden border border-primary-50 dark:border-primary-800/50'>
-                <Image quality={100} width={44} height={44} src={admin.profile} alt='' />
+            <div className='rounded-full h-11 w-11 overflow-hidden border border-primary-50 dark:border-primary-800/50'>
+                <Image quality={100} width={44} height={44} className='overflow-hidden' src={admin.profile} alt='' />
             </div>
             <div className='flex flex-col items-start gap-y-0.5'>
                 <p className='font-mo text-primary-800 tracking-tight dark:text-primary-100'>{admin.fullname}</p>

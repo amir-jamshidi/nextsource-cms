@@ -11,6 +11,9 @@ import { insertProduct } from '@/app/_actions/product'
 import toast from 'react-hot-toast'
 import { useCategories } from '@/app/_hooks/useCategories'
 import { useSellers } from '@/app/_hooks/useSellers'
+import { useRouter } from 'next/navigation'
+import { ICategory } from '@/app/_types/category'
+import { IUser } from '@/app/_types/user'
 
 const defaultValues = {
     title: '',
@@ -30,35 +33,64 @@ const defaultValues = {
     link: undefined,
 }
 
+interface IProductFormProps {
+    title: string
+    description: string,
+    href: string,
+    price: string,
+    preView: string,
+    size: string,
+    categoryID: string,
+    creatorID: string,
+    isPlan: boolean,
+    isFree: boolean,
+    isOff: boolean,
+    precentOff: string,
+    cashBack: string,
+    photo: File | undefined,
+    link: File | undefined,
+}
+
 const InsertProductForm = () => {
+
+    const router = useRouter();
 
     const [isLoading, setIsLoading] = useState(false);
 
-    const { data: categories = [] } = useCategories()
-    const { data: sellers = [] } = useSellers();
+    const { data: categories = [] }: { data: ICategory[] } = useCategories()
+    const { data: sellers = [] }: { data: IUser[] } = useSellers();
 
     const form = useForm({
         resolver: zodResolver(productSchema),
         defaultValues
     })
+
     const { watch } = form
     const isOff = watch('isOff');
 
 
-    const handleForm = async (values) => {
+    const handleForm = async (values: IProductFormProps) => {
         try {
             setIsLoading(true)
             const formData = new FormData();
-            formData.append('photo', values.photo)
-            formData.append('link', values.link);
+            if (values.photo && values.link) {
+                formData.append('photo', values.photo)
+                formData.append('link', values.link);
+            }
             Reflect.deleteProperty(values, 'photo');
             Reflect.deleteProperty(values, 'link');
 
             const res = await insertProduct({ values, formData })
-            if (res.state) toast.success(res.message)
-            form.reset(defaultValues);
+
+            if (res.state) {
+                toast.success(res.message)
+                form.reset(defaultValues);
+                router.push('/products');
+            }
+
+            if (!res.state) return toast.error(res.message);
+
         } catch (error) {
-            console.log(error)
             toast.success('خطای ناشناخته ای رخ داد')
         } finally {
             setIsLoading(false);
@@ -159,7 +191,7 @@ const InsertProductForm = () => {
                             placeholder='دسته بندی مورد نظر'
                         >
                             {categories?.map(category => (
-                                <SelectItem key={category._id} value={category._id}>{category.title}</SelectItem>
+                                <SelectItem key={String(category._id)} value={String(category._id)}>{category.title}</SelectItem>
                             ))}
                         </CustomFormField>
 
@@ -172,7 +204,7 @@ const InsertProductForm = () => {
                             placeholder='فروشنده مورد نظر'
                         >
                             {sellers?.map(seller => (
-                                <SelectItem key={seller._id} value={seller._id}>{seller.email}</SelectItem>
+                                <SelectItem key={String(seller._id)} value={String(seller._id)}>{seller.email}</SelectItem>
                             ))}
                         </CustomFormField>
 
@@ -184,13 +216,16 @@ const InsertProductForm = () => {
                             name='isPlan'
                             disabled={isLoading}
                             label='محصول در اشتراک ویژه باشد'
+                            placeholder='در اشتراک ویژه باشد'
                         />
+
                         <CustomFormField
                             control={form.control}
                             fieldType='checkbox'
                             name='isFree'
                             disabled={isLoading}
                             label='محصول رایگان باشد'
+                            placeholder='رایگان باشد'
                         />
                         <CustomFormField
                             control={form.control}
@@ -198,6 +233,7 @@ const InsertProductForm = () => {
                             name='isOff'
                             disabled={isLoading}
                             label='محصول تخفیف داشته باشد '
+                            placeholder='تخفیف داشته باشد'
                         />
                         {isOff && (
                             <CustomFormField
@@ -209,7 +245,6 @@ const InsertProductForm = () => {
                                 placeholder='مثلا 20%'
                             />
                         )}
-
                     </div>
 
                     <div className='mt-4'>

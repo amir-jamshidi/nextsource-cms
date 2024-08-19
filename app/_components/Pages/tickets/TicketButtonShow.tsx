@@ -93,9 +93,8 @@ const TicketButtonShow = ({ ticket }: TicketButtonShow) => {
                         <div className='px-2'>
                             <div className='mt-2.5'>
                                 <MiniTitleSection title='متن تیکت' />
-                                <div className='flex items-center mt-2.5'>
-                                    <div className='w-14 h-14 relative self-start'>
-
+                                <div className='flex items-center mt-2.5 gap-x-1.5'>
+                                    <div className='w-14 h-14 rounded-full overflow-hidden relative self-start'>
                                         <Image fill src={`${user.profile}`} alt='UserImage' />
                                     </div>
                                     <div className='bg-blue-200 dark:bg-blue-300 flex-1 rounded-tl-xl rounded-bl-xl rounded-br-xl rounded-tr-sm py-3 px-2'>
@@ -106,11 +105,11 @@ const TicketButtonShow = ({ ticket }: TicketButtonShow) => {
                             {ticket.isAnswer && (
                                 <div className='mt-2.5'>
                                     <MiniTitleSection title='پاسخ شما' />
-                                    <div className='flex items-center mt-2.5'>
+                                    <div className='flex items-center mt-2.5 gap-x-1.5'>
                                         <div className='bg-green-200 dark:bg-green-300 flex-1 rounded-tl-sm rounded-bl-xl rounded-br-xl rounded-tr-xl py-3 px-2'>
                                             <p className='tracking-tight font-ir text-sm text-primary-800'>{ticket.answerContent}</p>
                                         </div>
-                                        <div className='w-14 h-14 relative self-start'>
+                                        <div className='w-14 h-14 relative self-start rounded-full overflow-hidden'>
                                             <Image fill src={'https://i.postimg.cc/Y9VKvST9/icons8-male-user-100.png'} alt='UserImage' />
                                         </div>
                                     </div>

@@ -62,6 +62,8 @@ export const insertCategory = async ({ title, titleEn, href }: IInsertCategory) 
 }
 
 export const getAllCategories = async () => {
+    console.log('GGGGGEEEEEEEEET')
+    await connectToDB();
     const categories = await categoryModel.find({}).select('title');
     return JSON.parse(JSON.stringify(categories))
 }

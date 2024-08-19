@@ -13,6 +13,7 @@ import { HiOutlineAtSymbol, HiOutlineUser } from 'react-icons/hi2'
 import CustomFormField from '../../Modules/CustomFormField'
 import SubmitButton from '../../Modules/SubmitButton'
 import Image from 'next/image'
+import SingleUserRemoveButton from './SingleUserRemoveButton'
 
 interface IFormUser {
     fullname: string,
@@ -62,9 +63,12 @@ const SingleUserForm = ({ user }: { user: IUser }) => {
 
     return (
         <div className='p-4 bg-white border border-primary-50 dark:bg-primary-900 dark:border-primary-800/50 rounded-xl'>
-            <div className='flex gap-x-1.5 items-center'>
-                <div className='w-5 h-5 bg-blue rounded-full' />
-                <h3 className='font-mo text-lg text_800_100'>فرم ویرایش کاربر</h3>
+            <div className='flex gap-x-1.5 items-center justify-between'>
+                <div className='flex gap-x-1.5 items-center'>
+                    <div className='w-5 h-5 bg-blue rounded-full' />
+                    <h3 className='font-mo text-lg text_800_100'>فرم ویرایش کاربر</h3>
+                </div>
+                <SingleUserRemoveButton userID={String(user._id)} />
             </div>
             <Form {...form}>
                 <form action="" className='mt-4' onSubmit={form.handleSubmit(handleEditUser)}>
@@ -105,14 +109,24 @@ const SingleUserForm = ({ user }: { user: IUser }) => {
                             placeholder='متن بیوگرافی'
                             iconImg={<HiOutlineAtSymbol size={20} className="dark:text-primary-300 text-primary-700" />}
                         />
-                        <CustomFormField
-                            fieldType='file'
-                            control={form.control}
-                            name='profile'
-                            label='اپلود تصویر پروفایل'
-                            disabled={isLoading}
-                            accept='image/*'
-                        />
+                        <div className='grid grid-cols-[50px,1fr] gap-x-1.5'>
+                            <div className='flex items-center rounded-full overflow-hidden h-12 self-end'>
+                                <Image
+                                    src={user.profile}
+                                    width={50}
+                                    height={50}
+                                    alt='Profile'
+                                />
+                            </div>
+                            <CustomFormField
+                                fieldType='file'
+                                control={form.control}
+                                name='profile'
+                                label='اپلود تصویر پروفایل'
+                                disabled={isLoading}
+                                accept='image/*'
+                            />
+                        </div>
                         <CustomFormField
                             label='نقش کاربر'
                             fieldType='select'
@@ -131,7 +145,7 @@ const SingleUserForm = ({ user }: { user: IUser }) => {
                     </div>
                 </form>
             </Form>
-        </div>
+        </div >
     )
 }
 

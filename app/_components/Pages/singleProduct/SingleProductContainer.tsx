@@ -3,13 +3,16 @@ import PageContainer from '../../Modules/PageContainer'
 import SingleProductFilter from './SingleProductFilter'
 import SingleProductBoxes from './SingleProductBoxes'
 import SingleProductForm from './SingleProductForm'
+import InsertProductForm from '../products/InsertProductForm'
+import { IProduct } from '@/app/_types/product'
 
-const SingleProductContainer = ({ productDetails, product, categories }: { productDetails: any, product: any, categories: any }) => {
+const SingleProductContainer = ({ productDetails, product }: { productDetails: {}, product: IProduct, }) => {
     return (
         <PageContainer>
             <SingleProductFilter />
             <SingleProductBoxes productDetails={productDetails} />
-            <SingleProductForm product={product} categories={categories} />
+            <SingleProductForm product={product} />
+            {/* <InsertProductForm /> */}
         </PageContainer>
     )
 }

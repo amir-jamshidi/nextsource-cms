@@ -61,6 +61,7 @@ const OrderShowButton = ({ order }: IOrderShowButtonProps) => {
                         </div>
 
                         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 w-full gap-1 md:gap-2.5 px-2 mt-4" >
+
                             <OrderModalBox
                                 color="#fecdd3"
                                 icon={<HiOutlineUser size={40} className="text-rose-500" />}
@@ -145,10 +146,10 @@ const OrderShowButton = ({ order }: IOrderShowButtonProps) => {
                                 title="قیمت محصول"
                                 text={order.price.toLocaleString() + ' تومان'}
                             />
+
                         </div>
 
                         <div className="mt-6 flex gap-1.5">
-                            <button className="bg-blue py-3 w-32 rounded-xl font-mo text-white text-sm">مشاهده کامل</button>
                             <CloseButton text="بستن" />
                         </div>
                     </div>

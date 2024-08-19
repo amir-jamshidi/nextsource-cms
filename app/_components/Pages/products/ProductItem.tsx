@@ -16,13 +16,10 @@ interface ProductItemProps {
 
 const ProductItem = ({ product, index }: ProductItemProps) => {
 
-
-
     const seller = product.creatorID as IUser;
     const category = product.categoryID as ICategory;
 
     return (
-
         <>
             <TableRow className='dark:border-b-primary-800 border-b-primary-50'>
                 <TableCell className="text-center">
@@ -37,10 +34,41 @@ const ProductItem = ({ product, index }: ProductItemProps) => {
                     </div>
                 </TableCell>
                 <TableCell>
-                    <p className='text-green-500 dark:text-green-600'>
-                        {product.price.toLocaleString() + ' تومان'}
-                    </p>
-                </TableCell>
+                    <div className='flex flex-col'>
+                        {product.isOff && !product.isFree &&
+                            (<>
+                                <p className='text-green-500 dark:text-green-600 line-through'>
+                                    {product.price.toLocaleString() + ' تومان'}
+                                </p>
+                                <p className='text-red-500 dark:text-red-600'>
+                                    {((product.price - (product.price * product.precentOff) / 100)).toLocaleString()}
+                                </p>
+                            </>
+                            )
+                        }
+                        {product.isFree &&
+                            (<>
+                                <p className='text-green-500 dark:text-green-600 line-through'>
+                                    {product.price.toLocaleString() + ' تومان'}
+                                </p>
+                                <p className='text-red-500 dark:text-red-600'>
+                                    رایگان
+                                </p>
+                            </>
+                            )
+                        }
+                        {!product.isOff && !product.isFree &&
+                            (<>
+                                <p className='text-green-500 dark:text-green-600 '>
+                                    {product.price.toLocaleString() + ' تومان'}
+                                </p>
+                            </>
+                            )
+                        }
+
+
+                    </div>
+                </TableCell >
                 <TableCell className="text-right">
                     <div className='flex flex-col '>
                         <p className='text-primary-700 dark:text-primary-100'>{seller?.email}</p>
@@ -72,11 +100,8 @@ const ProductItem = ({ product, index }: ProductItemProps) => {
                         <TableButton icon={<HiOutlineEye size={18} />} type='blue' link={`/products/${product._id}`} />
                     </div>
                 </TableCell>
-            </TableRow>
-
-
+            </TableRow >
         </>
-
     )
 }
 

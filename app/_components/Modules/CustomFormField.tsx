@@ -121,7 +121,7 @@ const RenderField = ({ field, props }: { field: any, props: CustomProps }) => {
         case "checkbox": {
             return (
                 <FormControl>
-                    <div className="flex items-center gap-4 h-12 dark:bg-primary-900 rounded-md border border-primary-50 bg-gray-50 dark:border-primary-800 mt-4 px-3">
+                    <div className="flex items-center gap-4 h-12 dark:bg-primary-900 rounded-md border border-primary-50 bg-gray-50 dark:border-primary-800 px-3 !mt-0.5">
                         <Checkbox
                             id={props.name}
                             disabled={props.disabled}
@@ -129,7 +129,7 @@ const RenderField = ({ field, props }: { field: any, props: CustomProps }) => {
                             onCheckedChange={field.onChange}
                         />
                         <label htmlFor={props.name} className="checkbox-label w-full">
-                            {props.label}
+                            {props.placeholder}
                         </label>
                     </div>
                 </FormControl>
@@ -147,7 +147,7 @@ const CustomFormField = (props: CustomProps) => {
             name={props.name}
             render={({ field }) => (
                 <FormItem>
-                    {props.fieldType !== 'checkbox' && props.label && (
+                    {props.label && (
                         <FormLabel className='shad-input-label'>{props.label}</FormLabel>
                     )}
                     <RenderField field={field} props={props} />

@@ -12,6 +12,7 @@ import orderModel from "../_models/order.module";
 import { Parser } from "../_utils/Parser";
 import productModel from "../_models/product.module";
 import sectionModel from "../_models/section.module";
+import { redirect } from "next/navigation";
 
 interface IGetUsers {
     day: number | string,
@@ -98,14 +99,18 @@ export const updateUser = async (form: FormData) => {
             .upload(imageName, form.get('profile')!);
         await userModel.findOneAndUpdate({ _id: form.get('userID') }, { fullname: form.get('fullname'), phone: form.get('phone'), email: form.get('email'), bio: form.get('bio'), role: form.get('role'), profile: profileURL })
     }
-
     await userModel.findOneAndUpdate({ _id: form.get('userID') }, { fullname: form.get('fullname'), phone: form.get('phone'), email: form.get('email'), bio: form.get('bio'), role: form.get('role') })
     revalidatePath(`/users/${form.get('userID')}`);
     return messageCreator(true, 'اطلاعات کاربر ویرایش شد')
-
 }
 
 export const getSellers = async () => {
     const users = await userModel.find({ role: 'ADMIN' }).select('email').lean();
     return JSON.parse(JSON.stringify(users));
+}
+
+export const removeUser = async ({ userID }: { userID: string }) => {
+    await userModel.findOneAndDelete({ _id: userID });
+    revalidatePath('/users');
+    redirect('/users');
 }
