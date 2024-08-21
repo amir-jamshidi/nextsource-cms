@@ -16,6 +16,7 @@ import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import CustomFormField from '../../Modules/CustomFormField'
 import SubmitButton from '../../Modules/SubmitButton'
+import SingleProductRemoveButton from './SingleProductRemoveButton'
 
 
 interface IProductFormProps {
@@ -103,9 +104,12 @@ const InsertProductForm = ({ product }: { product: IProduct }) => {
 
     return (
         <div className='p-4 bg-white dark:bg-primary-900 rounded-xl border border-primary-50 dark:border-primary-800/50'>
-            <div className='flex gap-x-1.5 items-center'>
-                <div className='w-5 h-5 bg-blue rounded-full' />
-                <h3 className='font-mo text-lg text_800_100'>فرم اضافه کردن محصول</h3>
+            <div className='flex gap-x-1.5 items-center justify-between'>
+                <div className='flex gap-x-1.5 items-center'>
+                    <div className='w-5 h-5 bg-blue rounded-full' />
+                    <h3 className='font-mo text-lg text_800_100'>فرم ویرایش محصول</h3>
+                </div>
+                <SingleProductRemoveButton productID={String(product._id)} />
             </div>
             <Form {...form}>
                 <form action="" className='my-4' onSubmit={form.handleSubmit(handleUpdateForm)}>

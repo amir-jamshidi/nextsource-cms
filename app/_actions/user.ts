@@ -13,6 +13,9 @@ import { Parser } from "../_utils/Parser";
 import productModel from "../_models/product.module";
 import sectionModel from "../_models/section.module";
 import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
+import adminNotificationModel from "../_models/adminNotifications.model";
+import { IAdminNotification } from "../_types/adminNotification";
 
 interface IGetUsers {
     day: number | string,
@@ -113,4 +116,28 @@ export const removeUser = async ({ userID }: { userID: string }) => {
     await userModel.findOneAndDelete({ _id: userID });
     revalidatePath('/users');
     redirect('/users');
+}
+
+export const getAdminNotifications = async () => {
+    const notificationsList: IAdminNotification[] = await adminNotificationModel.find({ isShow: true }).lean();
+
+    const order = notificationsList.filter(notif => notif.type === 'ORDER').length
+    const ticket = notificationsList.filter(notif => notif.type === 'TICKET').length
+    const user = notificationsList.filter(notif => notif.type === 'USER').length
+    const notifications = {
+        order,
+        ticket,
+        user
+    }
+    return notifications
+}
+
+export const seeNotifications = async () => {
+    await adminNotificationModel.updateMany({ isShow: true }, { isShow: false });
+    revalidatePath('/');
+}
+
+export const logout = async () => {
+    cookies().delete('token');
+    redirect('/login');
 }

@@ -1,6 +1,12 @@
 import { getOrders } from '@/app/_actions/order'
 import OrdersContainer from '@/app/_components/Pages/orders/OrdersContainer'
 import { IOrder } from '@/app/_types/order'
+import { Metadata } from 'next'
+
+
+export const metadata: Metadata = {
+  title: 'سفارش ها'
+}
 
 interface getOrdersProps {
   orders: IOrder[],

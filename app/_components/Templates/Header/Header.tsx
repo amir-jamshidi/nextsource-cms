@@ -2,6 +2,8 @@ import { HiOutlineBell, HiOutlinePower } from 'react-icons/hi2'
 import ButtonToggleTheme from '../../Modules/ButtonToggleTheme'
 import MobileNav from '../../Modules/MobileNav'
 import HeaderAdminProfile from './HeaderAdminProfile'
+import LogoutButton from '../../Modules/LogoutButton'
+import Notifications from './Notifications'
 
 const Header = () => {
 
@@ -14,12 +16,8 @@ const Header = () => {
                     </div>
                     <HeaderAdminProfile />
                     <div className='flex h-full items-center gap-x-1'>
-                        <span className='bg-primary-0 rounded-full p-1 border border-primary-50 dark:bg-primary-800 dark:border-primary-800'>
-                            <HiOutlinePower className='text-primary-500 dark:text-primary-200' size={25} />
-                        </span>
-                        <span className='bg-primary-0 rounded-full p-1 border border-primary-50 dark:bg-primary-800 dark:border-primary-800'>
-                            <HiOutlineBell className='text-primary-500 dark:text-primary-200' size={25} />
-                        </span>
+                        <LogoutButton />
+                        <Notifications />
                         <ButtonToggleTheme />
                     </div>
                 </div>

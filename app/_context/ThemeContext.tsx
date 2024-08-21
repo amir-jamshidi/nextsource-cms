@@ -11,7 +11,9 @@ interface ThemeContextProps {
 export const ThemeContext = createContext<ThemeContextProps | null>(null);
 
 const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-    const [theme, setTheme] = useState('light');
+    const [theme, setTheme] = useState('dark');
+
+    console.log(theme)
 
     const toggleTheme = () => {
         setTheme(prevTheme => prevTheme === 'dark' ? 'light' : 'dark');
@@ -19,7 +21,7 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     }
 
     useEffect(() => {
-        setTheme(localStorage.getItem('theme') || 'light');
+        setTheme(localStorage.getItem('theme') || 'dark');
     }, [])
 
     useEffect(() => {

@@ -9,14 +9,14 @@ import userModel from "../_models/user.module"
 import { IProduct } from "../_types/product"
 import { messageCreator } from "../_utils/messageCreator"
 import supabase, { supabaseUrl } from "../_services/supabase"
+import { redirect } from "next/navigation"
+import { Parser } from "../_utils/Parser"
 
 interface IGetProducts {
     state: "free" | "nonfree" | "all" | "inplan",
     page: number
 }
-
 export const getProducts = async ({ state, page }: IGetProducts) => {
-
     let options: { isFree?: boolean, isPlan?: boolean } = {}
 
     if (state === 'free' || state === 'nonfree') options = { isFree: state === 'free' ? true : false }
@@ -47,15 +47,16 @@ export const getProducts = async ({ state, page }: IGetProducts) => {
     return { products: JSON.parse(JSON.stringify(products)), productsDetails }
 
 }
-
 export const getProductDetails = async ({ productID }: { productID: string }) => {
 
     const product = await productModel.findOne({ _id: productID })
         .populate({ path: 'categoryID', model: categoryModel })
         .populate({ path: 'creatorID', model: userModel })
         .lean();
+    const orders = await orderModel.find({ productID }).populate({ path: 'userID', model: userModel }).sort({ _id: -1 }).lean();
     const productOrder = await orderModel.find({ productID }).select('totalPrice').lean();
     const categories = await categoryModel.find({}).select('title').lean();
+
 
     const productSaleCount = productOrder.length;
     const productSalePrice = productOrder.reduce((total, cur) => total + cur.totalPrice, 0);
@@ -64,9 +65,8 @@ export const getProductDetails = async ({ productID }: { productID: string }) =>
         ...product, productSaleCount, productSalePrice
     }
 
-    return { productDetails, product: JSON.parse(JSON.stringify(product)), categories: JSON.parse(JSON.stringify(categories)) }
+    return { productDetails, product: JSON.parse(JSON.stringify(product)), categories: JSON.parse(JSON.stringify(categories)), sellers: Parser(orders) }
 }
-
 export const updateProduct = async ({ productID, values, formData }: { productID: string, values: {}, formData: FormData }) => {
 
     let photoPath;
@@ -106,7 +106,6 @@ export const updateProduct = async ({ productID, values, formData }: { productID
     revalidatePath('/products', 'layout')
     return messageCreator(true, 'محصول اضافه شد')
 }
-
 export const insertProduct = async ({ values, formData }: { values: {}, formData: FormData }) => {
     console.log(formData.get('photo'))
     console.log(formData.get('link'))
@@ -134,4 +133,9 @@ export const insertProduct = async ({ values, formData }: { values: {}, formData
     await productModel.create({ ...values, photo: photoPath, links: [`${filePath}`], sellerID: '664106d27e0a319150420826' });
     revalidatePath('/products', 'layout')
     return messageCreator(true, 'محصول اضافه شد')
+}
+export const removeProduct = async ({ productID }: { productID: string }) => {
+    await productModel.findOneAndDelete({ _id: productID });
+    revalidatePath('/products');
+    redirect('/products');
 }

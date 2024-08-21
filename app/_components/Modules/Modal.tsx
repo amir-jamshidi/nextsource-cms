@@ -60,7 +60,7 @@ const Window = ({ children }: { children: React.ReactNode }) => {
     const { isShowModal, setIsShowModal } = context
     if (!isShowModal) return null
     return createPortal(
-        <div onClick={(e) => { setIsShowModal(false) }} className='bg-black/80 min-h-[100vh] dark:bg-black/80 fixed right-0 left-0 top-0 bottom-0 z-[9999999] '>
+        <div onClick={(e) => { setIsShowModal(false) }} className='bg-black/80 min-h-[100vh] dark:bg-black/80 fixed right-0 left-0 top-0 bottom-0 z-10 '>
             <div className='container h-full '>
                 <div className='flex justify-center flex-col items-center h-full'>
                     {/* @ts-ignore comment*/}

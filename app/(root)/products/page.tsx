@@ -1,6 +1,12 @@
 import { getProducts } from '@/app/_actions/product'
 import ProductsContainer from '@/app/_components/Pages/products/ProductsContainer'
+import { Metadata } from 'next'
 import React from 'react'
+
+
+export const metadata: Metadata = {
+  title: 'محصولات'
+}
 
 interface ProductsProps {
   searchParams: {

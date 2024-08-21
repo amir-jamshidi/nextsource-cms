@@ -1,6 +1,11 @@
 import { getCategories } from '@/app/_actions/category'
 import CategoriesContainer from '@/app/_components/Pages/categories/CategoriesContainer'
+import { Metadata } from 'next'
 import React from 'react'
+
+export const metadata: Metadata = {
+  title: 'دسته بندی ها'
+}
 
 interface ICategoiresProps {
   searchParams: {
@@ -10,9 +15,7 @@ interface ICategoiresProps {
 }
 
 const Categories = async ({ searchParams: { page = 1, sort = 'asc' } }: ICategoiresProps) => {
-
   const { categories, categoriesDetails } = await getCategories({ page, sort });
-
   return (
     <CategoriesContainer categories={categories} categoriesDetails={categoriesDetails} />
   )

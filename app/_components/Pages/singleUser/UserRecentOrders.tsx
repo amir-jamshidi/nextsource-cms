@@ -6,7 +6,7 @@ import { IOrder } from '@/app/_types/order'
 
 const UserRecentOrders = ({ orders }: { orders: IOrder[] }) => {
   return (
-    <div className='bg-white border dark:bg-primary-900 dark:border-primary-800/50 border-primary-50 p-4 rounded-xl min-h-64'>
+    <div className='bg-white border dark:bg-primary-900 dark:border-primary-800/50 border-primary-50 p-4 rounded-xl min-h-56'>
       <div className='flex gap-x-1.5 items-center'>
         <div className='w-5 h-5 bg-blue rounded-full' />
         <h3 className='font-mo text-lg text_800_100'>خرید های کاربر</h3>
