@@ -1,11 +1,13 @@
 import React from 'react'
 import CategoryChart from './DashboardCategoryChart'
 import RecentOrdersSection from './DashboardRecentOrders'
-import { DashboardContainerProps } from './DashboardContainer'
+import { IGetDashboard } from '@/app/_types'
 
+interface IDashboardSections {
+    dashboard: IGetDashboard
+}
 
-
-const DashboardSections = ({ dashboard }: DashboardContainerProps) => {
+const DashboardSections = ({ dashboard }: IDashboardSections) => {
 
     return (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">

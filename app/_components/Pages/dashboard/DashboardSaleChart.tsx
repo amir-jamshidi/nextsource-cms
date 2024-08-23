@@ -2,7 +2,6 @@
 
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts"
 
-
 import { saleMenuChart } from "@/app/_constants"
 import { useTheme } from "@/app/_context/ThemeContext"
 import {
@@ -13,20 +12,13 @@ import {
 } from "@/components/ui/chart"
 import MoreButton from "../../Modules/MoreButton"
 import { useSearchParams } from "next/navigation"
+import { IDashboardSaleChart } from "@/app/_types"
 
 const chartConfig = {
 } satisfies ChartConfig
 
-interface SaleChartProps {
-    saleChartDetails: {
-        day: string,
-        cash: number,
-        wallet: number
-    }[]
-}
 
-export default function SaleChart({ saleChartDetails }: SaleChartProps) {
-
+export default function SaleChart({ saleChartDetails }: IDashboardSaleChart) {
 
     const searchParams = useSearchParams();
     const day = searchParams.get('day') && !isNaN(Number(searchParams.get('day'))) ? searchParams.get('day') : 7
@@ -72,7 +64,7 @@ export default function SaleChart({ saleChartDetails }: SaleChartProps) {
                         unit={"T"}
                         tick={{ fill: colors.text }}
                         tickLine={{ stroke: colors.text }}
-                        tickFormatter={(val) => Number(val).toLocaleString().slice(0,-3)}
+                        tickFormatter={(val) => Number(val).toLocaleString().slice(0, -3)}
                     />
                     <CartesianGrid stroke={colors.stroke} strokeDasharray={"4"} />
                     <ChartTooltip content={<ChartTooltipContent className="dark:text-primary-50 text-primary-700   dark:bg-primary-800 font-ir w-52 dark:border-primary-800" contentStyle={{ backgroundColor: 'blue', padding: '12px' }} />} />

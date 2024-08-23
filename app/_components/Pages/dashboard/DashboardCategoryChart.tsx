@@ -15,8 +15,7 @@ import {
     ChartTooltipContent
 } from "@/components/ui/chart"
 import MoreButton from "../../Modules/MoreButton"
-
-
+import { IDashboardCategoryChart } from "@/app/_types"
 
 const chartConfig = {
     visitors: {
@@ -47,15 +46,7 @@ const chartConfig = {
 const colors = ['var(--item1)', 'var(--item2)', 'var(--item3)', 'var(--item4)', 'var(--item5)', 'var(--item6)', 'var(--item7)', 'var(--item8)']
 
 
-
-interface CategoryChartProps {
-    categoryDetails: {
-        title: string,
-        productCount: number
-    }[]
-}
-
-export default function CategoryChart({ categoryDetails }: CategoryChartProps) {
+export default function CategoryChart({ categoryDetails }: IDashboardCategoryChart) {
 
     const totalVisitors = categoryDetails.reduce((acc, curr) => acc + curr.productCount, 0)
     const data = categoryDetails.map((item, i) => ({ ...item, fill: colors[i] }))

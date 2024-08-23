@@ -1,18 +1,8 @@
-import React from 'react'
+import { HiOutlineCircleStack, HiOutlineShoppingBag, HiOutlineShoppingCart, HiOutlineUser } from 'react-icons/hi2'
 import DetailsBox from '../../Modules/DetailsBox'
 import DetailsBoxesContainer from '../../Modules/DetailsBoxesContainer'
-import { HiNoSymbol, HiOutlineCircleStack, HiOutlineCog, HiOutlineExclamationTriangle, HiOutlineShieldCheck, HiOutlineShoppingBag, HiOutlineShoppingCart, HiOutlineSquare3Stack3D, HiOutlineSquares2X2, HiOutlineTicket, HiOutlineUser } from 'react-icons/hi2'
-
-interface DashboardDetailsBoxesProps {
-    dashboardDetails: {
-        productsCount: number,
-        usersCount: number,
-        totalSale: number,
-        totalBuy: number
-    },
-}
-
-const DashboardDetailsBoxes = ({ dashboardDetails }: DashboardDetailsBoxesProps) => {
+import { IDashboardDetails } from '@/app/_types'
+const DashboardDetailsBoxes = ({ dashboardDetails }: IDashboardDetails) => {
     return (
         <DetailsBoxesContainer>
             <DetailsBox color='bg-blue-200 dark:bg-blue-800' title='تعداد خرید ها' value={`${dashboardDetails.totalBuy} خرید`} icon={<HiOutlineShoppingCart size={45} className='text-blue-600 dark:text-blue-300' />} />

@@ -1,33 +1,13 @@
-import React from 'react'
-import SaleChart from './DashboardSaleChart'
-import DashboardFilter from './DashboardFilter'
-import DashboardDetailsBoxes from './DashboardDetailsBoxes'
-import DashboardSections from './DashboardSections'
-import { IOrder } from '@/app/_types/order'
+import { IGetDashboard } from '@/app/_types'
 import PageContainer from '../../Modules/PageContainer'
-
-export interface DashboardContainerProps {
-    dashboard: {
-        recentOrders: IOrder[],
-        saleChartDetails: {
-            day: string,
-            cash: number,
-            wallet: number
-        }[]
-        dashboardDetails: {
-            productsCount: number,
-            usersCount: number,
-            totalSale: number,
-            totalBuy: number
-        },
-        categoriesChartDetails: {
-            title: string,
-            productCount: number
-        }[]
-    }
+import DashboardDetailsBoxes from './DashboardDetailsBoxes'
+import DashboardFilter from './DashboardFilter'
+import SaleChart from './DashboardSaleChart'
+import DashboardSections from './DashboardSections'
+interface IDashboardContainer {
+    dashboard: IGetDashboard
 }
-
-const DashboardContainer = ({ dashboard }: DashboardContainerProps) => {
+const DashboardContainer = ({ dashboard }: IDashboardContainer) => {
     return (
         <PageContainer>
             <DashboardFilter />
