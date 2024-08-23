@@ -2,18 +2,10 @@ import React from 'react'
 import DetailsBox from '../../Modules/DetailsBox'
 import { HiOutlineBriefcase, HiOutlineCurrencyDollar, HiOutlineWallet, HiOutlineBanknotes } from 'react-icons/hi2'
 import DetailsBoxesContainer from '../../Modules/DetailsBoxesContainer'
+import { IOrderDetails } from '@/app/_types'
 
-interface OrdersDetailsBoxesProps {
-    ordersDetails: {
-        ordersCount: number
-        totalSaleOnline: number,
-        totalSaleWallet: number,
-        totalSalePrice: number
-    }
-}
 
-const OrdersDetailsBoxes = ({ ordersDetails }: OrdersDetailsBoxesProps) => {
-
+const OrdersDetailsBoxes = ({ ordersDetails }: IOrderDetails) => {
     return (
         <DetailsBoxesContainer>
             <DetailsBox color='bg-blue-200 dark:bg-blue-800' icon={<HiOutlineBriefcase size={45} className='text-blue-600 dark:text-blue-300' />} title='تعداد فروش' value={`${ordersDetails.ordersCount} فروش`} />

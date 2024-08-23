@@ -1,21 +1,10 @@
-import { IOrder } from '@/app/_types/order'
+import { IGetOrders } from '@/app/_types'
+import PageContainer from '../../Modules/PageContainer'
 import OrderFilter from './OrderFilter'
 import OrderList from './OrderList'
 import OrdersDetailsBoxes from './OrdersDetailsBoxes'
-import DashboardContainer from '../dashboard/DashboardContainer'
-import PageContainer from '../../Modules/PageContainer'
 
-interface IOrderContainerProps {
-    orders: IOrder[],
-    ordersDetails: {
-        ordersCount: number
-        totalSaleOnline: number,
-        totalSaleWallet: number,
-        totalSalePrice: number
-    }
-}
-
-const OrdersContainer = async ({ orders, ordersDetails }: IOrderContainerProps) => {
+const OrdersContainer = async ({ orders, ordersDetails }: IGetOrders) => {
     return (
         <PageContainer>
             <OrderFilter />

@@ -1,3 +1,4 @@
+// Dashboard Page
 
 export interface IGetDashboard {
     recentOrders: IOrder[],
@@ -35,10 +36,51 @@ export interface IDashboardSaleChart {
     }[]
 }
 
-
 export interface IDashboardCategoryChart {
     categoryDetails: {
         title: string,
         productCount: number
     }[]
+}
+
+//Orders Page
+
+export interface IGetOrders {
+    orders: IOrder[],
+    ordersDetails: {
+        ordersCount: number
+        totalSaleOnline: number,
+        totalSaleWallet: number,
+        totalSalePrice: number
+    }
+}
+
+export interface IOrderDetails {
+    ordersDetails: {
+        ordersCount: number
+        totalSaleOnline: number,
+        totalSaleWallet: number,
+        totalSalePrice: number
+    }
+}
+
+export interface IOrderList {
+    orders: IOrder[],
+    ordersCount: number
+}
+
+export interface IOrderItem {
+    order: IOrder,
+    index: number
+}
+
+
+// Global
+
+export interface IBoxItem {
+    icon: React.ReactNode,
+    color: string,
+    title: string,
+    text: string,
+    link?: string
 }

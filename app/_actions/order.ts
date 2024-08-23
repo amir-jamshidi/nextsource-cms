@@ -20,7 +20,6 @@ interface IGetSaleReport {
 
 export const getOrders = async ({ day = 1, page = 1 }: IGetOrdersProps) => {
 
-
     let startDate;
 
     if (day === 'all') {

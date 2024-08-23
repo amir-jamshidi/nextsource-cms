@@ -1,6 +1,6 @@
 'use client'
 
-import { IOrder } from '@/app/_types/order'
+import { IOrderItem } from '@/app/_types'
 import { IProduct } from '@/app/_types/product'
 import { IUser } from '@/app/_types/user'
 import { TableCell, TableRow } from '@/components/ui/table'
@@ -8,11 +8,11 @@ import Badge from '../../Modules/Badge'
 import OrderShowButton from '../orders/OrderShowButton'
 
 
-const OrderItem = ({ order, index }: { order: IOrder, index: number }) => {
+const OrderItem = ({ order, index }: IOrderItem) => {
 
     const product = order.productID as IProduct
     const user = order.userID as IUser
-    const creator = product.creatorID as IUser;
+
     return (
         <TableRow className='dark:border-b-primary-800 border-b-primary-50'>
             <TableCell className="text-center">

@@ -3,17 +3,12 @@
 import { IOrder } from "@/app/_types/order"
 import { IProduct } from "@/app/_types/product"
 import { IUser } from "@/app/_types/user"
-import jsPDF from 'jspdf'
-import autoTable from 'jspdf-autotable'
-import { HiOutlineBanknotes, HiOutlineBellAlert, HiOutlineClock, HiOutlineCurrencyDollar, HiOutlineEye, HiOutlineGift, HiOutlineHashtag, HiOutlineInformationCircle, HiOutlineReceiptPercent, HiOutlineShoppingBag, HiOutlineShoppingCart, HiOutlineSquares2X2, HiOutlineTrash, HiOutlineUser, HiOutlineWallet } from "react-icons/hi2"
-import OrderModalBox from "./OrderModalBox"
-import Modal from "../../Modules/Modal"
-import ModalFooter from "../../Modules/ModalFooter"
-import ToltipContainer from "../../Modules/ToltipContainer"
-import TableButton from "../../Modules/TableButton"
-import ModalHeader from "../../Modules/ModalHeader"
-import { ScrollArea } from "@/components/ui/scroll-area"
+import { HiOutlineBanknotes, HiOutlineBellAlert, HiOutlineClock, HiOutlineCurrencyDollar, HiOutlineEye, HiOutlineGift, HiOutlineHashtag, HiOutlineInformationCircle, HiOutlineReceiptPercent, HiOutlineShoppingBag, HiOutlineShoppingCart, HiOutlineSquares2X2, HiOutlineUser, HiOutlineWallet } from "react-icons/hi2"
 import CloseButton from "../../Modules/CloseButton"
+import Modal from "../../Modules/Modal"
+import TableButton from "../../Modules/TableButton"
+import ToltipContainer from "../../Modules/ToltipContainer"
+import OrderModalBox from "../../Modules/BoxItem"
 
 interface IOrderShowButtonProps {
     order: IOrder
@@ -24,18 +19,6 @@ const OrderShowButton = ({ order }: IOrderShowButtonProps) => {
     const user = order.userID as IUser;
     const product = order.productID as IProduct
     const seller = product.creatorID as IUser
-
-    const handleDownloadPDF = () => {
-        const doc = new jsPDF();
-        autoTable(doc, {
-            theme: "striped",
-            head: [['UserPhone', 'ProductHref', 'A.Paid', 'CashBack', 'P.Method', 'O.Number']],
-            body: [
-                [user.phone, product.href, order.price.toLocaleString() + ' Toman', order.cashBack.toLocaleString() + ' Toman', order.action === 'ONLINE' ? 'Bank' : 'Wallet', order.code],
-            ],
-        })
-        doc.save(`${order.code}.pdf`)
-    }
 
     return (
         <Modal>

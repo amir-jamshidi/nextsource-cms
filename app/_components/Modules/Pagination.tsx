@@ -1,21 +1,7 @@
 'use client'
 
-import { usePathname, useSearchParams } from 'next/navigation'
-import { useRouter } from 'next/navigation'
-import React from 'react'
-import { HiOutlineChevronLeft, HiOutlineChevronRight, HiOutlinePaperAirplane } from 'react-icons/hi2'
-
-import {
-    Table,
-    TableBody,
-    TableCaption,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/components/ui/table"
-
-
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi2'
 
 interface PaginationProps {
     sourceCount: number,
