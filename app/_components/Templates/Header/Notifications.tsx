@@ -18,8 +18,11 @@ const Notifications = async () => {
         <div dir="rtl" className="flex relative">
             <Popover>
                 <PopoverTrigger asChild>
-                    <span className='cursor-pointer bg-primary-0 rounded-full p-1 border border-primary-50 dark:bg-primary-800 dark:border-primary-800'>
+                    <span className='relative cursor-pointer bg-primary-0 rounded-full p-1 border border-primary-50 dark:bg-primary-800 dark:border-primary-800'>
                         <HiOutlineBell className='text-primary-500 dark:text-primary-200' size={25} />
+                        {hasNotification && (
+                            <span className="absolute flex w-2 h-2 rounded-full bg-red right-0 bottom-px"></span>
+                        )}
                     </span>
                 </PopoverTrigger>
                 <PopoverContent sideOffset={10} side="bottom" className="w-56 ml-4 shadow-none border-primary-50 bg-white dark:bg-primary-900 rounded-xl dark:border-primary-800 p-2.5">
