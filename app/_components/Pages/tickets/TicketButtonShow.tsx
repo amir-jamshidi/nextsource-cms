@@ -1,20 +1,17 @@
 'use client'
 
-import React, { useState } from 'react'
-import { HiArrowUturnRight, HiOutlineClock, HiOutlineEye, HiOutlineInformationCircle, HiOutlineShoppingBag, HiOutlineUser } from 'react-icons/hi2'
-import Modal from '@/app/_components/Modules/Modal'
-import { ITicket } from '@/app/_types/ticket'
-import Image from 'next/image'
-import { IUser } from '@/app/_types/user'
-import ModalFooter from '../../Modules/ModalFooter'
-import toast from 'react-hot-toast'
 import { answerTicket } from '@/app/_actions/ticket'
-import MiniTitleSection from '../../Modules/MiniTitleSection'
-import DetailsBoxesContainer from '../../Modules/DetailsBoxesContainer'
-import OrderModalBox from '../../Modules/BoxItem'
+import Modal from '@/app/_components/Modules/Modal'
 import { IOrder } from '@/app/_types/order'
+import { ITicket } from '@/app/_types/ticket'
+import { IUser } from '@/app/_types/user'
+import Image from 'next/image'
+import { useState } from 'react'
+import toast from 'react-hot-toast'
+import { HiArrowUturnRight, HiOutlineClock, HiOutlineEye, HiOutlineInformationCircle, HiOutlineShoppingBag, HiOutlineUser } from 'react-icons/hi2'
+import BoxItem from '../../Modules/BoxItem'
+import MiniTitleSection from '../../Modules/MiniTitleSection'
 import TableButton from '../../Modules/TableButton'
-import ModalHeader from '../../Modules/ModalHeader'
 
 interface TicketButtonShow {
     ticket: ITicket
@@ -69,20 +66,20 @@ const TicketButtonShow = ({ ticket }: TicketButtonShow) => {
                             <h2 className='text-lg font-mo dark:text-primary-50 text-primary-700'>جزئیات تیکت</h2>
                         </div>
                         <div className='grid grid-cols-1 lg:grid-cols-3 px-2 mt-4 gap-1 md:gap-2.5'>
-                            <OrderModalBox
+                            <BoxItem
                                 icon={<HiOutlineUser size={40} className='text-violet-500' />}
                                 color='#ddd6fe'
                                 title={'کاربر'}
                                 text={user.phone}
                                 link={`/users/${user._id}`}
                             />
-                            <OrderModalBox
+                            <BoxItem
                                 icon={<HiOutlineClock size={40} className='text-rose-500' />}
                                 color='#fecdd3'
                                 title={'تاریخ'}
                                 text={new Date(ticket.createdAt || 0).toLocaleDateString('fa-IR') + ' - ' + new Date(ticket.createdAt || 0).toLocaleTimeString('fa-IR')}
                             />
-                            <OrderModalBox
+                            <BoxItem
                                 icon={<HiOutlineShoppingBag size={40} className='text-green-500' />}
                                 color='#bbf7d0'
                                 title={'شناسه سفارش'}

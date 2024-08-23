@@ -9,19 +9,15 @@ import Badge from '../../Modules/Badge';
 import Switch from '../../Modules/Switch';
 import TicketButtonDelete from './TicketButtonDelete';
 import TicketButtonShow from './TicketButtonShow';
+import { ITicketItem } from '@/app/_types';
 
-interface TicketItemProps {
-    ticket: ITicket,
-    index: number
-}
 
-const TicketItem = ({ ticket, index }: TicketItemProps) => {
 
+const TicketItem = ({ ticket, index }: ITicketItem) => {
 
     const user = ticket.userID as IUser;
     const order = ticket.orderID as IOrder;
     const section = ticket.sectionID as ISection
-
 
     return (
         <TableRow key={String(ticket._id)} className='dark:border-b-primary-800 border-b-primary-50'>
@@ -70,42 +66,6 @@ const TicketItem = ({ ticket, index }: TicketItemProps) => {
                 </div>
             </TableCell>
         </TableRow>
-        /*
-            <div className='ticket-list h-16 gap-2 px-4'>
-                <div className='col-span-1 h-full w-full flex items-center'>
-                    <p className='font-ir-bold text-sm text-primary-800 dark:text-primary-100 pr-3'>{index}</p>
-                </div>
-                <div className='col-span-2 h-full w-full flex flex-col justify-center '>
-                    <p className='font-ir-medium text-sm text-primary-800 dark:text-primary-100 tracking-tight'>{user.phone}</p>
-                    <p className='font-ir-medium text-primary-600 dark:text-primary-300 text-xs tracking-tight'>{user.email}</p>
-                </div>
-                <div className='col-span-2 h-full w-full flex items-center'>
-                    <p className='font-ir-medium text-sm text-primary-800 dark:text-primary-100 tracking-tight'>{ticket.code}</p>
-    
-                </div>
-                <div className='col-span-1 h-full w-full flex justify-center flex-col'>
-                    <p className='font-ir-medium text-sm text-primary-800 dark:text-primary-100 tracking-tight'>{new Date(ticket.createdAt || 0).toLocaleDateString('fa-IR')}</p>
-                    <p className='font-ir-medium text-primary-600 dark:text-primary-300 text-xs tracking-tight'>{new Date(ticket.createdAt || 0).toLocaleTimeString('fa-IR')}</p>
-                </div>
-                <div className='col-span-1 h-full w-full flex items-center justify-center'>
-                    <Badge text={section.title} type='blue' icon={false} />
-                </div>
-    
-                <div className='col-span-1 h-full w-full flex items-center justify-center'>
-                    {!ticket.isAnswer && <Badge text='بدون پاسخ' type='red' icon={false} />}
-                    {ticket.isAnswer && <Badge text='با پاسخ' type='green' icon={false} />}
-                </div>
-    
-                <div className='col-span-1 h-full w-full flex items-center justify-center'>
-                    <Switch isActive={Boolean(order)} />
-                </div>
-    
-                <div className='col-span-1 h-full w-full flex items-center gap-x-1 justify-center'>
-                    <TicketButtonShow ticket={ticket} />
-                    <TicketButtonDelete ticketID={JSON.parse(JSON.stringify(ticket._id))} />
-                </div>
-            </div>
-            */
     )
 }
 

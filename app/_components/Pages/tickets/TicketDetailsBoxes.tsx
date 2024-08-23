@@ -2,17 +2,9 @@ import React from 'react'
 import DetailsBox from '../../Modules/DetailsBox'
 import DetailsBoxesContainer from '../../Modules/DetailsBoxesContainer'
 import { HiOutlineExclamationTriangle, HiOutlineShieldCheck, HiOutlineSquare3Stack3D, HiOutlineTicket } from 'react-icons/hi2'
+import { ITicketDetails } from '@/app/_types'
 
-interface TicketDetailsBoxesProps {
-    ticketsDetails: {
-        ticketsCountAll: number,
-        ticketsCount: number,
-        ticketsAnswerCount: number,
-        ticketsNoAnswerCount: number
-    }
-}
-
-const TicketDetailsBoxes = ({ ticketsDetails }: TicketDetailsBoxesProps) => {
+const TicketDetailsBoxes = ({ ticketsDetails }: ITicketDetails) => {
     return (
         <DetailsBoxesContainer>
             <DetailsBox color='bg-blue-200 dark:bg-blue-800' title='تیکت ها' value={`${ticketsDetails.ticketsCount} تیکت`} icon={<HiOutlineTicket size={45} className='text-blue-600 dark:text-blue-300' />} />

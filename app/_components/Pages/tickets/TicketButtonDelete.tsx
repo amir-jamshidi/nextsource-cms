@@ -1,9 +1,9 @@
 'use client'
-import React, { useContext, useState, useTransition } from 'react'
-import { HiOutlineTrash } from 'react-icons/hi2'
-import Modal, { ModalContext, useModalContext } from '@/app/_components/Modules/Modal'
 import { deleteTicket } from '@/app/_actions/ticket'
+import Modal from '@/app/_components/Modules/Modal'
+import { useState, useTransition } from 'react'
 import toast from 'react-hot-toast'
+import { HiOutlineTrash } from 'react-icons/hi2'
 import TableButton from '../../Modules/TableButton'
 
 interface TicketButtonDeleteProps {

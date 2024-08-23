@@ -1,15 +1,11 @@
 import { SHOW_IN_PAGE } from '@/app/_constants/gobalVariables'
-import { ITicket } from '@/app/_types/ticket'
+import { ITicketsList } from '@/app/_types'
 import { Table, TableBody } from '@/components/ui/table'
 import NoItemTable from '../../Modules/NoItemTable'
 import Pagination from '../../Modules/Pagination'
 import TicketItem from './TicketItem'
 import TicketTitleTable from './TicketTitleTable'
 
-interface ITicketsList {
-    tickets: ITicket[]
-    ticketsCount: number
-}
 
 const TicketList = ({ tickets, ticketsCount }: ITicketsList) => {
     return (

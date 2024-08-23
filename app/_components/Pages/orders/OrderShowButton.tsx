@@ -8,7 +8,7 @@ import CloseButton from "../../Modules/CloseButton"
 import Modal from "../../Modules/Modal"
 import TableButton from "../../Modules/TableButton"
 import ToltipContainer from "../../Modules/ToltipContainer"
-import OrderModalBox from "../../Modules/BoxItem"
+import BoxItem from "../../Modules/BoxItem"
 
 interface IOrderShowButtonProps {
     order: IOrder
@@ -45,84 +45,84 @@ const OrderShowButton = ({ order }: IOrderShowButtonProps) => {
 
                         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 w-full gap-1 md:gap-2.5 px-2 mt-4" >
 
-                            <OrderModalBox
+                            <BoxItem
                                 color="#fecdd3"
                                 icon={<HiOutlineUser size={40} className="text-rose-500" />}
                                 link={`/users/${user._id}`}
                                 title="کاربر"
                                 text={user.phone}
                             />
-                            <OrderModalBox
+                            <BoxItem
                                 color="#fed7aa"
                                 icon={<HiOutlineCurrencyDollar size={40} className="text-orange-500" />}
                                 link=""
                                 title="واریزی"
                                 text={order.totalPrice ? order.totalPrice.toLocaleString() + 'تومان' : "رایگان"}
                             />
-                            <OrderModalBox
+                            <BoxItem
                                 color="#bbf7d0"
                                 icon={<HiOutlineShoppingBag size={40} className="text-green-500" />}
                                 link={`/products/${product._id}`}
                                 title="محصول"
                                 text={product.title}
                             />
-                            <OrderModalBox
+                            <BoxItem
                                 color="#bfdbfe"
                                 icon={<HiOutlineSquares2X2 size={40} className="text-blue-500" />}
                                 link=""
                                 title="تعداد"
                                 text={order.count + ' عدد'}
                             />
-                            <OrderModalBox
+                            <BoxItem
                                 color="#ddd6fe"
                                 icon={<HiOutlineWallet size={40} className="text-violet-500" />}
                                 link=""
                                 title="پرداخت"
                                 text={order.action === 'ONLINE' ? 'پرداخت نقدی' : 'پرداخت با ولت'}
                             />
-                            <OrderModalBox
+                            <BoxItem
                                 color="#fbcfe8"
                                 icon={<HiOutlineGift size={40} className="text-pink-500" />}
                                 link=""
                                 title="کش بک"
                                 text={order.cashBack ? order.cashBack.toLocaleString() + ' تومان' : 'ندارد'}
                             />
-                            <OrderModalBox
+                            <BoxItem
                                 color="#fde68a"
                                 icon={<HiOutlineHashtag size={40} className="text-amber-500" />}
                                 link=""
                                 title="شناسه خرید"
                                 text={order.code}
                             />
-                            <OrderModalBox
+                            <BoxItem
                                 color="#fecaca"
                                 icon={<HiOutlineClock size={40} className="text-red-500" />}
                                 link=""
                                 title="تاریخ سفارش"
                                 text={new Date(order.createdAt || 0).toLocaleDateString('fa-IR') + ' - ' + new Date(order.createdAt || 0).toLocaleTimeString('fa-IR')}
                             />
-                            <OrderModalBox
+                            <BoxItem
                                 color="#d9f99d"
                                 icon={<HiOutlineShoppingCart size={40} className="text-lime-500" />}
                                 link={`/users/${seller._id}`}
                                 title="فروشنده"
                                 text={seller.phone}
                             />
-                            <OrderModalBox
+                            <BoxItem
                                 color="#c7d2fe"
                                 icon={<HiOutlineBellAlert size={40} className="text-indigo-500" />}
                                 link=""
                                 title="تخفیف"
                                 text={order.isOff ? 'دارد' : 'ندارد'}
                             />
-                            <OrderModalBox
+                            <BoxItem
                                 color="#99f6e4"
                                 icon={<HiOutlineReceiptPercent size={40} className="text-teal-500" />}
                                 link=""
                                 title="درصد تخفیف"
                                 text={order.percentOff ? order.percentOff + '%' : 'ندارد'}
                             />
-                            <OrderModalBox
+                            <BoxItem
                                 color="#a5f3fc"
                                 icon={<HiOutlineBanknotes size={40} className="text-cyan-500" />}
                                 link=""

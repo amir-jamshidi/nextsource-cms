@@ -1,21 +1,11 @@
-import { ITicket } from '@/app/_types/ticket'
-import React from 'react'
-import TicketFilter from './TicketFilter'
-import TicketDetailsBoxes from './TicketDetailsBoxes'
-import TicketList from './TicketList'
+import { IGetTickets } from '@/app/_types'
 import PageContainer from '../../Modules/PageContainer'
+import TicketDetailsBoxes from './TicketDetailsBoxes'
+import TicketFilter from './TicketFilter'
+import TicketList from './TicketList'
 
-interface TicketsContainerProps {
-    tickets: ITicket[],
-    ticketsDetails: {
-        ticketsCountAll: number,
-        ticketsCount: number,
-        ticketsAnswerCount: number,
-        ticketsNoAnswerCount: number
-    }
-}
 
-const TicketsContainer = ({ tickets, ticketsDetails }: TicketsContainerProps) => {
+const TicketsContainer = ({ tickets, ticketsDetails }: IGetTickets) => {
     return (
         <PageContainer>
             <TicketFilter />

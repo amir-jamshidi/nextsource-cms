@@ -75,6 +75,37 @@ export interface IOrderItem {
 }
 
 
+// Tickets Page
+
+export interface IGetTickets {
+    tickets: ITicket[],
+    ticketsDetails: {
+        ticketsCountAll: number,
+        ticketsCount: number,
+        ticketsAnswerCount: number,
+        ticketsNoAnswerCount: number
+    }
+}
+
+export interface ITicketDetails {
+    ticketsDetails: {
+        ticketsCountAll: number,
+        ticketsCount: number,
+        ticketsAnswerCount: number,
+        ticketsNoAnswerCount: number
+    }
+}
+
+export interface ITicketsList {
+    tickets: ITicket[]
+    ticketsCount: number
+}
+
+export interface ITicketItem {
+    ticket: ITicket,
+    index: number
+}
+
 // Global
 
 export interface IBoxItem {
