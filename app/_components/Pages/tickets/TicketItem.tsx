@@ -20,7 +20,7 @@ const TicketItem = ({ ticket, index }: ITicketItem) => {
     const section = ticket.sectionID as ISection
 
     return (
-        <TableRow key={String(ticket._id)} className='dark:border-b-primary-800 border-b-primary-50'>
+        <TableRow className='dark:border-b-primary-800 border-b-primary-50'>
             <TableCell className="text-center">
                 <p className='py-2 text-primary-700 dark:text-primary-100'>
                     {index}

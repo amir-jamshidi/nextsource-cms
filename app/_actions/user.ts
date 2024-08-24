@@ -163,6 +163,9 @@ export const getAdminNotifications = async () => {
 export const seeNotifications = async () => {
     await connectToDB()
 
+    const isAdminUser = await isAdmin();
+    if (!isAdminUser) return messageCreator(false, 'در حالت تستی امکان ویرایش نیست')
+
     await adminNotificationModel.updateMany({ isShow: true }, { isShow: false });
     revalidatePath('/');
 }

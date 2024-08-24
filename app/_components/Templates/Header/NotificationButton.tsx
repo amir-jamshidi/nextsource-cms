@@ -7,7 +7,8 @@ const NotificationButton = () => {
 
     const handleSeeNotifications = async () => {
         try {
-            await seeNotifications();
+            const res = await seeNotifications();
+            if (!res?.state) return toast.error(res?.message || 'در حالت تستی امکان ویرایش نیست')
         } catch (error) {
             toast.error('خطای غیر منتظره ای رخ داد')
         }
