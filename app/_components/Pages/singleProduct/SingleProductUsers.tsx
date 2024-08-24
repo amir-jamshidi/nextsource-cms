@@ -4,6 +4,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import Image from 'next/image'
 import Badge from '../../Modules/Badge'
 import PageSectionContainer from '../../Modules/PageSectionContainer'
+import Link from 'next/link'
 
 const SingleProductUsers = ({ sellers }: { sellers: IOrder[] }) => {
     return (
@@ -38,10 +39,12 @@ const SingleProductUsers = ({ sellers }: { sellers: IOrder[] }) => {
                                                     alt='Profile'
                                                 />
                                             </div>
-                                            <p className='flex flex-col'>
-                                                <p className='text-sm text-primary-700 tracking-tight dark:text-primary-100'>{user.fullname}</p>
-                                                <p className='text-sm text-primary-600 tracking-tight dark:text-primary-200'>{user.phone}</p>
-                                            </p>
+                                            <Link href={`/users/${user._id}`}>
+                                                <p className='flex flex-col'>
+                                                    <p className='text-sm text-primary-700 tracking-tight dark:text-primary-100'>{user.fullname}</p>
+                                                    <p className='text-sm text-primary-600 tracking-tight dark:text-primary-200'>{user.phone}</p>
+                                                </p>
+                                            </Link>
                                         </div>
                                     </TableCell>
                                     <TableCell >

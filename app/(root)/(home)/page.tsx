@@ -1,4 +1,4 @@
-import { getSaleReport } from "@/app/_actions/order";
+import { getDashboardDetails } from "@/app/_actions/order";
 import DashboardContainer from "@/app/_components/Pages/dashboard/DashboardContainer";
 import { IGetDashboard } from "@/app/_types";
 
@@ -7,7 +7,7 @@ interface HomePageProps {
 }
 
 export default async function HomePage({ searchParams: { day = 7 } }: HomePageProps) {
-  const dashboard: IGetDashboard = await getSaleReport({ day });
+  const dashboard: IGetDashboard = await getDashboardDetails({ day });
   return (
     <DashboardContainer dashboard={dashboard} />
   );

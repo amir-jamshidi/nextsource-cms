@@ -19,6 +19,12 @@ interface IGetSaleReport {
 }
 
 export const getOrders = async ({ day = 1, page = 1 }: IGetOrdersProps) => {
+
+    const dayValidator = new RegExp(/^(all|[1-9][0-9]*)$/)
+    if (!dayValidator.test(String(day))) {
+        day = 7
+    }
+
     await connectToDB()
 
     let startDate;
@@ -33,12 +39,14 @@ export const getOrders = async ({ day = 1, page = 1 }: IGetOrdersProps) => {
 
     startDate.setHours(23, 59, 59);
 
+    const currentPage = page > 1 ? page - 1 : page === 1 ? page : 1
+    const currentSkip = page >= 1 ? page - 1 : 0
 
     await connectToDB();
     const orders: IOrder[] = await orderModel.find({ createdAt: { $gt: startDate } })
         .populate({ path: 'productID', model: productModel, populate: { path: 'creatorID', model: userModel, select: 'phone email' } })
         .populate({ path: 'userID', model: userModel, select: 'phone email' })
-        .sort({ _id: -1 }).skip((page - 1) * SHOW_IN_PAGE).limit(page * SHOW_IN_PAGE)
+        .sort({ _id: -1 }).skip(currentSkip * SHOW_IN_PAGE).limit(currentPage * SHOW_IN_PAGE)
         .lean();
 
     const ordersInfo = await orderModel.find({ createdAt: { $gt: startDate } }).select('totalPrice action')
@@ -62,9 +70,15 @@ export const getOrders = async ({ day = 1, page = 1 }: IGetOrdersProps) => {
     return { orders: JSON.parse(JSON.stringify(orders)), ordersDetails }
 }
 
-export const getSaleReport = async ({ day = 7 }: IGetSaleReport) => {
+export const getDashboardDetails = async ({ day = 7 }: IGetSaleReport) => {
+
+    const dayValidator = new RegExp(/^(all|[1-9][0-9]*)$/)
+    if (!dayValidator.test(String(day))) {
+        day = 7
+    }
+
     connectToDB()
-    
+
     const dayNum = isNaN(Number(day)) ? 7 : Number(day);
     //OrderChart
     const days = Array.from({ length: dayNum }, (_, i) => {

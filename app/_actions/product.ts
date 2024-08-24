@@ -31,13 +31,18 @@ export const getProducts = async ({ state, page }: IGetProducts) => {
     if (state === 'free' || state === 'nonfree') options = { isFree: state === 'free' ? true : false }
     if (state === 'inplan') options = { isPlan: true };
 
+    const currentPage = page > 1 ? page - 1 : page === 1 ? page : 1
+    const currentSkip = page >= 1 ? page - 1 : 0
+
     const products: IProduct[] = await productModel.find(options)
         .populate({ path: 'creatorID', model: userModel, select: 'phone email' })
         .populate({ path: 'categoryID', model: categoryModel, select: 'title href' })
         .sort({ _id: -1 })
-        .skip((page - 1) * SHOW_IN_PAGE)
-        .limit(page * SHOW_IN_PAGE)
+        .skip(currentSkip * SHOW_IN_PAGE)
+        .limit(currentPage * SHOW_IN_PAGE)
         .lean();
+
+
 
     const productsInfo = await productModel.find({}).select('isFree isPlan');
 
@@ -98,6 +103,7 @@ export const updateProduct = async ({ productID, values, formData }: { productID
     let photoPath;
     let filePath;
     if (formData.get('photo') && formData.get('photo') !== 'undefined') {
+        //@ts-ignore
         const photoStr = formData.get('photo')?.name!
         const ext = photoStr.slice(photoStr.lastIndexOf('.'));
         const photoName = `${Math.floor(Math.random() * 1000000)}-${Date.now()}${ext}`
@@ -109,6 +115,7 @@ export const updateProduct = async ({ productID, values, formData }: { productID
     }
 
     if (formData.get('link') && formData.get('link') !== 'undefined') {
+        //@ts-ignore
         const fileStr = formData.get('link')?.name!
         const fileExt = fileStr.slice(fileStr.lastIndexOf('.'));
         const fileName = `${Math.floor(Math.random() * 1000000)}-${Date.now()}${fileExt}`
@@ -119,7 +126,7 @@ export const updateProduct = async ({ productID, values, formData }: { productID
             .upload(fileName, formData.get('link')!);
     }
 
-    const options = {
+    const options: { links?: string[], photo?: string, sellerID?: string } = {
         ...values,
         sellerID: '664106d27e0a319150420826'
     }
@@ -137,7 +144,7 @@ export const insertProduct = async ({ values, formData }: { values: {}, formData
     const isAdminUser = await isAdmin();
     if (!isAdminUser) return messageCreator(false, 'در حالت تستی امکان اضافه کردن نیست')
 
-
+    // @ts-ignore
     const photoStr = formData.get('photo')?.name!
     const ext = photoStr.slice(photoStr.lastIndexOf('.'));
     const photoName = `${Math.floor(Math.random() * 1000000)}-${Date.now()}${ext}`
@@ -147,7 +154,7 @@ export const insertProduct = async ({ values, formData }: { values: {}, formData
         .from('products')
         .upload(photoName, formData.get('photo')!);
 
-
+    // @ts-ignore
     const fileStr = formData.get('link')?.name!
     const fileExt = fileStr.slice(fileStr.lastIndexOf('.'));
     const fileName = `${Math.floor(Math.random() * 1000000)}-${Date.now()}${fileExt}`

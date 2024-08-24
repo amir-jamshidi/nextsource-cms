@@ -22,9 +22,14 @@ interface IInsertCategory {
 export const getCategories = async ({ page, sort = 'asc' }: IGetCategoriesProps) => {
     await connectToDB()
 
+    const currentPage = page > 1 ? page - 1 : page === 1 ? page : 1
+    const currentSkip = page >= 1 ? page - 1 : 0
+
     const categories: ICategory[] = await categoryModel
         .find({})
-        .sort({ _id: sort === 'asc' ? -1 : 1 }).skip((page - 1) * SHOW_IN_PAGE).limit(page * SHOW_IN_PAGE)
+        .sort({ _id: sort === 'asc' ? -1 : 1 })
+        .skip(currentSkip * SHOW_IN_PAGE)
+        .limit(currentPage * SHOW_IN_PAGE)
 
 
     const categoryInfo = await categoryModel.find({})

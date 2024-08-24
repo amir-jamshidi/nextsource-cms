@@ -57,7 +57,7 @@ export default function CategoryChart({ categoryDetails }: IDashboardCategoryCha
             <div className="pt-2 pb-4 mb-2 flex items-center justify-between gap-x-1.5 border-b border-b-primary-50 dark:border-b-primary-800/60">
                 <div className='flex items-center gap-x-1.5'>
                     <span className="flex w-4 h-4 dark:bg-blue-600 bg-blue-400 rounded-full"></span>
-                    <p className="font-mo dark:text-primary-100 text-primary-800 text-lg">سفارش های اخیر</p>
+                    <p className="font-mo dark:text-primary-100 text-primary-800 text-lg line-clamp-1">نمودار دوره ها بر اساس دسته بندی</p>
                 </div>
                 <MoreButton items={categoryMenuChart} />
             </div>

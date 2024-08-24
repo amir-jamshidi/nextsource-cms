@@ -47,7 +47,8 @@ export const productSchema = z.object({
     isOff: z.boolean().default(false),
     isFree: z.boolean().default(false),
 
-    precentOff: z.string().regex(/^[\d]{1,2}$/)
+    precentOff: z.string().regex(/^[\d]{1,2}$/, 'لطفا یه عدد معتبر وارد کنید')
+
 })
 export const editProductSchema = z.object({
     title: z.string().min(4, 'عنوان حداقل باید 4 کاراکتر باشه ').default(''),
@@ -68,5 +69,5 @@ export const editProductSchema = z.object({
     isOff: z.boolean().default(false),
     isFree: z.boolean().default(false),
 
-    precentOff: z.string().regex(/^[\d]{1,2}$/)
+    precentOff: z.string().regex(/^[\d]{1,2}$/, 'لطفا یه عدد معتبر وارد کنید')
 })

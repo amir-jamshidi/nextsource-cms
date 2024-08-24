@@ -16,10 +16,16 @@ interface IGetAlerts {
 export const getAlerts = async ({ page, type }: IGetAlerts) => {
     await connectToDB();
     const options: { type?: string } = {}
+
     if (type !== 'all') options['type'] = type.toUpperCase()
 
+    const currentPage = page > 1 ? page - 1 : page === 1 ? page : 1
+    const currentSkip = page >= 1 ? page - 1 : 0
+
     const alerts: IAlert[] = await alertModel.find(options)
-        .sort({ _id: -1 }).skip((page - 1) * SHOW_IN_PAGE).limit(page * SHOW_IN_PAGE)
+        .sort({ _id: -1 })
+        .skip(currentSkip * SHOW_IN_PAGE)
+        .limit(currentPage * SHOW_IN_PAGE)
         .lean();
 
     const alertsAll = await alertModel.find({});

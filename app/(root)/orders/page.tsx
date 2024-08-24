@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 
 const Orders = async ({ searchParams: { day = 7, page = 1 } }) => {
   const { orders, ordersDetails }: IGetOrders = await getOrders({ day, page })
+
   return (
     <OrdersContainer orders={orders} ordersDetails={ordersDetails} />
   )

@@ -13,7 +13,8 @@ const VerifyForm = ({ phone }: { phone: string }) => {
 
     const handleVerify = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (code.length !== 5) return toast.error('کد تایید باید 5 رقم باشه')
+        const codeValidator = new RegExp(/[\d]{5}/);
+        if (!codeValidator.test(code)) return toast.error('کد تایید باید 5 رقم باشه')
         setIsLoading(true);
         try {
             const result = await VerifyCodeUser(phone, Number(code));

@@ -26,6 +26,12 @@ interface IGetUsers {
 
 export const getUsers = async ({ day = 1, page = 1 }: IGetUsers) => {
     await connectToDB();
+
+    const dayValidator = new RegExp(/^(all|[1-9][0-9]*)$/)
+    if (!dayValidator.test(String(day))) {
+        day = 7
+    }
+
     let startDate;
     if (day === 'all') {
         startDate = new Date(0);
@@ -35,10 +41,14 @@ export const getUsers = async ({ day = 1, page = 1 }: IGetUsers) => {
     }
 
     startDate.setHours(23, 59, 59);
+
+    const currentPage = page > 1 ? page - 1 : page === 1 ? page : 1
+    const currentSkip = page >= 1 ? page - 1 : 0
+
     const users: IUser[] = await userModel.find({ createdAt: { $gt: startDate } })
         .sort({ _id: -1 })
-        .skip((page - 1) * SHOW_IN_PAGE)
-        .limit(page * SHOW_IN_PAGE)
+        .skip(currentSkip * SHOW_IN_PAGE)
+        .limit(currentPage * SHOW_IN_PAGE)
         .lean();
 
     const allUsers = await userModel.find({}).select('role').lean();

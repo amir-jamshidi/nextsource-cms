@@ -14,6 +14,7 @@ const HeaderTestProfile = () => {
             <div className='border-2 border-green-400  rounded-lg px-3 py-1'>
                 <p className='text-xs font-mo dark:border-green-600 text-green-400'>حالت تستی</p>
             </div>
+            <p className='text-sm font-mo dark:text-primary-600 text-primary-300'>در این حالت شما اجازه حذف یا ویرایش را ندارید ، لطفا وارد حساب خود شوید</p>
         </div>
     )
 }

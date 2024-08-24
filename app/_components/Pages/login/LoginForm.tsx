@@ -10,7 +10,8 @@ const LoginForm = ({ changeForm }: { changeForm: (phone: string) => void }) => {
 
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (phone.length !== 11) return toast.error('شماره همراه باید 11 رقم باشه')
+        const phoneValidator = new RegExp(/^09[\d]{9}$/);
+        if (!phoneValidator.test(phone)) return toast.error('فرمت شماره درست نیست')
         setIsLoading(true);
         try {
             const result = await LoginUser(phone)

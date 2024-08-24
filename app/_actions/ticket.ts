@@ -26,6 +26,11 @@ interface answerTicketProps {
 export const getTickets = async ({ status, page, day }: getTicketsProps) => {
     await connectToDB();
 
+    const dayValidator = new RegExp(/^(all|[1-9][0-9]*)$/)
+    if (!dayValidator.test(String(day))) {
+        day = 7
+    }
+
     let options: { createdAt?: {}, isAnswer?: boolean } = {}
 
     let startDate;
@@ -42,12 +47,15 @@ export const getTickets = async ({ status, page, day }: getTicketsProps) => {
     if (status === 'answer') options['isAnswer'] = true
     if (status === 'noanswer') options['isAnswer'] = false
 
+    const currentPage = page > 1 ? page - 1 : page === 1 ? page : 1
+    const currentSkip = page >= 1 ? page - 1 : 0
+
 
     const tickets: ITicket[] = await ticketModel.find(options)
         .populate({ path: 'userID', model: userModel, select: 'phone email profile' })
         .populate({ path: 'orderID', model: orderModel, select: 'code' })
         .populate({ path: 'sectionID', model: sectionModel })
-        .sort({ _id: -1 }).skip((page - 1) * 10).limit(page * 10)
+        .sort({ _id: -1 }).skip(currentSkip * 10).limit(currentPage * 10)
         .lean();
 
     const ticketsInfo: ITicket[] = await ticketModel.find(options)
