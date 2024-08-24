@@ -29,9 +29,12 @@ const TicketButtonShow = ({ ticket }: TicketButtonShow) => {
         try {
             if (!answer.trim()) return toast.error('لطفا متن پاسخ رو وارد کن')
             setIsPending(true);
-            const response = await answerTicket({ ticketID: String(ticket._id), answer: answer })
-            setAnswer('');
-            if (response.state) return toast.success(response.message);
+            const res = await answerTicket({ ticketID: String(ticket._id), answer: answer })
+            if (!res.state) return toast.error(res.message)
+            if (res.state) {
+                toast.success(res.message);
+                setAnswer('');
+            }
         } catch (error) {
             toast.error('خطای غیر منتظره ای رخ داد')
         } finally {

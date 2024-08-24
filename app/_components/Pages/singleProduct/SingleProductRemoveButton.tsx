@@ -9,23 +9,23 @@ import { HiOutlineEllipsisVertical, HiOutlineTrash } from 'react-icons/hi2'
 
 const SingleProductRemoveButton = ({ productID }: { productID: string }) => {
 
-
     const [isLoading, setIsLoading] = useState(false);
 
     const handleRemoveProduct = async () => {
         try {
             setIsLoading(true)
-            await removeProduct({ productID });
+            const res = await removeProduct({ productID });
+            if (!res.state) return toast.error(res.message)
         } catch (error) {
             toast.error('خطای غیر منتظره ای رخ داد')
         } finally {
             setIsLoading(false)
         }
     }
-
+    console.log('run')
     return (
         <Modal>
-            <Popover >
+            <Popover>
                 <PopoverTrigger>
                     <span className="bg-white dark:bg-primary-900 border-primary-50 border dark:border-primary-800 rounded-full flex items-center justify-center w-8 h-8 ">
                         <HiOutlineEllipsisVertical size={20} className="text-primary-600 dark:text-primary-50" />
@@ -41,7 +41,6 @@ const SingleProductRemoveButton = ({ productID }: { productID: string }) => {
                 </PopoverContent>
             </Popover>
             <Modal.Window>
-
                 <div className='w-[360px] md:w-3/4 lg:w-1/3 bg-white dark:bg-primary-950 rounded-xl shadow overflow-hidden dark:shadow-none dark:border border-primary-900'>
                     <div className='px-2.5 py-3.5'>
                         <div className='flex items-center justify-center gap-y-2 flex-col'>
@@ -65,7 +64,6 @@ const SingleProductRemoveButton = ({ productID }: { productID: string }) => {
                         </div>
                     </div>
                 </div>
-
             </Modal.Window>
         </Modal>
     )

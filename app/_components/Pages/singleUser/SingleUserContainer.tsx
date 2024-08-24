@@ -4,9 +4,13 @@ import SingleUserFilter from './SingleUserFilter'
 import SingleUserForm from './SingleUserForm'
 import SingleUserDetailsBoxes from './SingleUserDetailsBoxes'
 import SingleUserSections from './SingleUserSections'
+import { IGetSingleUser } from '@/app/_types'
 
-const SingleUserContainer = ({ userInfo: { user, tickets, orders, userDetails } }) => {
+interface ISingleUserContainer {
+    userInfo: IGetSingleUser
+}
 
+const SingleUserContainer = ({ userInfo: { user, tickets, orders, userDetails } }: ISingleUserContainer) => {
     return (
         <PageContainer>
             <SingleUserFilter />

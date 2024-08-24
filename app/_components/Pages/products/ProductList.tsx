@@ -1,17 +1,11 @@
 
-import React from 'react'
-import Pagination from '../../Modules/Pagination'
-import NoItemTable from '../../Modules/NoItemTable'
 import { SHOW_IN_PAGE } from '@/app/_constants/gobalVariables'
-import { IProduct } from '@/app/_types/product'
-import ProductTitleTable from './ProductTitleTable'
-import ProductItem from './ProductItem'
+import { IProductList } from '@/app/_types'
 import { Table } from '@/components/ui/table'
-
-interface IProductList {
-    products: IProduct[]
-    productsCount: number
-}
+import NoItemTable from '../../Modules/NoItemTable'
+import Pagination from '../../Modules/Pagination'
+import ProductItem from './ProductItem'
+import ProductTitleTable from './ProductTitleTable'
 
 const ProductList = ({ products, productsCount }: IProductList) => {
     return (

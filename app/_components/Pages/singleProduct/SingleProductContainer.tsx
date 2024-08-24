@@ -1,18 +1,15 @@
-import React from 'react'
+import { IGetSingleProduct } from '@/app/_types'
 import PageContainer from '../../Modules/PageContainer'
-import SingleProductFilter from './SingleProductFilter'
 import SingleProductBoxes from './SingleProductBoxes'
+import SingleProductFilter from './SingleProductFilter'
 import SingleProductForm from './SingleProductForm'
-import InsertProductForm from '../products/InsertProductForm'
-import { IProduct } from '@/app/_types/product'
 import SingleProductUsers from './SingleProductUsers'
-import { IOrder } from '@/app/_types/order'
 
-const SingleProductContainer = ({ productDetails, product, sellers }: { productDetails: {}, product: IProduct, sellers: IOrder }) => {
+const SingleProductContainer = ({ productDetails, product, sellers }: IGetSingleProduct) => {
     return (
         <PageContainer>
             <SingleProductFilter />
-            <SingleProductBoxes product={product} productDetails={productDetails} />
+            <SingleProductBoxes productDetails={productDetails} />
             <SingleProductForm product={product} />
             <SingleProductUsers sellers={sellers} />
         </PageContainer>

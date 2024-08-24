@@ -6,25 +6,20 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import toast from "react-hot-toast"
-
 import { insertCategory } from "@/app/_actions/category"
 import { Form } from "@/components/ui/form"
 import { HiOutlineLink, HiOutlinePencil, HiOutlinePlus } from "react-icons/hi2"
 import CloseButton from "../../Modules/CloseButton"
 import CustomField from "../../Modules/CustomFormField"
 import SubmitButton from "../../Modules/SubmitButton"
+import { ICategoryForm } from "@/app/_types"
 
-interface IFormCategory {
-    title: string,
-    titleEn: string,
-    href: string
-}
 
 const CategoryInsertButton = () => {
 
     const [isLoading, setIsLoading] = useState(false);
     const [isOpen, setIsOpen] = useState<undefined | boolean>(undefined);
-    const form = useForm<IFormCategory>({
+    const form = useForm<ICategoryForm>({
         resolver: zodResolver(categorySchema),
         defaultValues: {
             href: '',
@@ -32,10 +27,11 @@ const CategoryInsertButton = () => {
             titleEn: ''
         },
     })
-    const handleInsetCategory = async ({ title, titleEn, href }: { title: string, titleEn: string, href: string }) => {
+    const handleInsetCategory = async ({ title, titleEn, href }: ICategoryForm) => {
         try {
             setIsLoading(true);
             const res = await insertCategory({ title, titleEn, href });
+            if (!res.state) return toast.error(res.message);
             if (res.state) {
                 toast.success(res.message);
                 setIsOpen(false);
@@ -98,9 +94,7 @@ const CategoryInsertButton = () => {
                                             iconImg={<HiOutlineLink size={20} className="dark:text-primary-300 text-primary-700" />}
                                             iconAlt="User"
                                         />
-
                                     </div>
-
                                 </div>
                                 <div className="mt-8 gap-x-1.5 flex">
                                     <SubmitButton text="اضافه کن" isLoading={isLoading} />

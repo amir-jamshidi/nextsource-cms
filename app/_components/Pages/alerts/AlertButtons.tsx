@@ -9,17 +9,18 @@ import TableButton from '../../Modules/TableButton'
 const AlertButtons = ({ alert }: { alert: IAlert }) => {
 
   const handleDeAvtiveAlert = async () => {
-    const result = await deAcitveAlert({ alertID: String(alert._id) });
-    if (result) return toast.success(result.message);
+    const res = await deAcitveAlert({ alertID: String(alert._id) });
+    if (res.state) return toast.success(res.message);
   }
   const handleActiceAlert = async () => {
-    const result = await acitveAlert({ alertID: String(alert._id) });
-    if (result) return toast.success(result.message);
+    const res = await acitveAlert({ alertID: String(alert._id) });
+    if (res.state) return toast.success(res.message);
   }
 
   const handleDeleteAlert = async () => {
-    const result = await deleteAlert({ alertID: String(alert._id) });
-    if (result) return toast.success(result.message);
+    const res = await deleteAlert({ alertID: String(alert._id) });
+    if (!res.state) return toast.error(res.message)
+    if (res.state) return toast.success(res.message);
   }
 
   return (

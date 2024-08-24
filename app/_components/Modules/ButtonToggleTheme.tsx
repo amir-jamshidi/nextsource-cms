@@ -1,6 +1,6 @@
 'use client'
-import { useTheme } from "@/app/_context/ThemeContext"
-import { HiMoon, HiOutlineBell, HiOutlineMoon, HiOutlineSun } from "react-icons/hi2"
+import { useTheme } from "@/app/_context/ThemeContext";
+import { HiOutlineMoon, HiOutlineSun } from "react-icons/hi2";
 
 const ButtonToggleTheme = () => {
 

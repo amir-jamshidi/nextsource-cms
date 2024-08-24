@@ -19,6 +19,7 @@ interface IGetSaleReport {
 }
 
 export const getOrders = async ({ day = 1, page = 1 }: IGetOrdersProps) => {
+    await connectToDB()
 
     let startDate;
 
@@ -62,8 +63,8 @@ export const getOrders = async ({ day = 1, page = 1 }: IGetOrdersProps) => {
 }
 
 export const getSaleReport = async ({ day = 7 }: IGetSaleReport) => {
-
     connectToDB()
+    
     const dayNum = isNaN(Number(day)) ? 7 : Number(day);
     //OrderChart
     const days = Array.from({ length: dayNum }, (_, i) => {

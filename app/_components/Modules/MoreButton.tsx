@@ -1,5 +1,6 @@
 'use client'
 
+import { IMoreButton } from "@/app/_types"
 import {
     Popover,
     PopoverContent,
@@ -8,11 +9,7 @@ import {
 import Link from "next/link"
 import { HiOutlineEllipsisVertical } from "react-icons/hi2"
 
-interface Props {
-    items: { id: number, title: string, href: string, color: string }[]
-}
-
-const MoreButton = ({ items }: Props) => {
+const MoreButton = ({ items }: IMoreButton) => {
     return (
         <Popover>
             <PopoverTrigger>

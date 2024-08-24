@@ -1,7 +1,5 @@
-import React from 'react'
-import FilterContainer from '../../Modules/FilterContainer'
 import Filter from '../../Modules/Filter'
-import FilterButton from '../../Modules/FilterButton'
+import FilterContainer from '../../Modules/FilterContainer'
 import CategoryInsertButton from './CategoryInsertButton'
 
 const CategoryFilter = () => {

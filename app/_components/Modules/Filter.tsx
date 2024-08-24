@@ -1,28 +1,17 @@
 'use client'
 
-import { usePathname, useSearchParams } from "next/navigation"
-import { useRouter } from "next/navigation"
+import { IFilter } from "@/app/_types";
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
 
-interface IFilterProps {
-    option: {
-        options: { title: string, value: number | string }[],
-        key: string
-    },
-    resetOption?: {
-        key: string,
-        value: number | string
-    },
-    defaultValue: number | string
-}
 
-const Filter = ({ option, resetOption, defaultValue }: IFilterProps) => {
+
+const Filter = ({ option, resetOption, defaultValue }: IFilter) => {
 
     const searchParams = useSearchParams();
     const pathName = usePathname();
     const router = useRouter();
 
     const currentDay = searchParams.get(option.key) || defaultValue
-
 
     const handleClick = (value: number | string) => {
         const params = new URLSearchParams(searchParams);
@@ -43,12 +32,3 @@ const Filter = ({ option, resetOption, defaultValue }: IFilterProps) => {
 }
 
 export default Filter
-
-
-// <div className="flex justify-between items-center">
-{/* <div className="flex items-center gap-x-1.5">
-                <span className="h-4 w-10 rounded-full bg-blue-400 inline-block"></span>
-                <h1 className="font-mo-bold text-2xl text-primary-800">{title}</h1>
-            </div> 
-            </div>
-            */}

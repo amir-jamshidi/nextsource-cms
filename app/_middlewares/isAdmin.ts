@@ -1,7 +1,6 @@
 import isLogin from "./isLogin"
 
 const isAdmin = async () => {
-
     try {
         const user = await isLogin();
         if (!user) return false;
@@ -11,7 +10,6 @@ const isAdmin = async () => {
         console.log(error);
         return false
     }
-
 }
 
 export default isAdmin

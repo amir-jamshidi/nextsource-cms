@@ -1,8 +1,7 @@
-import { Table, TableBody } from '@/components/ui/table'
-import React from 'react'
-import OrderTitleTable from '../orders/OrderTitleTable'
-import OrderItem from '../orders/OrderItem'
 import { IOrder } from '@/app/_types/order'
+import { Table, TableBody } from '@/components/ui/table'
+import OrderItem from '../orders/OrderItem'
+import OrderTitleTable from '../orders/OrderTitleTable'
 
 const UserRecentOrders = ({ orders }: { orders: IOrder[] }) => {
   return (

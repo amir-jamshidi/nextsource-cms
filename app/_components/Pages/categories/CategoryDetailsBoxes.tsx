@@ -1,18 +1,9 @@
-import React from 'react'
+import { ICategoriesDetails } from '@/app/_types'
+import { HiNoSymbol, HiOutlineCog, HiOutlineSquare3Stack3D, HiOutlineSquares2X2 } from 'react-icons/hi2'
 import DetailsBox from '../../Modules/DetailsBox'
 import DetailsBoxesContainer from '../../Modules/DetailsBoxesContainer'
-import { HiNoSymbol, HiOutlineCog, HiOutlineExclamationTriangle, HiOutlineShieldCheck, HiOutlineSquare3Stack3D, HiOutlineSquares2X2, HiOutlineTicket } from 'react-icons/hi2'
 
-interface CategoryDetailsBoxesProps {
-    categoriesDetails: {
-        categoriesCount: number,
-        categoriesAllCount: number,
-        categoriesActiveCount: number,
-        categoriesNonActiveCount: number
-    }
-}
-
-const CategoryDetailsBoxes = ({ categoriesDetails }: CategoryDetailsBoxesProps) => {
+const CategoryDetailsBoxes = ({ categoriesDetails }: ICategoriesDetails) => {
     return (
         <DetailsBoxesContainer>
             <DetailsBox color='bg-blue-200 dark:bg-blue-800' title='دسته بندی ها' value={`${categoriesDetails.categoriesCount} دسته بندی`} icon={<HiOutlineSquares2X2 size={45} className='text-blue-600 dark:text-blue-300' />} />

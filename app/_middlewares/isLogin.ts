@@ -1,10 +1,9 @@
 'use server'
 
-
-import VerifyToken from "@/app/_utils/VerifyToken";
 import userModel from "@/app/_models/user.module";
 import { IUser } from "@/app/_types/user";
-import { cookies } from "next/headers"
+import VerifyToken from "@/app/_utils/VerifyToken";
+import { cookies } from "next/headers";
 import connectToDB from "../_configs/database";
 
 const isLogin = async () => {

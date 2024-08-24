@@ -1,11 +1,7 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import Header from "./_components/Templates/Header/Header";
-import Sidebar from "./_components/Templates/Sidebar/Sidebar";
-import { Toaster } from 'react-hot-toast'
+import type { Metadata, Viewport } from "next";
+import { Toaster } from 'react-hot-toast';
 import ThemeProvider from "./_context/ThemeContext";
-import type { Viewport } from 'next'
-import { ScrollArea } from "@/components/ui/scroll-area";
+import "./globals.css";
 import Provider from "./Provider";
 
 

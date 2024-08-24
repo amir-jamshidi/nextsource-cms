@@ -14,21 +14,14 @@ import CustomFormField from '../../Modules/CustomFormField'
 import SubmitButton from '../../Modules/SubmitButton'
 import Image from 'next/image'
 import SingleUserRemoveButton from './SingleUserRemoveButton'
+import { ISingleUserForm } from '@/app/_types'
 
-interface IFormUser {
-    fullname: string,
-    phone: string,
-    email: string,
-    role: 'ADMIN' | 'USER',
-    profile: File,
-    bio: string
-}
 
 const SingleUserForm = ({ user }: { user: IUser }) => {
 
     const [isLoading, setIsLoading] = useState(false);
 
-    const form = useForm<IFormUser>({
+    const form = useForm<ISingleUserForm>({
         resolver: zodResolver(userSchema),
         defaultValues: {
             fullname: user.fullname || '',
@@ -39,7 +32,7 @@ const SingleUserForm = ({ user }: { user: IUser }) => {
         }
     })
 
-    const handleEditUser = async (values: { fullname: string, phone: string, email: string, bio: string, role: 'ADMIN' | 'USER', profile: File }) => {
+    const handleEditUser = async (values: ISingleUserForm) => {
         const formData = new FormData();
         formData.append('userID', String(user._id));
         formData.append('fullname', values.fullname);
@@ -51,9 +44,11 @@ const SingleUserForm = ({ user }: { user: IUser }) => {
         try {
             setIsLoading(true);
             const res = await updateUser(formData);
-            form.reset({ profile: undefined });
-            if (res.state) return toast.success(res.message)
-            if (!res.state) return toast.success(res.message)
+            if (!res.state) return toast.error(res.message)
+            if (res.state) {
+                toast.success(res.message)
+                form.reset({ profile: undefined });
+            }
         } catch (error) {
             toast.error('خطای غیر منتظره ای رخ داد')
         } finally {

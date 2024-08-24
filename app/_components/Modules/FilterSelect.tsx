@@ -1,14 +1,13 @@
 'use client';
 
-import React from 'react'
 import {
     Select,
     SelectContent,
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from "@/components/ui/select"
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+} from "@/components/ui/select";
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 const FilterSelect = () => {
 
@@ -24,8 +23,6 @@ const FilterSelect = () => {
         // }
         router.replace(`${pathName}?${params.toString()}`, { scroll: false });
     }
-
-
 
     return (
         <div className='h-14 rounded-xl bg-white shadow-sm dark:bg-primary-900 px-4 flex items-center justify-center'>

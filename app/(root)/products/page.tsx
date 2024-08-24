@@ -1,7 +1,7 @@
 import { getProducts } from '@/app/_actions/product'
 import ProductsContainer from '@/app/_components/Pages/products/ProductsContainer'
+import { IGetProducts } from '@/app/_types'
 import { Metadata } from 'next'
-import React from 'react'
 
 
 export const metadata: Metadata = {
@@ -16,7 +16,7 @@ interface ProductsProps {
 }
 
 const Products = async ({ searchParams: { page = 1, state = "all" } }: ProductsProps) => {
-  const { products, productsDetails } = await getProducts({ state, page })
+  const { products, productsDetails }: IGetProducts = await getProducts({ state, page })
   return (
     <ProductsContainer products={products} productsDetails={productsDetails} />
   )

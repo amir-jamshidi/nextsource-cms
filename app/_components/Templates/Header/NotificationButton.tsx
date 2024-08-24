@@ -1,7 +1,6 @@
 'use client'
 
 import { seeNotifications } from '@/app/_actions/user'
-import React from 'react'
 import toast from 'react-hot-toast'
 
 const NotificationButton = () => {

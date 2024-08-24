@@ -1,10 +1,9 @@
-import React from 'react'
-import PageSectionContainer from '../../Modules/PageSectionContainer'
 import { IOrder } from '@/app/_types/order'
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import Image from 'next/image'
 import { IUser } from '@/app/_types/user'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
+import Image from 'next/image'
 import Badge from '../../Modules/Badge'
+import PageSectionContainer from '../../Modules/PageSectionContainer'
 
 const SingleProductUsers = ({ sellers }: { sellers: IOrder[] }) => {
     return (

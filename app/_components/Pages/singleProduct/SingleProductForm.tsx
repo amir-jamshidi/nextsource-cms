@@ -17,27 +17,17 @@ import toast from 'react-hot-toast'
 import CustomFormField from '../../Modules/CustomFormField'
 import SubmitButton from '../../Modules/SubmitButton'
 import SingleProductRemoveButton from './SingleProductRemoveButton'
+import { IProductForm } from '@/app/_types'
 
-
-interface IProductFormProps {
-    title: string
-    description: string,
-    href: string,
-    price: string,
-    preView: string,
-    size: string,
-    categoryID: string,
-    creatorID: string,
-    isPlan: boolean,
-    isFree: boolean,
-    isOff: boolean,
-    precentOff: string,
-    cashBack: string,
-    photo: File | undefined,
-    link: File | undefined,
-}
 
 const InsertProductForm = ({ product }: { product: IProduct }) => {
+
+    const router = useRouter();
+
+    const [isLoading, setIsLoading] = useState(false);
+
+    const { data: categories = [] }: { data: ICategory[] } = useCategories()
+    const { data: sellers = [] }: { data: IUser[] } = useSellers();
 
     const defaultValues = {
         title: product.title,
@@ -46,8 +36,8 @@ const InsertProductForm = ({ product }: { product: IProduct }) => {
         price: String(product.price),
         preView: product.preView,
         size: String(product.size),
-        categoryID: product.categoryID._id,
-        creatorID: product.creatorID._id,
+        categoryID: String(product.categoryID._id),
+        creatorID: String(product.creatorID._id),
         isPlan: product.isPlan,
         isFree: product.isFree,
         isOff: product.isOff,
@@ -57,14 +47,7 @@ const InsertProductForm = ({ product }: { product: IProduct }) => {
         link: undefined,
     }
 
-    const router = useRouter();
-
-    const [isLoading, setIsLoading] = useState(false);
-
-    const { data: categories = [] }: { data: ICategory[] } = useCategories()
-    const { data: sellers = [] }: { data: IUser[] } = useSellers();
-
-    const form = useForm({
+    const form = useForm<IProductForm>({
         resolver: zodResolver(editProductSchema),
         defaultValues
     })
@@ -72,8 +55,7 @@ const InsertProductForm = ({ product }: { product: IProduct }) => {
     const { watch } = form
     const isOff = watch('isOff');
 
-
-    const handleUpdateForm = async (values: IProductFormProps) => {
+    const handleUpdateForm = async (values: IProductForm) => {
         try {
             setIsLoading(true)
             const formData = new FormData();
@@ -84,7 +66,9 @@ const InsertProductForm = ({ product }: { product: IProduct }) => {
             Reflect.deleteProperty(values, 'photo');
             Reflect.deleteProperty(values, 'link');
 
-            const res = await updateProduct({ productID: product._id, values, formData })
+            const res = await updateProduct({ productID: String(product._id), values, formData })
+
+            if (!res.state) return toast.error(res.message);
 
             if (res.state) {
                 toast.success(res.message)
@@ -92,15 +76,12 @@ const InsertProductForm = ({ product }: { product: IProduct }) => {
                 router.push('/products');
             }
 
-            if (!res.state) return toast.error(res.message);
-
         } catch (error) {
             toast.success('خطای ناشناخته ای رخ داد')
         } finally {
             setIsLoading(false);
         }
     }
-
 
     return (
         <div className='p-4 bg-white dark:bg-primary-900 rounded-xl border border-primary-50 dark:border-primary-800/50'>
@@ -114,7 +95,6 @@ const InsertProductForm = ({ product }: { product: IProduct }) => {
             <Form {...form}>
                 <form action="" className='my-4' onSubmit={form.handleSubmit(handleUpdateForm)}>
                     <div className='grid grid-cols-1 lg:grid-cols-2 gap-2.5'>
-
 
                         <CustomFormField
                             control={form.control}
@@ -251,7 +231,6 @@ const InsertProductForm = ({ product }: { product: IProduct }) => {
                                 placeholder='مثلا 20%'
                             />
                         )}
-
                     </div>
 
                     <div className='mt-4'>

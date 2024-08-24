@@ -4,21 +4,12 @@ import CategoryFilter from './CategoryFilter'
 import CategoryDetailsBoxes from './CategoryDetailsBoxes'
 import CategoryList from './CategoryList'
 import PageContainer from '../../Modules/PageContainer'
+import { IGetCategories } from '@/app/_types'
 
-interface CategoriesContainerProps {
-    categories: ICategory[],
-    categoriesDetails: {
-        categoriesCount: number,
-        categoriesAllCount: number,
-        categoriesActiveCount: number,
-        categoriesNonActiveCount: number
-    }
-}
 
-const CategoriesContainer = ({ categories, categoriesDetails }: CategoriesContainerProps) => {
+const CategoriesContainer = ({ categories, categoriesDetails }: IGetCategories) => {
     return (
         <PageContainer>
-
             <CategoryFilter />
             <CategoryDetailsBoxes categoriesDetails={categoriesDetails} />
             <CategoryList categories={categories} categoriesCount={categoriesDetails.categoriesCount} />

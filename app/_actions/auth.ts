@@ -15,7 +15,6 @@ import { IVerify } from "../_types/verify";
 
 
 export const LoginUser = async (phone: string) => {
-
     await connectToDB();
     await verifyModel.deleteMany({ phone });
     const code = codeGenerator();
@@ -41,8 +40,7 @@ export const LoginUser = async (phone: string) => {
 }
 
 export const VerifyCodeUser = async (phone: string, code: number) => {
-
-    await connectToDB();
+     await connectToDB();
     //Check User Register Before 
     const isRegisterBefore = await userModel.findOne({ phone }).lean() as IUser;
     const verifyDocument = await verifyModel.findOneAndUpdate({ phone }, { $inc: { times: +1 } }, { new: true }).lean() as IVerify;

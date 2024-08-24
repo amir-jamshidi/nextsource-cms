@@ -16,6 +16,8 @@ import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import adminNotificationModel from "../_models/adminNotifications.model";
 import { IAdminNotification } from "../_types/adminNotification";
+import { Types } from "mongoose";
+import isAdmin from "../_middlewares/isAdmin";
 
 interface IGetUsers {
     day: number | string,
@@ -23,9 +25,7 @@ interface IGetUsers {
 }
 
 export const getUsers = async ({ day = 1, page = 1 }: IGetUsers) => {
-
     await connectToDB();
-
     let startDate;
     if (day === 'all') {
         startDate = new Date(0);
@@ -66,7 +66,12 @@ export const getUsers = async ({ day = 1, page = 1 }: IGetUsers) => {
 }
 
 export const getUserDetails = async ({ userID }: { userID: string }) => {
+    await connectToDB();
+    if (!Types.ObjectId.isValid(userID)) return false;
+
     const user = await userModel.findOne({ _id: userID }).lean();
+
+    if (!user) return false;
 
     const tickets = await ticketModel.find({ userID })
         .populate({ path: 'sectionID', model: sectionModel })
@@ -92,6 +97,10 @@ export const getUserDetails = async ({ userID }: { userID: string }) => {
 }
 
 export const updateUser = async (form: FormData) => {
+    await connectToDB()
+    const isAdminUser = await isAdmin();
+    if (!isAdminUser) return messageCreator(false, 'در حالت تستی امکان ویرایش نیست')
+
     if (form.get('profile') && form.get('profile') !== 'undefined') {
         const { name } = form.get('profile') as File
         const imageName = `${Math.random()}${Date.now()}.${name.slice(name.lastIndexOf('.'))}`
@@ -102,23 +111,32 @@ export const updateUser = async (form: FormData) => {
             .upload(imageName, form.get('profile')!);
         await userModel.findOneAndUpdate({ _id: form.get('userID') }, { fullname: form.get('fullname'), phone: form.get('phone'), email: form.get('email'), bio: form.get('bio'), role: form.get('role'), profile: profileURL })
     }
+
     await userModel.findOneAndUpdate({ _id: form.get('userID') }, { fullname: form.get('fullname'), phone: form.get('phone'), email: form.get('email'), bio: form.get('bio'), role: form.get('role') })
     revalidatePath(`/users/${form.get('userID')}`);
     return messageCreator(true, 'اطلاعات کاربر ویرایش شد')
 }
 
 export const getSellers = async () => {
+    await connectToDB()
+
     const users = await userModel.find({ role: 'ADMIN' }).select('email').lean();
     return JSON.parse(JSON.stringify(users));
 }
 
 export const removeUser = async ({ userID }: { userID: string }) => {
+    await connectToDB()
+    const isAdminUser = await isAdmin();
+    if (!isAdminUser) return messageCreator(false, 'در حالت تستی امکان حذف نیست')
+
     await userModel.findOneAndDelete({ _id: userID });
     revalidatePath('/users');
     redirect('/users');
 }
 
 export const getAdminNotifications = async () => {
+    await connectToDB()
+
     const notificationsList: IAdminNotification[] = await adminNotificationModel.find({ isShow: true }).lean();
 
     const order = notificationsList.filter(notif => notif.type === 'ORDER').length
@@ -133,11 +151,15 @@ export const getAdminNotifications = async () => {
 }
 
 export const seeNotifications = async () => {
+    await connectToDB()
+
     await adminNotificationModel.updateMany({ isShow: true }, { isShow: false });
     revalidatePath('/');
 }
 
 export const logout = async () => {
+    await connectToDB()
+
     cookies().delete('token');
     redirect('/login');
 }

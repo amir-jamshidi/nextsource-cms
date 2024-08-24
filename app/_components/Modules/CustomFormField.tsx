@@ -1,33 +1,16 @@
 'use client'
 
+import { ICustomField } from '@/app/_types'
 import { Checkbox } from '@/components/ui/checkbox'
-import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { SelectContent, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Select } from '@radix-ui/react-select'
-import Image from 'next/image'
-import React from 'react'
-import { Control } from 'react-hook-form'
 import PhoneInput from 'react-phone-number-input'
 import 'react-phone-number-input/style.css'
 
-interface CustomProps {
-    control: Control<any>
-    fieldType: 'input' | 'textarea' | 'phoneInput' | 'checkbox' | 'datePicket' | 'select' | 'skeleton' | 'file'
-    name: string
-    label?: string
-    placeholder?: string
-    iconImg?: React.ReactNode
-    iconAlt?: string
-    disabled?: boolean,
-    dateFormat?: string,
-    showTimeSelect?: boolean,
-    children?: React.ReactNode,
-    renderSkeleton?: (field: any) => React.ReactNode
-    accept?: 'image/*' | '.rar,.zip'
-}
 
-const RenderField = ({ field, props }: { field: any, props: CustomProps }) => {
+const RenderField = ({ field, props }: { field: any, props: ICustomField }) => {
 
     const { fieldType, iconImg, placeholder } = props
 
@@ -136,11 +119,10 @@ const RenderField = ({ field, props }: { field: any, props: CustomProps }) => {
             )
         }
     }
-
 }
 
 
-const CustomFormField = (props: CustomProps) => {
+const CustomFormField = (props: ICustomField) => {
     return (
         <FormField
             control={props.control}

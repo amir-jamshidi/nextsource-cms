@@ -1,21 +1,10 @@
-import { IProduct } from "@/app/_types/product"
-import ProductFilter from "./ProductFilter"
-import ProductDetailsBoxes from "./ProductDetailsBoxes"
-import ProductList from "./ProductList"
+import { IGetProducts } from "@/app/_types"
 import PageContainer from "../../Modules/PageContainer"
+import ProductDetailsBoxes from "./ProductDetailsBoxes"
+import ProductFilter from "./ProductFilter"
+import ProductList from "./ProductList"
 
-
-interface ProductsContainerProps {
-    products: IProduct[],
-    productsDetails: {
-        productsCount: number,
-        productsFreeCount: number,
-        productNonFreeCount: number,
-        productInPlanCount: number
-    }
-}
-
-const ProductsContainer = ({ products, productsDetails }: ProductsContainerProps) => {
+const ProductsContainer = ({ products, productsDetails }: IGetProducts) => {
     return (
         <PageContainer>
             <ProductFilter />

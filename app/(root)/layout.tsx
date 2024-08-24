@@ -2,13 +2,9 @@ import React from 'react'
 import Header from '../_components/Templates/Header/Header'
 import Sidebar from '../_components/Templates/Sidebar/Sidebar'
 import isAdmin from '../_middlewares/isAdmin';
-import { redirect } from 'next/navigation';
 
 
 const layout = async ({ children }: { children: React.ReactNode }) => {
-
-    const isAdminUser = await isAdmin();
-    if (!isAdminUser) redirect('/login');
 
     return (
         <div className="grid h-screen grid-cols-[300px,1fr] grid-rows-[64px,1fr]" id="root">

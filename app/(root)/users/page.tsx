@@ -1,27 +1,16 @@
 import { getUsers } from '@/app/_actions/user'
 import UsersContainer from '@/app/_components/Pages/users/UsersContainer'
-import { IUser } from '@/app/_types/user'
+import { IGetUsers } from '@/app/_types'
 import { Metadata } from 'next'
-import React from 'react'
 
 export const metadata: Metadata = {
     title: 'کاربران'
-  }
+}
 
-  interface IUsersProps {
+interface IUsersProps {
     searchParams: {
         page: number,
         day: number | string
-    }
-}
-
-interface IGetUsers {
-    users: IUser[],
-    usersDetails: {
-        usersCount: number,
-        usersAllCount: number,
-        usersAdminCount: number,
-        usersBlockCount: number,
     }
 }
 

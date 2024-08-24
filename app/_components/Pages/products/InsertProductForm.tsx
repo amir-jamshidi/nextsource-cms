@@ -1,4 +1,5 @@
 'use client'
+
 import { productSchema } from '@/app/_utils/Schemas'
 import { Form } from '@/components/ui/form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -14,6 +15,7 @@ import { useSellers } from '@/app/_hooks/useSellers'
 import { useRouter } from 'next/navigation'
 import { ICategory } from '@/app/_types/category'
 import { IUser } from '@/app/_types/user'
+import { IProductInsertForm } from '@/app/_types'
 
 const defaultValues = {
     title: '',
@@ -33,24 +35,6 @@ const defaultValues = {
     link: undefined,
 }
 
-interface IProductFormProps {
-    title: string
-    description: string,
-    href: string,
-    price: string,
-    preView: string,
-    size: string,
-    categoryID: string,
-    creatorID: string,
-    isPlan: boolean,
-    isFree: boolean,
-    isOff: boolean,
-    precentOff: string,
-    cashBack: string,
-    photo: File | undefined,
-    link: File | undefined,
-}
-
 const InsertProductForm = () => {
 
     const router = useRouter();
@@ -60,7 +44,7 @@ const InsertProductForm = () => {
     const { data: categories = [] }: { data: ICategory[] } = useCategories()
     const { data: sellers = [] }: { data: IUser[] } = useSellers();
 
-    const form = useForm({
+    const form = useForm<IProductInsertForm>({
         resolver: zodResolver(productSchema),
         defaultValues
     })
@@ -68,8 +52,7 @@ const InsertProductForm = () => {
     const { watch } = form
     const isOff = watch('isOff');
 
-
-    const handleForm = async (values: IProductFormProps) => {
+    const handleForm = async (values: IProductInsertForm) => {
         try {
             setIsLoading(true)
             const formData = new FormData();
@@ -82,13 +65,13 @@ const InsertProductForm = () => {
 
             const res = await insertProduct({ values, formData })
 
+            if (!res.state) return toast.error(res.message);
+
             if (res.state) {
                 toast.success(res.message)
                 form.reset(defaultValues);
                 router.push('/products');
             }
-
-            if (!res.state) return toast.error(res.message);
 
         } catch (error) {
             toast.success('خطای ناشناخته ای رخ داد')
@@ -207,8 +190,6 @@ const InsertProductForm = () => {
                                 <SelectItem key={String(seller._id)} value={String(seller._id)}>{seller.email}</SelectItem>
                             ))}
                         </CustomFormField>
-
-
 
                         <CustomFormField
                             control={form.control}

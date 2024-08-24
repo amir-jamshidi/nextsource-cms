@@ -6,6 +6,7 @@ import { SHOW_IN_PAGE } from "../_constants/gobalVariables";
 import alertModel from "../_models/alert.module"
 import { IAlert } from "../_types/alert";
 import { messageCreator } from "../_utils/messageCreator";
+import isAdmin from "../_middlewares/isAdmin";
 
 interface IGetAlerts {
     page: number,
@@ -43,15 +44,20 @@ export const getAlerts = async ({ page, type }: IGetAlerts) => {
 
     return { alerts: JSON.parse(JSON.stringify(alerts)), alertsDetails }
 }
-
 export const deleteAlert = async ({ alertID }: { alertID: string }) => {
     await connectToDB();
+    const isAdminUser = await isAdmin();
+    if (!isAdminUser) return messageCreator(false, 'در حالت تستی امکان حذف نیست')
+
     await alertModel.findOneAndDelete({ _id: alertID }).lean();
     revalidatePath('/alerts');
     return messageCreator(true, 'پیام مورد نظر حذف شد')
 }
 export const addAlert = async ({ title, body, href, type }: { title: string, body: string, href?: string, type: string }) => {
     await connectToDB();
+    const isAdminUser = await isAdmin();
+    if (!isAdminUser) return messageCreator(false, 'در حالت تستی امکان اضافه کردن نیست')
+
     await alertModel.create({ title, body, href, type: type.toUpperCase() });
     revalidatePath('/alerts');
     return messageCreator(true, 'پیام جدید اضافه شد');

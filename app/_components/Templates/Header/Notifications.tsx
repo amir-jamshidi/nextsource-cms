@@ -1,10 +1,10 @@
-import { getAdminNotifications } from "@/app/_actions/user"
+import { getAdminNotifications } from "@/app/_actions/user";
 import {
     Popover,
     PopoverContent,
     PopoverTrigger,
-} from "@/components/ui/popover"
-import { HiOutlineBell, HiOutlineBellSlash, HiOutlineShoppingBag, HiOutlineTicket, HiOutlineUser } from "react-icons/hi2"
+} from "@/components/ui/popover";
+import { HiOutlineBell, HiOutlineBellSlash, HiOutlineShoppingBag, HiOutlineTicket, HiOutlineUser } from "react-icons/hi2";
 import NotificationButton from "./NotificationButton";
 
 const Notifications = async () => {

@@ -10,7 +10,6 @@ const Sidebar = () => {
                 </div>
                 <SidebarMenus />
                 <div className='flex justify-center'>
-                    {/* <span className='font-medium text-primary-800 text-sm mx-auto py-1.5 font-mo'>توسعه توسط امیر حسین جمشیدی</span> */}
                 </div>
             </div>
         </aside >

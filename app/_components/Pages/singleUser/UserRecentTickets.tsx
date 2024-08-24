@@ -26,7 +26,6 @@ const UserRecentTickets = ({ tickets }: { tickets: ITicket[] }) => {
             </div>
           )
         }
-
       </div >
     </div >
   )

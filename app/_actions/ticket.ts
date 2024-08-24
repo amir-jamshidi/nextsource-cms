@@ -8,6 +8,7 @@ import ticketModel from "../_models/ticket.module"
 import userModel from "../_models/user.module";
 import { ITicket } from "../_types/ticket";
 import { messageCreator } from "../_utils/messageCreator";
+import isAdmin from "../_middlewares/isAdmin";
 
 
 interface getTicketsProps {
@@ -23,7 +24,6 @@ interface answerTicketProps {
 }
 
 export const getTickets = async ({ status, page, day }: getTicketsProps) => {
-
     await connectToDB();
 
     let options: { createdAt?: {}, isAnswer?: boolean } = {}
@@ -72,13 +72,19 @@ export const getTickets = async ({ status, page, day }: getTicketsProps) => {
 
 export const answerTicket = async ({ ticketID, answer }: answerTicketProps) => {
     await connectToDB();
+    const isAdminUser = await isAdmin();
+    if (!isAdminUser) return messageCreator(false, 'در حالت تستی امکان پاسخ نیست')
+
     await ticketModel.findOneAndUpdate({ _id: ticketID }, { isAnswer: true, answerContent: answer }).lean();
     revalidatePath('/tickets');
     return messageCreator(true, 'پاسخ شما ثبت شد');
 }
 
 export const deleteTicket = async (ticketID: string) => {
-    console.log(ticketID);
+    await connectToDB()
+    const isAdminUser = await isAdmin();
+    if (!isAdminUser) return messageCreator(false, 'در حالت تستی امکان حذف نیست')
+
     await ticketModel.findOneAndDelete({ _id: ticketID });
     revalidatePath('/tickets');
     return messageCreator(true, 'تیکت حذف شد');

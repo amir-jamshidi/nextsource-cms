@@ -1,23 +1,21 @@
-import React from 'react'
-import DetailsBoxesContainer from '../../Modules/DetailsBoxesContainer'
-import DetailsBox from '../../Modules/DetailsBox'
+import { ISingleProductDetails } from '@/app/_types'
 import { HiOutlineBanknotes, HiOutlineCircleStack, HiOutlineReceiptPercent, HiOutlineShoppingBag, HiOutlineShoppingCart, HiOutlineSquares2X2, HiOutlineTrophy, HiOutlineUser } from 'react-icons/hi2'
-import { IProduct } from '@/app/_types/product'
+import DetailsBox from '../../Modules/DetailsBox'
+import DetailsBoxesContainer from '../../Modules/DetailsBoxesContainer'
 
-const SingleProductBoxes = ({ productDetails, product }: { productDetails: any, product: IProduct }) => {
+interface ISingleProductDetailsProps {
+    productDetails: ISingleProductDetails
+}
 
+const SingleProductBoxes = ({ productDetails }: ISingleProductDetailsProps) => {
     const offStr = ((productDetails.isOff && productDetails.isFree) || productDetails.isFree) ? 'محصول رایگان می باشد' : productDetails.isOff ? `${productDetails.precentOff}% تخقیف` : 'بدون تخفیف'
-
     let OffPrice;
-    if (product.isOff && !product.isFree) {
-        OffPrice = ((product.price - (product.price * product.precentOff) / 100)).toLocaleString()
+    if (productDetails.isOff && !productDetails.isFree) {
+        OffPrice = ((productDetails.price - (productDetails.price * productDetails.precentOff) / 100)).toLocaleString()
     }
-    if (product.isFree) {
+    if (productDetails.isFree) {
         OffPrice = 'رایگان'
     }
-
-    console.log(OffPrice)
-
     return (
         <DetailsBoxesContainer>
             <DetailsBox color='bg-blue-200 dark:bg-blue-800' title='عنوان محصول' value={productDetails.title} icon={<HiOutlineShoppingBag size={45} className='text-blue-600 dark:text-blue-300' />} />

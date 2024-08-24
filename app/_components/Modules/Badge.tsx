@@ -1,7 +1,8 @@
+import { IBadge } from '@/app/_types';
 import React from 'react'
 import { HiOutlineCheck } from 'react-icons/hi2'
 
-const Badge = ({ text, type, icon = true }: { text: string, type: "amber"| "green" | "blue" | "red" | "rose" | "violet", icon?: boolean }) => {
+const Badge = ({ text, type, icon = true }: IBadge) => {
 
     let extraClasses = ``;
     if (type === 'blue') extraClasses = `dark:font-ir dark:bg-blue-900 dark:text-blue-200 font-ir bg-blue-300 text-blue-800`

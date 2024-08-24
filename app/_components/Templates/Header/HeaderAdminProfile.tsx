@@ -1,14 +1,10 @@
 import isAdmin from '@/app/_middlewares/isAdmin';
 import { IUser } from '@/app/_types/user';
-import Profile from '@/public/images/18718850.jpg'
 import Image from 'next/image';
-import React from 'react'
 
 
 const HeaderAdminProfile = async () => {
-
     const admin = await isAdmin() as IUser;
-
     return (
         <div className='lg:flex hidden gap-x-2.5 items-center'>
             <div className='rounded-full h-11 w-11 overflow-hidden border border-primary-50 dark:border-primary-800/50'>

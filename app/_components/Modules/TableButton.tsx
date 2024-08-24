@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import React from 'react'
-import { HiOutlineEye } from 'react-icons/hi2'
 
 interface TableButtonProps {
     link?: string,

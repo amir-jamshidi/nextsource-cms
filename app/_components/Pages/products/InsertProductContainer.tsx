@@ -1,7 +1,6 @@
-import React from 'react'
 import PageContainer from '../../Modules/PageContainer'
-import InsertProductForm from './InsertProductForm'
 import InsertProductFilter from './InsertProductFilter'
+import InsertProductForm from './InsertProductForm'
 
 const InsertProductContainer = () => {
     return (

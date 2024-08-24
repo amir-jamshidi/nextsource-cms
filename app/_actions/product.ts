@@ -11,12 +11,21 @@ import { messageCreator } from "../_utils/messageCreator"
 import supabase, { supabaseUrl } from "../_services/supabase"
 import { redirect } from "next/navigation"
 import { Parser } from "../_utils/Parser"
+import { IOrder } from "../_types/order"
+import { ISingleProductDetails } from "../_types"
+import { ICategory } from "../_types/category"
+import { IUser } from "../_types/user"
+import { Types } from "mongoose"
+import connectToDB from "../_configs/database"
+import isAdmin from "../_middlewares/isAdmin"
 
 interface IGetProducts {
     state: "free" | "nonfree" | "all" | "inplan",
     page: number
 }
 export const getProducts = async ({ state, page }: IGetProducts) => {
+    await connectToDB();
+
     let options: { isFree?: boolean, isPlan?: boolean } = {}
 
     if (state === 'free' || state === 'nonfree') options = { isFree: state === 'free' ? true : false }
@@ -48,26 +57,43 @@ export const getProducts = async ({ state, page }: IGetProducts) => {
 
 }
 export const getProductDetails = async ({ productID }: { productID: string }) => {
+    await connectToDB();
 
-    const product = await productModel.findOne({ _id: productID })
+    if (!Types.ObjectId.isValid(productID)) return false
+
+    const product: IProduct | null = await productModel.findOne({ _id: productID })
         .populate({ path: 'categoryID', model: categoryModel })
         .populate({ path: 'creatorID', model: userModel })
         .lean();
-    const orders = await orderModel.find({ productID }).populate({ path: 'userID', model: userModel }).sort({ _id: -1 }).lean();
+
+    if (!product) return false
+
+    const orders: IOrder[] = await orderModel.find({ productID }).populate({ path: 'userID', model: userModel }).sort({ _id: -1 }).lean();
     const productOrder = await orderModel.find({ productID }).select('totalPrice').lean();
-    const categories = await categoryModel.find({}).select('title').lean();
 
 
     const productSaleCount = productOrder.length;
     const productSalePrice = productOrder.reduce((total, cur) => total + cur.totalPrice, 0);
 
-    const productDetails = {
-        ...product, productSaleCount, productSalePrice
+    const productDetails: ISingleProductDetails = {
+        title: product.title,
+        price: product.price,
+        isOff: product.isOff,
+        precentOff: product.precentOff,
+        creatorID: product.creatorID as IUser,
+        categoryID: product.categoryID as ICategory,
+        isPlan: product.isPlan,
+        isFree: product.isFree,
+        productSaleCount,
+        productSalePrice
     }
 
-    return { productDetails, product: JSON.parse(JSON.stringify(product)), categories: JSON.parse(JSON.stringify(categories)), sellers: Parser(orders) }
+    return { productDetails, product: JSON.parse(JSON.stringify(product)), sellers: Parser(orders) }
 }
 export const updateProduct = async ({ productID, values, formData }: { productID: string, values: {}, formData: FormData }) => {
+    await connectToDB();
+    const isAdminUser = await isAdmin();
+    if (!isAdminUser) return messageCreator(false, 'در حالت تستی امکان ویرایش نیست')
 
     let photoPath;
     let filePath;
@@ -104,11 +130,13 @@ export const updateProduct = async ({ productID, values, formData }: { productID
     await productModel.findOneAndUpdate({ _id: productID }, options);
 
     revalidatePath('/products', 'layout')
-    return messageCreator(true, 'محصول اضافه شد')
+    return messageCreator(true, 'محصول ویرایش شد')
 }
 export const insertProduct = async ({ values, formData }: { values: {}, formData: FormData }) => {
-    console.log(formData.get('photo'))
-    console.log(formData.get('link'))
+    await connectToDB();
+    const isAdminUser = await isAdmin();
+    if (!isAdminUser) return messageCreator(false, 'در حالت تستی امکان اضافه کردن نیست')
+
 
     const photoStr = formData.get('photo')?.name!
     const ext = photoStr.slice(photoStr.lastIndexOf('.'));
@@ -135,6 +163,10 @@ export const insertProduct = async ({ values, formData }: { values: {}, formData
     return messageCreator(true, 'محصول اضافه شد')
 }
 export const removeProduct = async ({ productID }: { productID: string }) => {
+    await connectToDB();
+    const isAdminUser = await isAdmin();
+    if (!isAdminUser) return messageCreator(false, 'در حالت تستی امکان حذف نیست')
+
     await productModel.findOneAndDelete({ _id: productID });
     revalidatePath('/products');
     redirect('/products');

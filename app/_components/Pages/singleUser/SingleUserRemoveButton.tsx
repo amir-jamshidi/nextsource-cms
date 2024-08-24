@@ -1,26 +1,22 @@
 'use client'
 
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { TrashIcon } from '@radix-ui/react-icons'
-import React, { useState } from 'react'
-import { HiOutlineEllipsisVertical, HiOutlineTrash } from 'react-icons/hi2'
-import Modal from '@/app/_components/Modules/Modal'
 import { removeUser } from '@/app/_actions/user'
+import Modal from '@/app/_components/Modules/Modal'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { useState } from 'react'
 import toast from 'react-hot-toast'
-import { useRouter } from 'next/navigation'
+import { HiOutlineEllipsisVertical, HiOutlineTrash } from 'react-icons/hi2'
 
 const SingleUserRemoveButton = ({ userID }: { userID: string }) => {
 
-    const router = useRouter();
-
     const [isLoading, setIsLoading] = useState(false);
-    // const [openMenu, setOpenMenu] = useState(false);
 
     const handleRemoveUser = async () => {
         console.log('first')
         try {
             setIsLoading(true)
-            await removeUser({ userID });
+            const res = await removeUser({ userID });
+            if (!res.state) return toast.error(res.message);
         } catch (error) {
             toast.error('خطای غیر منتظره ای رخ داد')
         } finally {

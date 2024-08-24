@@ -15,11 +15,6 @@ const Modal = ({ children, open, setOpen }: { children: React.ReactNode, open?: 
     const [isShowModal, setIsShowModal] = useState(false);
 
     useEffect(() => {
-        // if (isShowModal) document.body.style.overflow = 'hidden'
-        // if (!isShowModal) document.body.style.overflow = 'auto'
-    }, [isShowModal])
-
-    useEffect(() => {
         if (open !== undefined) {
             setIsShowModal(open);
         }
@@ -27,7 +22,7 @@ const Modal = ({ children, open, setOpen }: { children: React.ReactNode, open?: 
 
     useEffect(() => {
         setOpen?.(isShowModal);
-    }, [isShowModal])
+    }, [isShowModal, setOpen])
 
     return (
         <ModalContext.Provider value={{ isShowModal, setIsShowModal }}>

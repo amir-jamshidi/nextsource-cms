@@ -20,8 +20,9 @@ const TicketButtonDelete = ({ ticketID }: TicketButtonDeleteProps) => {
 
             setIsPending(true)
             const res = await deleteTicket(ticketID);
-            if (res) {
-                toast.success('تیکت حذف شد');
+            if (!res.state) return toast.error(res.message);
+            if (res.state) {
+                toast.success(res.message);
                 setIsOpen(false);
             }
         } catch (error) {

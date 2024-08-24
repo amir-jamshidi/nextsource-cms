@@ -1,7 +1,7 @@
 'use client'
 import { deleteCategory } from '@/app/_actions/category'
-import Modal, { useModalContext } from '@/app/_components/Modules/Modal'
-import { useState, useTransition } from 'react'
+import Modal from '@/app/_components/Modules/Modal'
+import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { HiOutlineTrash } from 'react-icons/hi2'
 import TableButton from '../../Modules/TableButton'
@@ -12,20 +12,22 @@ interface CategoryDeleteButtonProps {
 
 const CategoryDeleteButton = ({ categoryID }: CategoryDeleteButtonProps) => {
 
-    const [isPending, startTransition] = useTransition();
+    const [isLoading, setIsLoading] = useState(false);
     const [isOpen, setIsOpen] = useState<undefined | boolean>(undefined);
 
-    const handleRemoveCategory = () => {
+    const handleRemoveCategory = async () => {
         try {
-            startTransition(async () => {
-                const result = await deleteCategory({ categoryID });
-                if (result.state) {
-                    toast.success(result.message);
-                    setIsOpen(false);
-                }
-            })
+            setIsLoading(true)
+            const res = await deleteCategory({ categoryID });
+            if (!res.state) return toast.error(res.message);
+            if (res.state) {
+                toast.success(res.message);
+                setIsOpen(false);
+            }
         } catch (error) {
             toast.error('خطای غیر منتظره ای رخ داد')
+        } finally {
+            setIsLoading(false);
         }
     }
 
@@ -54,8 +56,8 @@ const CategoryDeleteButton = ({ categoryID }: CategoryDeleteButtonProps) => {
                             <Modal.Close>
                                 <button className="bg-blue py-3 rounded-xl font-mo text-white text-sm">نه بیخیال</button>
                             </Modal.Close>
-                            <button disabled={isPending} onClick={() => handleRemoveCategory()} className="bg-red rounded-xl font-mo py-3 text-white text-sm">
-                                {isPending ? "لطفا صبر کن ..." : "اره حذف بشه"}
+                            <button disabled={isLoading} onClick={() => handleRemoveCategory()} className="bg-red rounded-xl font-mo py-3 text-white text-sm">
+                                {isLoading ? "لطفا صبر کن ..." : "اره حذف بشه"}
                             </button>
                         </div>
                     </div>

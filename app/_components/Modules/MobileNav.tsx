@@ -7,9 +7,9 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet"
 import Image from "next/image"
+import Link from "next/link"
 import { HiOutlineBars3 } from "react-icons/hi2"
 import NavContent from "./NavContent"
-import Link from "next/link"
 
 
 export default async function MobileNav() {
@@ -38,15 +38,28 @@ export default async function MobileNav() {
                     </SheetClose>
                 </div>
 
-                <div className="flex border-y border-primary-50 dark:border-primary-800/50 mt-5 mb-6 items-center gap-x-1.5 py-2">
-                    <div className="relative h-16 w-16 overflow-hidden">
-                        <Image width={64} height={64} alt="Profile IMG" className="rounded-full" src={admin.profile} />
-                    </div>
-                    <div className="flex flex-col items-start gap-y-0.5">
-                        <p className="font-sm tracking-tight text-primary-700 dark:text-gray-100 font-mo">{admin.fullname}</p>
-                        <p className='text-white text-xs font-mo bg-green-400 dark:bg-green-600 dark:text-primary-100 rounded px-2'>{admin.role === 'ADMIN' && 'مدیریت'}</p>
-                    </div>
-                </div>
+                {admin ? (
+                    <div className="flex border-y border-primary-50 dark:border-primary-800/50 mt-5 mb-6 items-center gap-x-1.5 py-2">
+                        <div className="relative h-16 w-16 overflow-hidden">
+                            <Image width={64} height={64} alt="Profile IMG" className="rounded-full" src={admin.profile} />
+                        </div>
+                        <div className="flex flex-col items-start gap-y-0.5">
+                            <p className="font-sm tracking-tight text-primary-700 dark:text-gray-100 font-mo">{admin.fullname}</p>
+                            <p className='text-white text-xs font-mo bg-green-400 dark:bg-green-600 dark:text-primary-100 rounded px-2'>{admin.role === 'ADMIN' && 'مدیریت'}</p>
+                        </div>
+                    </div>) : (
+                    <div className="flex border-y border-primary-50 dark:border-primary-800/50 mt-5 mb-6 items-center gap-x-1.5 py-2">
+                        <div className="relative h-16 w-16 overflow-hidden">
+                            <Image width={64} height={64} alt="Profile IMG" className="rounded-full" src={'/images/admin.jpg'} />
+                        </div>
+                        <div className="flex flex-col items-start gap-y-0.5">
+                            <p className="font-sm tracking-tight text-primary-700 dark:text-gray-100 font-mo">امیرحسین جمشیدی</p>
+                            <div className="flex items-center gap-x-0.5">
+                                <p className='text-white text-xs font-mo bg-green-400 dark:bg-green-600 dark:text-primary-100 rounded px-2'>مدیریت</p>
+                                <p className="text-xs text-primary-800 dark:text-white border border-green-400 rounded px-2 dark:border-green-600 font-mo">حالت تستی</p>
+                            </div>
+                        </div>
+                    </div>)}
                 <SheetClose asChild>
                     <NavContent />
                 </SheetClose>

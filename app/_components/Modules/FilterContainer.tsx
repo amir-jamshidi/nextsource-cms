@@ -1,11 +1,6 @@
-import React from 'react'
+import { IFilterContainer } from '@/app/_types'
 
-interface FilterContainerProps {
-    children: React.ReactNode,
-    title: string
-}
-
-const FilterContainer = ({ children,title } : FilterContainerProps) => {
+const FilterContainer = ({ children, title }: IFilterContainer) => {
     return (
         <div className='flex flex-col lg:flex-row gap-y-6 justify-between'>
             <div className="flex items-center gap-x-1.5">

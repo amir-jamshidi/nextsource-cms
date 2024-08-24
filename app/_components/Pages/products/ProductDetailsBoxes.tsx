@@ -1,18 +1,9 @@
-import React from 'react'
+import { HiOutlineCircleStack, HiOutlineGiftTop, HiOutlineShoppingBag, HiOutlineTrophy } from 'react-icons/hi2'
 import DetailsBox from '../../Modules/DetailsBox'
 import DetailsBoxesContainer from '../../Modules/DetailsBoxesContainer'
-import { HiOutlineCircleStack, HiOutlineExclamationTriangle, HiOutlineGiftTop, HiOutlineShieldCheck, HiOutlineShoppingBag, HiOutlineSquare3Stack3D, HiOutlineTicket, HiOutlineTrophy } from 'react-icons/hi2'
+import { IProductsDetails } from '@/app/_types'
 
-interface ProductDetailsBoxesProps {
-    productsDetails: {
-        productsCount: number,
-        productsFreeCount: number,
-        productNonFreeCount: number,
-        productInPlanCount: number
-    }
-}
-
-const ProductDetailsBoxes = ({ productsDetails }: ProductDetailsBoxesProps) => {
+const ProductDetailsBoxes = ({ productsDetails }: IProductsDetails) => {
     return (
         <DetailsBoxesContainer>
             <DetailsBox color='bg-blue-200 dark:bg-blue-800' title='محصول ها' value={`${productsDetails.productsCount} محصول`} icon={<HiOutlineShoppingBag size={45} className='text-blue-600 dark:text-blue-300' />} />

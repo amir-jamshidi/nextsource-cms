@@ -1,14 +1,12 @@
 'use client'
 
+import { IPagination } from '@/app/_types';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi2'
 
-interface PaginationProps {
-    sourceCount: number,
-    showInPage: number
-}
 
-const Pagination = ({ sourceCount, showInPage }: PaginationProps) => {
+
+const Pagination = ({ sourceCount, showInPage }: IPagination) => {
 
     const searchParams = useSearchParams();
     const pathName = usePathname();

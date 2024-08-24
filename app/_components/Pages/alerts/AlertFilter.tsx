@@ -1,6 +1,5 @@
-import React from 'react'
-import FilterContainer from '../../Modules/FilterContainer'
 import Filter from '../../Modules/Filter'
+import FilterContainer from '../../Modules/FilterContainer'
 import AlertButtonInsert from './AlertButtonInsert'
 
 const AlertFilter = () => {

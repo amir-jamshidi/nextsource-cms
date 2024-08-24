@@ -14,19 +14,15 @@ import { HiOutlineBell, HiOutlineLink, HiOutlinePencil, HiOutlinePlus } from "re
 import CloseButton from "../../Modules/CloseButton"
 import CustomField from "../../Modules/CustomFormField"
 import SubmitButton from "../../Modules/SubmitButton"
+import { IAlertsForm } from "@/app/_types"
 
-interface IFormAlert {
-    title: string,
-    body: string,
-    href: string,
-    type: string
-}
+
 
 const AlertButtonInsert = () => {
 
     const [isLoading, setIsLoading] = useState(false);
     const [isOpen, setIsOpen] = useState<undefined | boolean>(undefined);
-    const form = useForm<IFormAlert>({
+    const form = useForm<IAlertsForm>({
         resolver: zodResolver(alertSchema),
         defaultValues: {
             title: "",
@@ -35,12 +31,15 @@ const AlertButtonInsert = () => {
             type: 'success'
         },
     })
-    const handleAddAlert = async ({ title, body, href, type }: { title: string, body: string, href?: string, type: string }) => {
+    const handleAddAlert = async ({ title, body, href, type }: IAlertsForm) => {
         try {
             setIsLoading(true);
             const res = await addAlert({ title, body, href, type });
-            form.reset({ title: '', href: '', body: '', type: 'success' });
-            if (res.state) toast.success(res.message)
+            if (!res.state) return toast.error(res.message);
+            if (res.state) {
+                toast.success(res.message)
+                form.reset({ title: '', href: '', body: '', type: 'success' });
+            }
         } catch (error) {
             toast.error('خطای غیر منتظره ای رخ داد')
         } finally {

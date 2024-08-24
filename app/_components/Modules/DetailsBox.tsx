@@ -1,14 +1,8 @@
+import { IDetailsBox } from '@/app/_types'
 import React from 'react'
 
-interface DetailsBoxProps {
-    title: string,
-    color: string,
-    value: number | string,
-    icon: React.ReactNode,
-    subValue?: string
-}
 
-const DetailsBox = ({ title, color, value, icon, subValue }: DetailsBoxProps) => {
+const DetailsBox = ({ title, color, value, icon, subValue }: IDetailsBox) => {
 
     return (
         <div className='h-24 bg-white dark:bg-primary-900 rounded-xl border-primary-100/50 flex items-center px-2 gap-x-3 border dark:border-primary-800/50'>

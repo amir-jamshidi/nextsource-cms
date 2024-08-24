@@ -1,5 +1,6 @@
 import { getAlerts } from '@/app/_actions/alert'
 import AlertsContainer from '@/app/_components/Pages/alerts/AlertsContainer';
+import { IGetAlerts } from '@/app/_types';
 import { IAlert } from '@/app/_types/alert';
 import { Metadata } from 'next';
 import React from 'react'
@@ -15,7 +16,7 @@ interface IAlertsProps {
   }
 }
 const Alerts = async ({ searchParams: { page = 1, type = 'all' } }: IAlertsProps) => {
-  const { alerts, alertsDetails } = await getAlerts({ page, type });
+  const { alerts, alertsDetails }: IGetAlerts = await getAlerts({ page, type });
   return (
     <AlertsContainer alerts={alerts} alertsDetails={alertsDetails} />
   )

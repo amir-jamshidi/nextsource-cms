@@ -4,18 +4,9 @@ import UserFilter from './UserFilter'
 import UserDetailsBoxes from './UserDetailsBoxes'
 import UsersList from './UserList'
 import PageContainer from '../../Modules/PageContainer'
+import { IGetUsers } from '@/app/_types'
 
-interface UserContainerProps {
-  users: IUser[],
-  usersDetails: {
-    usersCount: number,
-    usersAllCount: number,
-    usersAdminCount: number,
-    usersBlockCount: number,
-  }
-}
-
-const UsersContainer = ({ users, usersDetails }: UserContainerProps) => {
+const UsersContainer = ({ users, usersDetails }: IGetUsers) => {
   return (
     <PageContainer>
       <UserFilter />

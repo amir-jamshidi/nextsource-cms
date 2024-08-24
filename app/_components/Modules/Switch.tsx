@@ -1,6 +1,5 @@
 'use client'
-import React from 'react'
-import { HiOutlineCheckCircle, HiOutlineExclamationTriangle, HiOutlineXCircle, HiOutlineXMark } from 'react-icons/hi2'
+import { HiOutlineCheckCircle, HiOutlineExclamationTriangle } from 'react-icons/hi2'
 
 const Switch = ({ isActive }: { isActive: boolean }) => {
     return (

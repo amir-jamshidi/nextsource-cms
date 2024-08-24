@@ -1,23 +1,11 @@
-import { IAlert } from '@/app/_types/alert'
-import React from 'react'
-import AlertFilter from './AlertFilter'
-import AlertDetailsBoxes from './AlertDetailsBoxes'
-import AlertList from './AlertList'
+import { IGetAlerts } from '@/app/_types'
 import PageContainer from '../../Modules/PageContainer'
+import AlertDetailsBoxes from './AlertDetailsBoxes'
+import AlertFilter from './AlertFilter'
+import AlertList from './AlertList'
 
 
-interface AlertsContainerProps {
-  alerts: IAlert[],
-  alertsDetails: {
-    alertsCount: number,
-    alertsSuccessCount: number,
-    alertWarningCount: number,
-    alertErrorCount: number
-  }
-}
-
-
-const AlertsContainer = ({ alerts, alertsDetails }: AlertsContainerProps) => {
+const AlertsContainer = ({ alerts, alertsDetails }: IGetAlerts) => {
   return (
     <PageContainer>
       <AlertFilter />

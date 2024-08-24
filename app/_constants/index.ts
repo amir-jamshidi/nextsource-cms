@@ -6,13 +6,13 @@ export const orderMenuChart = [
         color: 'bg-blue-500'
     },
     {
-        id: 1,
+        id: 2,
         title: 'سفارش 7 امروز',
         href: '/orders?day=7',
         color: 'bg-rose-500'
     },
     {
-        id: 1,
+        id: 3,
         title: 'سفارش 30 امروز',
         href: '/orders?day=30',
         color: 'bg-violet-500'
