@@ -77,7 +77,7 @@ export const getDashboardDetails = async ({ day = 7 }: IGetSaleReport) => {
         day = 7
     }
 
-    connectToDB()
+    await connectToDB()
 
     const dayNum = isNaN(Number(day)) ? 7 : Number(day);
     //OrderChart

@@ -11,7 +11,7 @@ import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import TokenGenerator from "../_utils/TokenGenerator";
 import { IVerify } from "../_types/verify";
-
+import request from 'request'
 
 
 export const LoginUser = async (phone: string) => {
@@ -20,27 +20,27 @@ export const LoginUser = async (phone: string) => {
     const code = codeGenerator();
     const expireTime = timeGenerator(5);
     const verify = await verifyModel.create({ phone, code, expireTime });
-    // request.post(
-    //     {
-    //         url: "http://ippanel.com/api/select",
-    //         body: {
-    //             op: "pattern",
-    //             user: "u09928168447",
-    //             pass: "Faraz@1402546340042007",
-    //             fromNum: "3000505",
-    //             toNum: phone,
-    //             patternCode: "ls41ct0qdyjrfed",
-    //             inputData: [{ "verification-code": code }],
-    //         },
-    //         json: true,
-    //     }
-    // );
+    request.post(
+        {
+            url: "http://ippanel.com/api/select",
+            body: {
+                op: "pattern",
+                user: "u09928168447",
+                pass: "Faraz@1402546340042007",
+                fromNum: "3000505",
+                toNum: phone,
+                patternCode: "ls41ct0qdyjrfed",
+                inputData: [{ "verification-code": code }],
+            },
+            json: true,
+        }
+    );
     if (!verify) throw new Error('خطای ناشناخته')
     return { state: true, message: "کد تایید ارسال شد" }
 }
 
 export const VerifyCodeUser = async (phone: string, code: number) => {
-     await connectToDB();
+    await connectToDB();
     //Check User Register Before 
     const isRegisterBefore = await userModel.findOne({ phone }).lean() as IUser;
     const verifyDocument = await verifyModel.findOneAndUpdate({ phone }, { $inc: { times: +1 } }, { new: true }).lean() as IVerify;
