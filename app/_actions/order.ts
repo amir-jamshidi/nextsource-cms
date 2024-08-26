@@ -41,8 +41,7 @@ export const getOrders = async ({ day = 1, page = 1 }: IGetOrdersProps) => {
 
     const currentPage = page > 1 ? page - 1 : page === 1 ? page : 1
     const currentSkip = page >= 1 ? page - 1 : 0
-
-    await connectToDB();
+    
     const orders: IOrder[] = await orderModel.find({ createdAt: { $gt: startDate } })
         .populate({ path: 'productID', model: productModel, populate: { path: 'creatorID', model: userModel, select: 'phone email' } })
         .populate({ path: 'userID', model: userModel, select: 'phone email' })
